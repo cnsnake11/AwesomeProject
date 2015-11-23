@@ -1,0 +1,14 @@
+{
+  "name": "AwesomeProject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "react-native": "^0.14.2",
+    "react-native-page-swiper": "0.0.2",
+    "react-native-swiper": "^1.3.0",
+    "react-native-viewpager": "^0.1.4"
+  }
+}

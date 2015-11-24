@@ -75,13 +75,9 @@ var MeitunIndex =React.createClass({
     _tplHeader(){
         //这里没有封装组件，因为没有复用价值而且代码量也不大
         return (
-            <View style={[css.titleView,{flex: 0}]}>
-                <Image style={[css.titleBase,css.titleLogoImage]}
+            <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'']}>
+                <Image style={[css.titleLogoImage]}
                        source={require('./img/logo.png')} ></Image>
-                <Text style={[css.titleBase,css.titleText]}>
-                    美囤妈妈
-                </Text>
-                <Text style={[css.titleBase,css.titleSearchText]}>搜索</Text>
             </View>
         );
 

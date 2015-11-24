@@ -13,25 +13,15 @@ var css=StyleSheet.create(
             backgroundColor:'#fff',
         },
             titleView:{
-                paddingTop:20,
-                paddingBottom:5,
-                flexDirection:'row',
                 backgroundColor:'#1ca9bd',
+                padding:5,
             },
-                titleBase:{
-                    flex:1,
-                    color:'#fff',
-                    height:20,
-                    lineHeight:20,
-                    textAlign:'center',
-                },
-                titleText:{
-                    fontSize:16,
-                    fontWeight:'bold',
-                },
-                titleSearchText:{
-                },
+            iosTitleView:{
+                paddingTop:20,
+            },
+
                 titleLogoImage:{
+                    height:28,
                     resizeMode:'contain',
                 },
 

@@ -24,6 +24,67 @@ var {
     }=React;
 
 
+var SectionHeader=React.createClass({
+    //todo 这里也可以封装出去，但是考虑到强耦合没有复用价值，代码量也不大，就没有封装出去。
+
+    getInitialState(){
+        return({
+            curName:'left',
+        });
+    },
+
+
+    render(){
+
+        var leftActiveCss='';
+        var rightActiveCss='';
+        var leftSectionBottomBorderView;
+        var rightSectionBottomBorderView;
+        if(this.state.curName=='left'){
+            leftActiveCss=css.sectionActiveText;
+            leftSectionBottomBorderView=(<View style={[css.sectionBottomBorderView]}></View>);
+        }else{
+            rightActiveCss=css.sectionActiveText;
+            rightSectionBottomBorderView=(<View style={[css.sectionBottomBorderView]}></View>);
+        }
+
+        return(
+            <View style={[css.sectionWrapperView]}>
+                <TouchableHighlight underlayColor={'white'}
+                                    style={[css.sectionTouch]} onPress={this._press.bind(this,'left')}>
+                    <View style={[css.sectionCellView]}>
+                        <Text style={[css.sectionTopText,leftActiveCss]}>今日特卖</Text>
+                        <Text style={[css.sectionBottomText,leftActiveCss]}>Today‘s Special</Text>
+                        {leftSectionBottomBorderView}
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight underlayColor={'white'}
+                                    style={[css.sectionTouch]}  onPress={this._press.bind(this,'right')}>
+                    <View style={[css.sectionCellView]}>
+                        <Text style={[css.sectionTopText,rightActiveCss]}>即将上线</Text>
+                        <Text style={[css.sectionBottomText,rightActiveCss]}>Preview</Text>
+                        {rightSectionBottomBorderView}
+                    </View>
+                </TouchableHighlight>
+            </View>
+        );
+    },
+
+
+
+    _press(name){
+        if(this.state.curName==name){
+            return;
+        }
+        this.setState({curName:name});
+    },
+
+
+});
+
+
+
 var DiscountList=React.createClass({
 
     //field
@@ -48,7 +109,8 @@ var DiscountList=React.createClass({
           <ListView dataSource={this.dataSource} onEndReachedThreshold={155}
                     renderRow={this._renderRow.bind(this)}
                     onEndReached={this._dealEnd.bind(this)}
-                    renderHeader={this._renderHeader}
+                    renderHeader={this._renderHeader.bind(this)}
+                    renderSectionHeader={this._renderSectionHeader.bind(this)}
               />
       );
     },
@@ -62,11 +124,17 @@ var DiscountList=React.createClass({
     },
 
 
-
     //私有方法
     _renderHeader(){
         return (
             <Slider/>
+        );
+    },
+
+    _renderSectionHeader(sectionData, sectionID){
+
+        return(
+            <SectionHeader/>
         );
     },
 

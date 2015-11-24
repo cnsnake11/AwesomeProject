@@ -29,7 +29,7 @@ var SectionHeader=React.createClass({
 
     getInitialState(){
         return({
-            curName:'left',
+            curName:this.props.curName,
         });
     },
 
@@ -79,14 +79,8 @@ var SectionHeader=React.createClass({
         }
         this.setState({curName:name});
 
-        //this.props.root._changeTab(name);
-
-
         var dataSource=this.props.root.state.dataSource.cloneWithRows(this.props.root[name].dataArray);
         this.props.root.setState({curName:name,dataSource:dataSource});
-
-        //this.props.root.setState({curName:name});
-        //this.props.root._getData();
 
     },
 
@@ -107,7 +101,7 @@ var DiscountList=React.createClass({
     },
 
     right:{
-        dataArray:[{}],
+        dataArray:[{}], //有一个空值，是为了保证第一次渲染list2的时候不渲染section
         loading:false,
         action:'gettmnotice',
         curPage:0,
@@ -119,7 +113,7 @@ var DiscountList=React.createClass({
         return {
             curName:'left',
             dataSource:new ListView.DataSource({
-                rowHasChanged: (r1, r2) => r1.specialid !== r2.specialid
+                rowHasChanged: (r1, r2) => true
             }),
         };
     },
@@ -156,15 +150,14 @@ var DiscountList=React.createClass({
     _renderSectionHeader(sectionData, sectionID){
 
         return(
-            <SectionHeader root={this}/>
+            <SectionHeader root={this} curName={this.state.curName}/>
         );
     },
 
-    _renderRow(rowData, sectionID, rowID) {
-
+    _renderRow(rowData, sectionID, rowID) { 
 
         if(!rowData.specialid){
-            return (<View></View>);
+            return(<View></View>);
         }
 
         return (

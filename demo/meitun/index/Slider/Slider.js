@@ -33,22 +33,61 @@ var styles = StyleSheet.create({
 var Swiper = require('react-native-swiper');
 
 
-var sliderImgs = [
-    'http://img01.meituncdn.com/group1/M00/44/FD/wKgyOlZPGmiABkItAALFKzvqD0o953.jpg',
-    'http://img04.meituncdn.com/group1/M00/45/BC/wKgyOlZSgViAPIk_AAPq3Gp6zkU960.jpg',
-    'http://img01.meituncdn.com/group1/M00/38/9D/wKgyOlYzH7-Aecy3AAEXg9gCPHs270.jpg'
-];
+
 var Slider = React.createClass({
+
+    imgs:[],
+
+    getInitialState(){
+        return {
+            isLoading:true,
+        };
+    },
+
+
     render: function(){
-        return (
-            <Swiper showsButtons={false} autoplay={true}
-                    height={150} showsPagination={true}>
-                <Image style={[styles.slide]} source={{uri: sliderImgs[0]}}></Image>
-                <Image style={[styles.slide]} source={{uri: sliderImgs[1]}}></Image>
-                <Image style={[styles.slide]} source={{uri: sliderImgs[2]}}></Image>
-            </Swiper>
-        );
-    }
+
+        var jsx;
+        if(this.state.isLoading==true){
+            jsx=(
+                <View>
+                    <Text>加载中.....</Text>
+                </View>
+            );
+        }else{
+            jsx=(
+                <Swiper showsButtons={false} autoplay={true}
+                        height={160} showsPagination={true}>
+                    {this._tplImg()}
+                </Swiper>
+            );
+        }
+
+        return jsx;
+    },
+
+
+    componentWillMount(){
+        var url='http://m.meitun.com/mobile/home/getgg.htm?oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+
+        fetch(url)
+            .then((response) => response.json())
+            .then(function(res){
+
+                    this.imgs=res.urls;
+                    //alert(res.urls[0].imageurl);
+                    this.setState({isLoading:false});
+                }.bind(this));
+    },
+
+
+    _tplImg(){
+        var r=[];
+        for(let i=0;i<this.imgs.length;i++){
+            r.push(<Image style={[styles.slide]} source={{uri: this.imgs[i].imageurl}}></Image>);
+        }
+        return r;
+    },
 });
 
 module.exports=Slider;

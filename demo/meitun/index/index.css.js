@@ -21,7 +21,7 @@ var css=StyleSheet.create(
             },
 
                 titleLogoImage:{
-                    height:28,
+                    height:25,
                     resizeMode:'contain',
                 },
 

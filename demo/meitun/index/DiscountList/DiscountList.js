@@ -140,14 +140,12 @@ var DiscountList=React.createClass({
 
     _renderRow(rowData, sectionID, rowID) {
 
-        var url=rowData.rightImage||rowData.leftImage;
-
         return (
             <TouchableHighlight style={[css.touch]}>
                 <View>
-                    <Image style={[css.image]} source={{uri:url}} />
+                    <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
-                        <Text>{rowData.brand}</Text>
+                        <Text>{rowData.name}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -172,19 +170,15 @@ var DiscountList=React.createClass({
 
         this.loading=true;
 
-        var url='http://www.meitun.com/discountstatic?callback=&discountLoadcount='+(this.state.curPage+1)+'&_=1448266633158';
+        var url='http://m.meitun.com/mobile/home/gettodayhave.htm?curpage='+(this.state.curPage+1)+'&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
 
         fetch(url)
-            .then((response) => response.text())
-            .then(function(responseText){
+            .then((response) => response.json())
+            .then(function(res){
 
                 //todo responseText is null
 
-                //去掉外括号
-                var resStr=responseText.substring(1,responseText.length);
-                resStr=resStr.substring(0,resStr.length-1);
-
-                this.dataArray=this.dataArray.concat(JSON.parse(resStr).data);
+                this.dataArray=this.dataArray.concat(res.speciallist);
 
                 //alert(this.dataArray.length);
 

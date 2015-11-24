@@ -4,6 +4,7 @@
 
 var React=require('react-native');
 var Slider=require('../Slider/Slider');
+var css=require('./DiscountList.css');
 
 var {
     AppRegistry,
@@ -25,13 +26,15 @@ var {
 
 var DiscountList=React.createClass({
 
+    //field
     dataArray:[],
     dataSource : new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1.brandId !== r2.brandId
 }),
-
     loading:false,
 
+
+    //状态初始化方法
     getInitialState(){
         return {
             curPage:0,
@@ -39,6 +42,7 @@ var DiscountList=React.createClass({
     },
 
 
+    //render方法
     render(){
       return (
           <ListView dataSource={this.dataSource} onEndReachedThreshold={1}
@@ -50,6 +54,7 @@ var DiscountList=React.createClass({
     },
 
 
+    //生命周期事件
     componentWillMount(){
 
         this._getData();
@@ -57,6 +62,9 @@ var DiscountList=React.createClass({
     },
 
 
+
+
+    //私有方法
     _renderHeader(){
         return (
             <Slider/>
@@ -106,7 +114,7 @@ var DiscountList=React.createClass({
 
         return (
             <TouchableHighlight>
-                <Image style={{resizeMode:'cover',height: 155}}
+                <Image style={[css.image]}
                        source={{uri:url}} />
             </TouchableHighlight>
         );

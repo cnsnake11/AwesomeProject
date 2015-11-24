@@ -24,6 +24,18 @@ var css=StyleSheet.create(
                     height:25,
                     resizeMode:'contain',
                 },
+                titleSearchTouch:{
+                    position:'absolute',
+                    right:15,
+                    bottom:10,
+                    color:'#fff',
+
+                },
+                titleSearchText:{
+                    color:'#fff',
+                    fontSize:12,
+                },
+
 
 
         hiddenCss:{

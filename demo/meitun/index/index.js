@@ -7,7 +7,6 @@
 var React=require('react-native');
 var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var css=require('./index.css');
-var Slider=require('./Slider/Slider');
 var DiscountList=require('./DiscountList/DiscountList');
 
 var {
@@ -78,6 +77,9 @@ var MeitunIndex =React.createClass({
             <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'']}>
                 <Image style={[css.titleLogoImage]}
                        source={require('./img/logo.png')} ></Image>
+                <TouchableHighlight style={[css.titleSearchTouch]} underlayColor='#1ca9bd' >
+                    <Text style={[css.titleSearchText]}>搜索</Text>
+                </TouchableHighlight>
             </View>
         );
 

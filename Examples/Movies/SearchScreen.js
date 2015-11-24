@@ -172,7 +172,7 @@ var SearchScreen = React.createClass({
     if (LOADING[query]) {
       return;
     }
-    alert('in end');
+    //alert('in end');
 
     LOADING[query] = true;
     this.setState({

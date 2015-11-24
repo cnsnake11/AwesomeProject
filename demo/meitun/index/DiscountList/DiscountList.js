@@ -78,6 +78,16 @@ var SectionHeader=React.createClass({
             return;
         }
         this.setState({curName:name});
+
+        //this.props.root._changeTab(name);
+
+
+        var dataSource=this.props.root.state.dataSource.cloneWithRows(this.props.root[name].dataArray);
+        this.props.root.setState({curName:name,dataSource:dataSource});
+
+        //this.props.root.setState({curName:name});
+        //this.props.root._getData();
+
     },
 
 
@@ -88,17 +98,29 @@ var SectionHeader=React.createClass({
 var DiscountList=React.createClass({
 
     //field
-    dataArray:[],
-    dataSource : new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1.brandId !== r2.brandId
-}),
-    loading:false,
+
+    left:{
+        dataArray:[],
+        loading:false,
+        action:'gettodayhave',
+        curPage:0,
+    },
+
+    right:{
+        dataArray:[{}],
+        loading:false,
+        action:'gettmnotice',
+        curPage:0,
+    },
 
 
     //状态初始化方法
     getInitialState(){
         return {
-            curPage:0,
+            curName:'left',
+            dataSource:new ListView.DataSource({
+                rowHasChanged: (r1, r2) => r1.specialid !== r2.specialid
+            }),
         };
     },
 
@@ -106,7 +128,7 @@ var DiscountList=React.createClass({
     //render方法
     render(){
       return (
-          <ListView dataSource={this.dataSource} onEndReachedThreshold={155}
+          <ListView dataSource={this.state.dataSource} onEndReachedThreshold={155}
                     renderRow={this._renderRow.bind(this)}
                     onEndReached={this._dealEnd.bind(this)}
                     renderHeader={this._renderHeader.bind(this)}
@@ -134,11 +156,16 @@ var DiscountList=React.createClass({
     _renderSectionHeader(sectionData, sectionID){
 
         return(
-            <SectionHeader/>
+            <SectionHeader root={this}/>
         );
     },
 
     _renderRow(rowData, sectionID, rowID) {
+
+
+        if(!rowData.specialid){
+            return (<View></View>);
+        }
 
         return (
             <TouchableHighlight style={[css.touch]}>
@@ -164,36 +191,43 @@ var DiscountList=React.createClass({
 
     _getData(){
 
-        if(this.loading==true){
+        var c=this.state.curName;
+
+        if(this[c].loading==true){
             return;
         }
 
-        this.loading=true;
+        this[c].loading=true;
 
-        var url='http://m.meitun.com/mobile/home/gettodayhave.htm?curpage='+(this.state.curPage+1)+'&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+        var curPage=this[c].curPage+1;
+        var url='http://m.meitun.com/mobile/home/'+this[c].action+'.htm?curpage='+curPage+'&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
 
         fetch(url)
             .then((response) => response.json())
             .then(function(res){
 
-                //todo responseText is null
-
-                this.dataArray=this.dataArray.concat(res.speciallist);
+                this[c].dataArray=this[c].dataArray.concat(res.speciallist);
 
                 //alert(this.dataArray.length);
 
-                this.dataSource=this.dataSource.cloneWithRows(this.dataArray);
+                var dataSource=this.state.dataSource.cloneWithRows(this[c].dataArray);
 
-                this.setState({curPage:this.state.curPage+1});
+                //this.dataSource=this[c].dataSource;
+
+                this[c].curPage=this[c].curPage+1;
+
+                if(c==this.state.curName){//说明加载的时候，没有被切换过
+                    this.setState({dataSource:dataSource});
+                }
+
 
             }.bind(this))
             .catch((error) => {
                 alert(error);
             }).done(()=>{
-                this.loading=false;
+                this[c].loading=false;
             });
     },
-
 
 });
 

@@ -10,8 +10,7 @@ var css=StyleSheet.create(
     {
         wrapper:{
             flex:1,
-            backgroundColor:'#fff',//兼容安卓背景默认黑色
-            height:99999,//兼容安卓背景默认黑色
+            backgroundColor:'#fff',
         },
             titleView:{
                 paddingTop:20,

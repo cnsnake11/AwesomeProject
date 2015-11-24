@@ -45,7 +45,7 @@ var DiscountList=React.createClass({
     //render方法
     render(){
       return (
-          <ListView dataSource={this.dataSource} onEndReachedThreshold={1}
+          <ListView dataSource={this.dataSource} onEndReachedThreshold={155}
                     renderRow={this._renderRow.bind(this)}
                     onEndReached={this._dealEnd.bind(this)}
                     renderHeader={this._renderHeader}
@@ -63,13 +63,38 @@ var DiscountList=React.createClass({
 
 
 
-
     //私有方法
     _renderHeader(){
         return (
             <Slider/>
         );
     },
+
+    _renderRow(rowData, sectionID, rowID) {
+
+        var url=rowData.rightImage||rowData.leftImage;
+
+        return (
+            <TouchableHighlight style={[css.touch]}>
+                <View>
+                    <Image style={[css.image]} source={{uri:url}} />
+                    <View  style={[css.textView]}>
+                        <Text>{rowData.brand}</Text>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        );
+    },
+
+
+
+    _dealEnd(){
+
+        //alert('in end');
+        this._getData();
+
+    },
+
 
     _getData(){
 
@@ -105,27 +130,6 @@ var DiscountList=React.createClass({
             }).done(()=>{
                 this.loading=false;
             });
-    },
-
-
-    _renderRow(rowData, sectionID, rowID) {
-
-        var url=rowData.rightImage||rowData.leftImage;
-
-        return (
-            <TouchableHighlight>
-                <Image style={[css.image]}
-                       source={{uri:url}} />
-            </TouchableHighlight>
-        );
-    },
-
-
-    _dealEnd(){
-
-        //alert('in end');
-        this._getData();
-
     },
 
 

@@ -28,7 +28,6 @@ var css=StyleSheet.create(
                     position:'absolute',
                     right:15,
                     bottom:10,
-                    color:'#fff',
 
                 },
                 titleSearchText:{
@@ -37,7 +36,7 @@ var css=StyleSheet.create(
                 },
 
 
-
+        //todo 放入通用组件库中
         hiddenCss:{
             position:'absolute',
             left:-9999,

@@ -57,7 +57,7 @@ var BottomNavBarCell = React.createClass({
         }
 
         return (
-            <TouchableWithoutFeedback onPress={this._handelPress.bind(this)}>
+            <TouchableWithoutFeedback onPress={this._handelPress}>
                 <View style={[css.cellView,selectedCss]}>
                     <Image style={css.cellImage} source={require('./img/window.png')} />
                     <Text style={[css.cellText,selectedCssText]}>{this.props.caption}</Text>

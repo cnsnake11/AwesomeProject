@@ -123,10 +123,10 @@ var DiscountList=React.createClass({
     render(){
       return (
           <ListView dataSource={this.state.dataSource} onEndReachedThreshold={155}
-                    renderRow={this._renderRow.bind(this)}
-                    onEndReached={this._dealEnd.bind(this)}
-                    renderHeader={this._renderHeader.bind(this)}
-                    renderSectionHeader={this._renderSectionHeader.bind(this)}
+                    renderRow={this._renderRow }
+                    onEndReached={this._dealEnd }
+                    renderHeader={this._renderHeader }
+                    renderSectionHeader={this._renderSectionHeader }
               />
       );
     },
@@ -221,6 +221,7 @@ var DiscountList=React.createClass({
         if(this[c].loading==true){
             return;
         }
+
 
         this[c].loading=true;
 

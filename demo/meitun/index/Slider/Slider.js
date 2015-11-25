@@ -93,9 +93,10 @@ var Slider = React.createClass({
     _tplImg(){
         var r=[];
         for(let i=0;i<this.imgs.length;i++){
-            r.push(<Image style={[styles.slide]} source={{uri: this.imgs[i].imageurl}}></Image>);
+            r.push(<Image key={'imgKey_'+i} style={[styles.slide]} source={{uri: this.imgs[i].imageurl}}></Image>);
         }
         return r;
+        //image 上加key请参考【http://facebook.github.io/react/docs/multiple-components.html#dynamic-children】
     },
 });
 

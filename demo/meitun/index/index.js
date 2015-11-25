@@ -48,7 +48,6 @@ var MeitunIndex =React.createClass({
             );
         }
 
-        //这里直接把flex定义在了模板上，是因为就是为这个页面用的，而且属性就一个flex，
       return(
 
           <View style={[css.wrapper]}>
@@ -101,7 +100,7 @@ var MeitunIndex =React.createClass({
 
     _tplBody(){
         return(
-            <View style={{flex: 1,justifyContent:'flex-start'}}>
+            <View style={{flex: 1}}>
                 {this._tplMtmm()}
                 {this._tplMs()}
                 {this._tplMsd()}

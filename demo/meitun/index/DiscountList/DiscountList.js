@@ -160,16 +160,44 @@ var DiscountList=React.createClass({
             return(<View></View>);
         }
 
+        var timeText;
+        if(this.state.curName=='left'){
+            timeText='剩余x天';
+        }else{
+            timeText='距开团x小时x分钟';
+        }
+
+
+        var discountJsx;
+        if(this.state.curName=='left'){
+            if(rowData.discount){
+                discountJsx=
+                    <View style={[css.discountView]}>
+                        <Image style={[css.discountImage]} source={require('./img/naipin.png')}/>
+                        <Text style={[css.discountText]}>{rowData.discount}</Text>
+                    </View>;
+            }
+        }else{
+            discountJsx=
+            <TouchableHighlight style={[css.kttxTouch]}>
+                <View style={[css.kttxView]}>
+                    <Text style={[css.kttxText]}>开团提醒</Text>
+                </View>
+            </TouchableHighlight>;
+        }
+
+
         return (
             <TouchableHighlight style={[css.touch]}>
                 <View>
                     <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
-                        <Text>{rowData.name}</Text>
+                        <Text style={[css.textText]} numberOfLines={1} >{rowData.name}</Text>
+                        {discountJsx}
                     </View>
                     <View style={[css.timeView]}>
                         <Image style={[css.timeImage]} source={require('./img/time.png')}/>
-                        <Text style={[css.timeText]}>剩余x天</Text>
+                        <Text style={[css.timeText]}>{timeText}</Text>
                     </View>
                 </View>
             </TouchableHighlight>

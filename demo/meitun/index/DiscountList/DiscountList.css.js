@@ -53,18 +53,59 @@ var css=StyleSheet.create({
             resizeMode:'cover',
         },
 
+
         textView:{
             backgroundColor:'#f5f5f5',
-            padding:10,
+            flexDirection:'row',
+            alignItems:'center',
+            paddingLeft:10,
+            height:45,
         },
+
+            textText:{
+                flex:.6,
+            },
+
+            discountView:{
+                marginRight:10,
+                flex:.4,
+                flexDirection:'row',
+                alignItems:'center',
+                justifyContent:'flex-end',
+            },
+                discountImage:{},
+                discountText:{
+                    color:'#ff9800',
+                },
+
+            kttxTouch:{
+                flex:.4,
+                flexDirection:'row',
+                justifyContent:'flex-end',
+            },
+
+                kttxView:{
+                    width:100,
+                    height:45,
+                    backgroundColor:'#00bcd6',
+                    flexDirection:'row',
+                    alignItems:'center',
+                    justifyContent:'center',
+                },
+                    kttxText:{
+                        color:'#fff',
+                        fontWeight:'bold',
+                    },
+
 
 
         timeView:{
-            width:80,
             height:19,
+            paddingLeft:5,
+            paddingRight:2,
             backgroundColor:'#333',
             flexDirection:'row',
-            opacity:0.7,
+            opacity:.7,
             position:'absolute',
             top:10,
             right:0,

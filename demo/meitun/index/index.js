@@ -25,6 +25,7 @@ var {
     Dimensions,
     Animated,
     LayoutAnimation,
+    InteractionManager,
     }=React;
 
 
@@ -32,11 +33,20 @@ var MeitunIndex =React.createClass({
 
     getInitialState(){
         return{
-            selectedName:'mtmm'
+            selectedName:'mtmm',
+            renderPlaceholderOnly: true,
         };
     },
 
     render(){
+
+        if (this.state.renderPlaceholderOnly) {
+            return (
+                <View>
+                    <Text>index 努力加载中 ....</Text>
+                </View>
+            );
+        }
 
         //这里直接把flex定义在了模板上，是因为就是为这个页面用的，而且属性就一个flex，
       return(
@@ -54,6 +64,10 @@ var MeitunIndex =React.createClass({
         if(Platform.OS=='ios'){
             StatusBarIOS.setStyle('light-content');
         }
+
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
     },
     componentWillUnmount(){
         if(Platform.OS=='ios'){

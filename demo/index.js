@@ -4,15 +4,9 @@
 //依赖引入
 //import React from 'react-native';
 var React=require('react-native');
-var UIExplorer=require('../Examples/UIExplorer/UIExplorerApp.ios');
-var MoviesApp=require('../Examples/Movies/MoviesApp.ios');
-/*//动态判断类型来加载不同的模块是不行的，因为都打包到一个js里，兼容性有问题
-if(React.Platform.OS=='ios'){
-    UIExplorer=require('../Examples/UIExplorer/UIExplorerApp.ios');
-}else{
-    UIExplorer=require('../Examples/UIExplorer/UIExplorerApp.android');
-}
-*/
+var UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
+var MoviesApp=require('../Examples/Movies/MoviesApp');
+
 var Demo1Index=require('./demo1/index');
 var MeitunIndex=require('./meitun/index/index');
 

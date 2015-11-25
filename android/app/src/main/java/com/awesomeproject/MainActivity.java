@@ -31,8 +31,8 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 //                .setBundleAssetName("UIExplorerApp.android.bundle")
 //                .setJSMainModuleName("Examples/UIExplorer/UIExplorerApp.android")
 
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModuleName("demo/index.android")
+                .setBundleAssetName("index.bundle")
+                .setJSMainModuleName("demo/index")
 
 
                 .addPackage(new MainReactPackage())

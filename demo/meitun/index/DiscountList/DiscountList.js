@@ -179,11 +179,11 @@ var DiscountList=React.createClass({
             }
         }else{
             discountJsx=
-            <TouchableHighlight style={[css.kttxTouch]}>
-                <View style={[css.kttxView]}>
-                    <Text style={[css.kttxText]}>开团提醒</Text>
-                </View>
-            </TouchableHighlight>;
+                <View style={[css.kttxView]} >
+                    <TouchableHighlight style={[css.kttxTouch]} underlayColor='#00bcd6' >
+                        <Text style={[css.kttxText]}>开团提醒</Text>
+                     </TouchableHighlight>
+                </View>;
         }
 
 

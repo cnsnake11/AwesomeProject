@@ -78,13 +78,12 @@ var css=StyleSheet.create({
                     color:'#ff9800',
                 },
 
-            kttxTouch:{
+            kttxView:{
                 flex:.4,
                 flexDirection:'row',
                 justifyContent:'flex-end',
             },
-
-                kttxView:{
+                kttxTouch:{
                     width:100,
                     height:45,
                     backgroundColor:'#00bcd6',
@@ -101,7 +100,7 @@ var css=StyleSheet.create({
         timeView:{
             height:19,
             paddingLeft:5,
-            paddingRight:2,
+            paddingRight:5,
             backgroundColor:'#333',
             flexDirection:'row',
             opacity:.7,

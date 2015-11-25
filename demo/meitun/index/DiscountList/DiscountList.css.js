@@ -88,7 +88,6 @@ var css=StyleSheet.create({
                     width:100,
                     height:45,
                     backgroundColor:'#00bcd6',
-                    flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
                 },

@@ -101,12 +101,10 @@ var MeitunIndex =React.createClass({
 
     _tplBody(){
         return(
-            <View style={{flex: 1}}>
-
+            <View style={{flex: 1,justifyContent:'flex-start'}}>
                 {this._tplMtmm()}
                 {this._tplMs()}
                 {this._tplMsd()}
-
             </View>
         );
     },
@@ -121,8 +119,7 @@ var MeitunIndex =React.createClass({
         }
 
         var tpl=(
-            <View style={[hiddenCss,{flex:1}]}>
-
+            <View style={[{flex:1},hiddenCss]}>
 
                 <DiscountList/>
 

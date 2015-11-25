@@ -41,6 +41,7 @@ var css=StyleSheet.create(
         hiddenCss:{
             position:'absolute',
             left:-9999,
+            height:10,//加高是为了解决listview不停触发底部滚动事件的
         },
     }
 );

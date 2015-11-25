@@ -51,7 +51,7 @@ var Slider = React.createClass({
         if(this.state.isLoading==true){
             jsx=(
                 <View>
-                    <Text>加载中.....</Text>
+                    <Text>Slider 加载中.....</Text>
                 </View>
             );
         }else{
@@ -64,6 +64,15 @@ var Slider = React.createClass({
         }
 
         return jsx;
+    },
+
+
+    shouldComponentUpdate(){
+        if(this.state.isLoading==false){
+            return false;
+        }else{
+            return true;
+        }
     },
 
 

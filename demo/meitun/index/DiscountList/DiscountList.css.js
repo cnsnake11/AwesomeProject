@@ -58,6 +58,31 @@ var css=StyleSheet.create({
             padding:10,
         },
 
+
+        timeView:{
+            width:80,
+            height:19,
+            backgroundColor:'#333',
+            flexDirection:'row',
+            opacity:0.7,
+            position:'absolute',
+            top:10,
+            right:0,
+            alignItems:'center',
+            justifyContent:'center',
+            borderTopLeftRadius:10,
+            borderBottomLeftRadius:10,
+        },
+            timeImage:{
+                height:13,
+                resizeMode:'contain',
+            },
+            timeText:{
+                color:'#fff',
+                fontSize:12,
+                fontWeight:'bold',
+              },
+
 });
 
 module.exports=css;

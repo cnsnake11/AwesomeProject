@@ -154,7 +154,7 @@ var DiscountList=React.createClass({
         );
     },
 
-    _renderRow(rowData, sectionID, rowID) { 
+    _renderRow(rowData, sectionID, rowID) {
 
         if(!rowData.specialid){
             return(<View></View>);
@@ -166,6 +166,10 @@ var DiscountList=React.createClass({
                     <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
                         <Text>{rowData.name}</Text>
+                    </View>
+                    <View style={[css.timeView]}>
+                        <Image style={[css.timeImage]} source={require('./img/time.png')}/>
+                        <Text style={[css.timeText]}>剩余x天</Text>
                     </View>
                 </View>
             </TouchableHighlight>

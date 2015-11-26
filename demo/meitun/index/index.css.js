@@ -42,6 +42,13 @@ var css=StyleSheet.create(
             left:-9999,
             height:10,//加高是为了解决listview不停触发底部滚动事件的
         },
+
+
+        indexLoadingView:{
+            flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+        },
     }
 );
 

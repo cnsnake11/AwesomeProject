@@ -176,7 +176,7 @@ var DiscountList=React.createClass({
         if(this.state[this.state.curName+'_loading']==true){
             return(
                 <View style={css.footerLoadingView}>
-                    <Text style={css.footerLoadingText}>list 数据加载中.... </Text>
+                    <Text>list 数据加载中.... </Text>
                 </View>
             );
         }

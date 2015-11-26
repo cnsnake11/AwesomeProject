@@ -50,7 +50,7 @@ var Slider = React.createClass({
         var jsx;
         if(this.state.isLoading==true){
             jsx=(
-                <View>
+                <View style={{height:160,alignItems:'center',justifyContent:'center'}}>
                     <Text>Slider 加载中.....</Text>
                 </View>
             );

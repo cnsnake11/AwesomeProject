@@ -42,7 +42,7 @@ var MeitunIndex =React.createClass({
 
         if (this.state.renderPlaceholderOnly) {
             return (
-                <View>
+                <View style={css.indexLoadingView}>
                     <Text>index 努力加载中 ....</Text>
                 </View>
             );

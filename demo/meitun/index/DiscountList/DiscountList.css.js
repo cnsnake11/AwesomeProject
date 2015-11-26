@@ -127,12 +127,8 @@ var css=StyleSheet.create({
     footerLoadingView:{
         height:45,
         alignItems:'center',
-        flexDirection:'row',
+        justifyContent:'center',
     },
-        footerLoadingText:{
-            flex:1,
-            textAlign:'center',
-        },
 
 });
 

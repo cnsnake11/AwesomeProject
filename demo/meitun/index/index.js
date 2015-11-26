@@ -77,7 +77,7 @@ var MeitunIndex =React.createClass({
     //子页面是否加载的状态
     _loadStatus:{
         mtmm:false,
-        ms:false,
+        classnav:false,
         mmd:false,
         gwc:false,
         wddd:false,
@@ -102,7 +102,7 @@ var MeitunIndex =React.createClass({
         return(
             <View style={{flex: 1}}>
                 {this._tplMtmm()}
-                {this._tplMs()}
+                {this._tplClassnav()}
                 {this._tplMsd()}
             </View>
         );
@@ -139,26 +139,26 @@ var MeitunIndex =React.createClass({
 
     },
 
-    _tplMs(){
+    _tplClassnav(){
         var hiddenCss='';
 
-        if(this.state.selectedName!='ms'){
+        if(this.state.selectedName!='classnav'){
             hiddenCss=css.hiddenCss;
         }
 
         var tpl=(
             <View style={[hiddenCss]}>
-                <Text style={{color:'black'}}>秒杀</Text>
+                <Text style={{color:'black'}}>分类</Text>
                 <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} ></TextInput>
             </View>
         );
 
 
-        if(this._loadStatus.ms==false&&this.state.selectedName=='ms'){//第一次点到
-            this._loadStatus.ms=true;
+        if(this._loadStatus.classnav==false&&this.state.selectedName=='classnav'){//第一次点到
+            this._loadStatus.classnav=true;
         }
 
-        if(this._loadStatus.ms==false&&this.state.selectedName!='ms'){//从来没点到
+        if(this._loadStatus.classnav==false&&this.state.selectedName!='classnav'){//从来没点到
             return;
         }else{//点到了 or 隐藏
             return tpl;

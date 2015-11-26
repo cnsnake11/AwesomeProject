@@ -32,7 +32,7 @@ var BottomNavBar = React.createClass({
         return(
             <View style={css.wrapper} >
                 <BottomNavBarCell caption='美囤妈妈' name='mtmm' navBar={this} index={this.props.index}/>
-                <BottomNavBarCell caption='秒杀' name='ms'  navBar={this} index={this.props.index}/>
+                <BottomNavBarCell caption='分类' name='classnav'  navBar={this} index={this.props.index}/>
                 <BottomNavBarCell caption='免税店' name='msd' navBar={this} index={this.props.index}/>
                 <BottomNavBarCell caption='购物车'  name='gwc' navBar={this}   index={this.props.index}/>
                 <BottomNavBarCell caption='我的订单' name='wddd' navBar={this}  index={this.props.index}/>

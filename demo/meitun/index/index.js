@@ -9,6 +9,8 @@ var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var css=require('./index.css');
 var DiscountList=require('./DiscountList/DiscountList');
 
+var Classnav=require('../Classnav/Classnav');
+
 var {
     AppRegistry,
     Component,
@@ -147,10 +149,10 @@ var MeitunIndex =React.createClass({
         }
 
         var tpl=(
-            <View style={[hiddenCss]}>
-                <Text style={{color:'black'}}>分类</Text>
-                <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} ></TextInput>
+            <View style={[{flex:1},hiddenCss]}>
+                <Classnav />
             </View>
+
         );
 
 

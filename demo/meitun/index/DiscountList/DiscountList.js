@@ -132,6 +132,7 @@ var DiscountList=React.createClass({
     },
 
 
+
     //生命周期事件
     componentWillMount(){
 
@@ -222,6 +223,7 @@ var DiscountList=React.createClass({
             return;
         }
 
+        console.log(c+'开始获取数据..');
 
         this[c].loading=true;
 
@@ -242,8 +244,13 @@ var DiscountList=React.createClass({
 
                 this[c].curPage=this[c].curPage+1;
 
+                console.log(c+'成功获取了数据，更新数据库.');
+
                 if(c==this.state.curName){//说明加载的时候，没有被切换过
                     this.setState({dataSource:dataSource});
+                    console.log(c+'更新view.');
+                }else{
+                    console.log(c+'当前tab已经切换了，不更新view.');
                 }
 
 
@@ -252,6 +259,7 @@ var DiscountList=React.createClass({
                 alert(error);
             }).done(()=>{
                 this[c].loading=false;
+                console.log(c+'获取数据结束，更新loading状态。');
             });
     },
 

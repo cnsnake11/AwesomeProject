@@ -27,11 +27,26 @@ var {
 var ClassChild=React.createClass({
 
     render(){
-        return (
-            <View style={[css.wrapper]}>
-                {this._tpl()}
-            </View>
-        );
+
+        var jsx;
+        var classNav=this.props.classNav;
+        var loadingChild=classNav.state.loadingChild;
+        if(loadingChild==true){
+            jsx=(
+                <View style={[{flex:1,justifyContent:'center',alignItems:'center'}]}>
+                    <Text>class child 加载中 ....</Text>
+                </View>
+            );
+        }else{
+            jsx=(
+                <View style={[css.wrapper]}>
+                    {this._tpl()}
+                </View>
+            );
+        }
+
+
+        return jsx;
     },
 
 

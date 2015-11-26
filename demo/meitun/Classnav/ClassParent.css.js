@@ -20,6 +20,9 @@ var css=StyleSheet.create(
         curWrapperView:{
             backgroundColor:'#e0e0e0',
         },
+        curText:{
+            color:'#00bcd4',
+        },
     }
 );
 

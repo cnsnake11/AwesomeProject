@@ -33,6 +33,7 @@ var Classnav=React.createClass({
         return{
             animationFinish: false,//动画是否完成
             data:null,
+            loadingChild:false,//是否正在加载子分类
         };
     },
 
@@ -54,7 +55,7 @@ var Classnav=React.createClass({
 
             <View style={[css.wrapper]}>
                 <View style={[css.left]}>
-                    <ClassParent classNav={this} ref={'classParent'}/>
+                    <ClassParent classNav={this} ref='classParent' />
                 </View>
                 <View style={[css.right]}>
                     <ClassChild classNav={this} ref='classChild'/>
@@ -79,6 +80,15 @@ var Classnav=React.createClass({
 
     _getData(pid,index){
 
+        this.setState({loadingChild:true});
+
+        var allData=this.state.data;
+        if(allData&&allData[index].childs&&allData[index].childs.length>0){
+            console.log('数据请求过了，不发请求.');
+            this.setState({loadingChild:false});
+            return;
+        }
+
         var url;
 
         if(pid){
@@ -98,18 +108,23 @@ var Classnav=React.createClass({
             .then((res)=>{
                 //alert(res.data.frontcategorys.length);
 
+                this.setState({loadingChild:false});
+
                 if(!pid){//第一次装载，会有外层数据
                     this.setState({data:res.data.frontcategorys});
                 }else{
+
+                    if(index!=this.refs.classParent.state.curIndex){
+                        console.log('成功获得返回数据，但是当前页已经切换了，不进行view渲染操作....pid='+pid);
+                        return;
+                    }
+
                     var data=this.state.data;
                     data[index].childs=res.data.frontcategorys;
-                    this.setState({data:data.slice(0)});
+                    this.setState({data:data});
                 }
 
                 console.log('加载数据成功....pid='+pid);
-
-            })
-            .done(()=>{
 
             });
     },

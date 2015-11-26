@@ -23,21 +23,16 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
-
-
 //                .setBundleAssetName("index.android.bundle")
 //                .setJSMainModuleName("index.android")
 
-//                .setBundleAssetName("UIExplorerApp.android.bundle")
-//                .setJSMainModuleName("Examples/UIExplorer/UIExplorerApp.android")
 
                 .setBundleAssetName("index.bundle")
                 .setJSMainModuleName("demo/index")
 
-
                 .addPackage(new MainReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
-//                .setUseDeveloperSupport(true)
+                //.setUseDeveloperSupport(true)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
 
@@ -57,16 +52,16 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
     @Override
     public void onBackPressed() {
-      if (mReactInstanceManager != null) {
-        mReactInstanceManager.onBackPressed();
-      } else {
-        super.onBackPressed();
-      }
+        if (mReactInstanceManager != null) {
+            mReactInstanceManager.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public void invokeDefaultOnBackPressed() {
-      super.onBackPressed();
+        super.onBackPressed();
     }
 
     @Override
@@ -83,7 +78,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this);
+            mReactInstanceManager.onResume(this, this);
         }
     }
 }

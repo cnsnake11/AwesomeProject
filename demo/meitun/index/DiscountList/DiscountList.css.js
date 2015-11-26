@@ -122,6 +122,18 @@ var css=StyleSheet.create({
                 fontWeight:'bold',
               },
 
+
+
+    footerLoadingView:{
+        height:45,
+        alignItems:'center',
+        flexDirection:'row',
+    },
+        footerLoadingText:{
+            flex:1,
+            textAlign:'center',
+        },
+
 });
 
 module.exports=css;

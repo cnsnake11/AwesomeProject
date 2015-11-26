@@ -95,14 +95,12 @@ var DiscountList=React.createClass({
 
     left:{
         dataArray:[],
-        loading:false,
         action:'gettodayhave',
         curPage:0,
     },
 
     right:{
         dataArray:[{}], //有一个空值，是为了保证第一次渲染list2的时候不渲染section
-        loading:false,
         action:'gettmnotice',
         curPage:0,
     },
@@ -115,6 +113,13 @@ var DiscountList=React.createClass({
             dataSource:new ListView.DataSource({
                 rowHasChanged: (r1, r2) => true
             }),
+
+            left_loading:false,
+            left_noData:false,
+
+            right_loading:false,
+            right_noData:false,
+
         };
     },
 
@@ -127,6 +132,7 @@ var DiscountList=React.createClass({
                     onEndReached={this._dealEnd }
                     renderHeader={this._renderHeader }
                     renderSectionHeader={this._renderSectionHeader }
+                    renderFooter={this._renderFooter}
               />
       );
     },
@@ -153,6 +159,28 @@ var DiscountList=React.createClass({
         return(
             <SectionHeader root={this} curName={this.state.curName}/>
         );
+    },
+
+    _renderFooter(){
+
+
+
+        if(this.state[this.state.curName+'_noData']==true){
+            return(
+                <View style={css.footerLoadingView}>
+                    <Text style={css.footerLoadingText}>list 没有数据了</Text>
+                </View>
+            );
+        }
+
+        if(this.state[this.state.curName+'_loading']==true){
+            return(
+                <View style={css.footerLoadingView}>
+                    <Text style={css.footerLoadingText}>list 数据加载中.... </Text>
+                </View>
+            );
+        }
+
     },
 
     _renderRow(rowData, sectionID, rowID) {
@@ -219,13 +247,14 @@ var DiscountList=React.createClass({
 
         var c=this.state.curName;
 
-        if(this[c].loading==true){
+        if(this.state[c+'_loading']==true||this.state[c+'_noData']==true){
             return;
         }
 
-        console.log(c+'开始获取数据..');
+        console.log(c+'开始获取数据..设置loading=true');
 
-        this[c].loading=true;
+        //this.state[c].loading=true;
+        this.setState({[c+'_loading']:true});
 
         var curPage=this[c].curPage+1;
         var url='http://m.meitun.com/mobile/home/'+this[c].action+'.htm?curpage='+curPage+'&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
@@ -233,6 +262,14 @@ var DiscountList=React.createClass({
         fetch(url)
             .then((response) => response.json())
             .then(function(res){
+
+
+                if(res.speciallist.length==0){
+                    //this.state[c].noData=true;
+                    this.setState({[c+'_noData']:true});
+                    console.log(c+'没有数据了,设置nodata=true。');
+                    return;
+                }
 
                 this[c].dataArray=this[c].dataArray.concat(res.speciallist);
 
@@ -258,8 +295,9 @@ var DiscountList=React.createClass({
             .catch((error) => {
                 alert(error);
             }).done(()=>{
-                this[c].loading=false;
-                console.log(c+'获取数据结束，更新loading状态。');
+                //this.state[c].loading=false;
+                this.setState({[c+'_loading']:false});
+                console.log(c+'获取数据结束，设置loadding=false。');
             });
     },
 

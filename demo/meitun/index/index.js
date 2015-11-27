@@ -10,6 +10,7 @@ var css=require('./index.css');
 var DiscountList=require('./DiscountList/DiscountList');
 
 var Classnav=require('../Classnav/Classnav');
+var Ssale=require('../Ssale/Ssale');
 
 var {
     AppRegistry,
@@ -52,11 +53,10 @@ var MeitunIndex =React.createClass({
 
       return(
 
-          <View style={[css.wrapper]}>
-              {this._tplHeader()}
-              {this._tplBody()}
-              {this._tplFooter()}
-          </View>
+          <Navigator  ref='nav'
+                initialRoute={{name: 'home'}}
+                renderScene={ this._render_page.bind(this) }
+            ></Navigator>
 
       );
     },
@@ -122,7 +122,7 @@ var MeitunIndex =React.createClass({
         var tpl=(
             <View style={[{flex:1},hiddenCss]}>
 
-                <DiscountList/>
+                <DiscountList index={this}/>
 
             </View>
         );
@@ -197,6 +197,28 @@ var MeitunIndex =React.createClass({
         return (
             <BottomNavBar style={{flex: 0}} index={this} />
         );
+    },
+
+
+    _render_page(route, nav){
+        console.log('in render page '+route.name);
+
+        if(route.name=='home'){
+            return (
+               <View style={[css.wrapper]}>
+                   {this._tplHeader()}
+                   {this._tplBody()}
+                   {this._tplFooter()}
+               </View>
+            );
+        }
+
+
+        if(route.name=='ssale'){
+            return (
+                <Ssale/>
+            );
+        }
     },
 });
 

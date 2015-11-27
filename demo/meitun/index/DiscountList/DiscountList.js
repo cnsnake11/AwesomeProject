@@ -217,7 +217,7 @@ var DiscountList=React.createClass({
 
 
         return (
-            <TouchableHighlight style={[css.touch]}>
+            <TouchableHighlight style={[css.touch]} onPress={this._pressSale}>
                 <View>
                     <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
@@ -299,6 +299,14 @@ var DiscountList=React.createClass({
                 this.setState({[c+'_loading']:false});
                 console.log(c+'获取数据结束，设置loadding=false。');
             });
+    },
+
+
+    _pressSale(){
+        var nav=this.props.index.refs.nav;
+        nav.push({
+            name: 'ssale'
+        });
     },
 
 });

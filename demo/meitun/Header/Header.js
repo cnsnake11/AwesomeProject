@@ -5,6 +5,7 @@
 var React=require('react-native');
 var css=require('./Header.css');
 
+var Search=require('../Search/Search');
 
 var {
     AppRegistry,
@@ -29,7 +30,12 @@ var {
 
 var Header =React.createClass({
 
+
     render(){
+
+        var nav=this.props.nav;
+
+
         return (
             <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'']}>
 
@@ -37,8 +43,8 @@ var Header =React.createClass({
                 {this.props.back==true?
                     <TouchableOpacity style={[css.titleBtnTouch]}
                                       onPress={()=>{
-                                        if(this.props.nav){
-                                            this.props.nav.pop()
+                                        if(nav){
+                                            nav.pop()
                                         }else{
                                             alert('获得不到导航器对象.');
                                         }
@@ -64,7 +70,15 @@ var Header =React.createClass({
 
 
                 {this.props.search==true?
-                    <TouchableOpacity style={[css.titleBtnTouch]} onPress={()=>alert('搜索clicked')}   >
+                    <TouchableOpacity style={[css.titleBtnTouch]}
+                                      onPress={()=>{
+
+                                        nav.push({
+                                            name:'search',
+                                            page:(<Search nav={nav} />)
+                                        });
+
+                                      }}   >
                         <Text style={[css.titleBtnText]}>搜索</Text>
                     </TouchableOpacity>
                     :null

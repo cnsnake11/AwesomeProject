@@ -8,41 +8,33 @@ var {
 
 var css=StyleSheet.create(
     {
-
-        titleView:{
+        wrapper:{
             backgroundColor:'#1ca9bd',
             padding:10,
             flexDirection:'row',
             alignItems:'center',
             justifyContent:'center',
         },
-        iosTitleView:{
+        iosWrapper:{
             paddingTop:20,
         },
-
-            titleText:{
+            input:{
                 flex:1,
-                color:'#fff',
-                fontSize:16,
-                textAlign:'center',
-            },
+                backgroundColor:'#fff',
+                borderRadius:8,
+                padding:0,
+                height:30,
 
-            titleLogoImage:{
-                flex:1,
-                height:25,
-                resizeMode:'contain',
             },
-
-            titleBtnTouch:{
+            cancelTouch:{
+                flex:0,
+                marginLeft:5,
                 paddingLeft:5,
                 paddingRight:5,
             },
-            titleBtnText:{
-                color:'#fff',
-                fontSize:12,
-            },
-
-
+                cancelText:{
+                    color:'#fff',
+                },
     }
 );
 

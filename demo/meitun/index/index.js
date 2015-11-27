@@ -186,9 +186,10 @@ var MeitunIndex =React.createClass({
         console.log('in render page '+route.name);
 
         if(route.name=='home'){
+
             return (
                <View style={[css.wrapper]}>
-                   <Header search={true} logo={true}  back={true} />
+                   <Header search={true} logo={true}  back={true} nav={nav} />
                    {this._tplBody()}
                    <BottomNavBar style={{flex: 0}} index={this} />
                </View>

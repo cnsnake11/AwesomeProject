@@ -4,6 +4,8 @@
 var React=require('react-native');
 var css=require('./Ssale.css');
 
+var Header=require('../Header/Header');
+
 var {
     AppRegistry,
     Component,
@@ -28,7 +30,12 @@ var Ssale =React.createClass({
 
 
     render(){
-        return <Text> in ssale</Text>
+        return (
+            <View>
+                <Header back={true} title={this.props.title} share={true} nav={this.props.nav} />
+                <Text> in ssale</Text>
+            </View>
+        );
     },
 
 });

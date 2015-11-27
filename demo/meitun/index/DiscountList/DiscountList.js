@@ -5,6 +5,8 @@
 var React=require('react-native');
 var Slider=require('../Slider/Slider');
 var css=require('./DiscountList.css');
+var Ssale=require('../../Ssale/Ssale');
+
 
 var {
     AppRegistry,
@@ -217,7 +219,7 @@ var DiscountList=React.createClass({
 
 
         return (
-            <TouchableHighlight style={[css.touch]} onPress={this._pressSale}>
+            <TouchableHighlight style={[css.touch]} onPress={this._pressSale.bind(this,rowData.name)}>
                 <View>
                     <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
@@ -302,12 +304,15 @@ var DiscountList=React.createClass({
     },
 
 
-    _pressSale(){
+    _pressSale(name){
         var nav=this.props.index.refs.nav;
         nav.push({
-            name: 'ssale'
+            name: 'ssale',
+            page: <Ssale nav={nav} title={name}/>
         });
     },
+
+
 
 });
 

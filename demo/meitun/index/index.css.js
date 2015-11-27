@@ -12,29 +12,6 @@ var css=StyleSheet.create(
             flex:1,
             backgroundColor:'#fff',
         },
-            titleView:{
-                backgroundColor:'#1ca9bd',
-                padding:5,
-            },
-            iosTitleView:{
-                paddingTop:20,
-            },
-
-                titleLogoImage:{
-                    height:25,
-                    resizeMode:'contain',
-                },
-                titleSearchTouch:{
-                    position:'absolute',
-                    right:15,
-                    bottom:10,
-
-                },
-                titleSearchText:{
-                    color:'#fff',
-                    fontSize:12,
-                },
-
 
         //todo 放入通用组件库中
         hiddenCss:{

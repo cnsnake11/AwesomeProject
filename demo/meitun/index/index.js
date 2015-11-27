@@ -5,12 +5,13 @@
 
 
 var React=require('react-native');
-var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var css=require('./index.css');
-var DiscountList=require('./DiscountList/DiscountList');
 
+var BottomNavBar=require('./BottomNavBar/BottomNavBar');
+var Header=require('../Header/Header');
+var DiscountList=require('./DiscountList/DiscountList');
 var Classnav=require('../Classnav/Classnav');
-var Ssale=require('../Ssale/Ssale');
+
 
 var {
     AppRegistry,
@@ -54,12 +55,13 @@ var MeitunIndex =React.createClass({
       return(
 
           <Navigator  ref='nav'
-                initialRoute={{name: 'home'}}
-                renderScene={ this._render_page.bind(this) }
-            ></Navigator>
+                      initialRoute={{name: 'home'}}
+                      renderScene={ this._render_page.bind(this) }
+              ></Navigator>
 
       );
     },
+
 
     componentWillMount(){
         if(Platform.OS=='ios'){
@@ -85,20 +87,6 @@ var MeitunIndex =React.createClass({
         wddd:false,
     },
 
-
-    _tplHeader(){
-        //这里没有封装组件，因为没有复用价值而且代码量也不大
-        return (
-            <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'']}>
-                <Image style={[css.titleLogoImage]}
-                       source={require('./img/logo.png')} ></Image>
-                <TouchableHighlight style={[css.titleSearchTouch]} underlayColor='#1ca9bd' >
-                    <Text style={[css.titleSearchText]}>搜索</Text>
-                </TouchableHighlight>
-            </View>
-        );
-
-    },
 
     _tplBody(){
         return(
@@ -193,12 +181,6 @@ var MeitunIndex =React.createClass({
         }
     },
 
-    _tplFooter(){
-        return (
-            <BottomNavBar style={{flex: 0}} index={this} />
-        );
-    },
-
 
     _render_page(route, nav){
         console.log('in render page '+route.name);
@@ -206,19 +188,23 @@ var MeitunIndex =React.createClass({
         if(route.name=='home'){
             return (
                <View style={[css.wrapper]}>
-                   {this._tplHeader()}
+                   <Header search={true} logo={true}  back={true} />
                    {this._tplBody()}
-                   {this._tplFooter()}
+                   <BottomNavBar style={{flex: 0}} index={this} />
                </View>
             );
         }
 
 
-        if(route.name=='ssale'){
-            return (
-                <Ssale/>
-            );
+        if(!route.page){
+            alert('页面导航请求没有传入page参数.');
+            return;
         }
+
+        return (
+            route.page
+        );
+
     },
 });
 

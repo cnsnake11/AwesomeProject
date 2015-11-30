@@ -4,6 +4,7 @@
 
 var React=require('react-native');
 var css=require('./Search.css');
+var Loading=require('../../../components/Loading/Loading');
 
 
 var {
@@ -29,22 +30,35 @@ var {
 
 var Search =React.createClass({
 
+
+    getInitialState(){
+        return {
+            loading:false,
+        };
+    },
+
+
     render(){
         var nav=this.props.nav;
 
         return (
 
-            <View style={[css.wrapper,,React.Platform.OS=='ios'?css.iosWrapper:'']}>
-                <TextInput style={[css.input]} ref='input'
-                           returnKeyType='search'
-                           autoFocus={true}
-                           placeholder='商品或分类搜索'
-                           onSubmitEditing={this._search}
-                    />
-                <TouchableOpacity style={[css.cancelTouch]}
-                    onPress={()=>nav.pop()} >
-                    <Text style={[css.cancelText]}>取消</Text>
-                </TouchableOpacity>
+            <View>
+
+                <View style={[css.wrapper,React.Platform.OS=='ios'?css.iosWrapper:'']}>
+                    <TextInput style={[css.input]} ref='input'
+                               returnKeyType='search'
+                               autoFocus={true}
+                               placeholder='商品或分类搜索'
+                               onSubmitEditing={this._search}
+                        />
+                    <TouchableOpacity style={[css.cancelTouch]}
+                        onPress={()=>nav.pop()} >
+                        <Text style={[css.cancelText]}>取消</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <Loading show={this.state.loading}/>
             </View>
 
         );
@@ -54,15 +68,29 @@ var Search =React.createClass({
 
     _search(e){
         var v=e.nativeEvent.text;
+
+        if(!v||this.state.loading==true)return;
+
         var url=this._getUrl(v,1);
 
         console.log('do search keyword='+v);
 
-        fetch(url).then((res)=>res.json())
-        .then((res)=>{
+        this.setState({
+            loading:true,
+        });
 
+        fetch(url)
+            .then((res)=>res.json())
+            .then((res)=>{
                 this._dealResult(res);
-
+            })
+            .catch((error) => {
+                console.warn(error);
+            })
+            .done(()=>{
+                this.setState({
+                    loading:false,
+                });
             });
 
     },

@@ -42,7 +42,7 @@ var Result =React.createClass({
 
         return (
 
-            <View style={[{flex:1}]}>
+            <View style={[{flex:1},css.wrapper]}>
 
                 <View style={[{flex:0}]}>
                     <Text> search bar </Text>
@@ -77,7 +77,22 @@ var Result =React.createClass({
 
     _renderRow(rowData, sectionID, rowID){
         return (
-            <Text>{rowData.itemname}</Text>
+
+
+            <TouchableOpacity >
+
+                <View style={[css.listRowView]}>
+                    <View style={[css.listLeftView]}>
+                        <Image style={[css.listImage]}  source={{uri:rowData.picture}} />
+                    </View>
+
+                    <View style={[css.listRightView]}>
+                        <Text>{rowData.itemname}</Text>
+                    </View>
+                </View>
+
+            </TouchableOpacity>
+
         );
     },
 

@@ -54,9 +54,37 @@ var Search =React.createClass({
 
     _search(e){
         var v=e.nativeEvent.text;
-        var url='http://m.meitun.com/mobile/search.htm?curpage=1&keywords=%E5%A5%BD&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+        var url=this._getUrl(v,1);
 
         console.log('do search keyword='+v);
+
+        fetch(url).then((res)=>res.json())
+        .then((res)=>{
+
+                this._dealResult(res);
+
+            });
+
+    },
+
+
+    _dealResult(res){
+
+        var nav=this.props.nav;
+        var router={
+            'title':'aaaa',
+            'page':(
+              <Text>搜索结果页面</Text>
+            ),
+        };
+        nav.push(router);
+
+    },
+
+
+    _getUrl(keyWord,curpage){
+        var s=encodeURI(keyWord);
+        return 'http://m.meitun.com/mobile/search.htm?curpage='+curpage+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
     },
 
 

@@ -5,6 +5,7 @@
 var React=require('react-native');
 var css=require('./Search.css');
 var Loading=require('../../../components/Loading/Loading');
+var Result=require('./Result');
 
 
 var {
@@ -50,7 +51,7 @@ var Search =React.createClass({
                                returnKeyType='search'
                                autoFocus={true}
                                placeholder='商品或分类搜索'
-                               onSubmitEditing={this._search}
+                               onSubmitEditing={this._search2}
                         />
                     <TouchableOpacity style={[css.cancelTouch]}
                         onPress={()=>nav.pop()} >
@@ -65,6 +66,22 @@ var Search =React.createClass({
 
     },
 
+
+    _search2(e){
+        var v=e.nativeEvent.text;
+        if(!v)return;
+
+
+        var nav=this.props.nav;
+        var router={
+            'name':'result',
+            'title':'搜索结果页面',
+            'page':(
+                <Result keyWord={v} />
+            ),
+        };
+        nav.push(router);
+    },
 
     _search(e){
         var v=e.nativeEvent.text;
@@ -100,9 +117,10 @@ var Search =React.createClass({
 
         var nav=this.props.nav;
         var router={
-            'title':'aaaa',
+            'name':'result',
+            'title':'搜索结果页面',
             'page':(
-              <Text>搜索结果页面</Text>
+              <Result res={res} />
             ),
         };
         nav.push(router);

@@ -18,7 +18,7 @@ var css=StyleSheet.create({
     },
 
     loadingText:{
-        fontSize:16,
+        //fontSize:16,
         color:'black',
     },
 

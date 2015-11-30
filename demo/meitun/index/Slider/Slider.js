@@ -3,6 +3,7 @@
 
 
 var React=require('react-native');
+var Loading=require('../../../../components/Loading/Loading');
 
 var {
     AppRegistry,
@@ -50,9 +51,9 @@ var Slider = React.createClass({
         var jsx;
         if(this.state.isLoading==true){
             jsx=(
-                <View style={{height:160,alignItems:'center',justifyContent:'center'}}>
-                    <Text>Slider 加载中.....</Text>
-                </View>
+
+
+                <Loading show={true}  style={{height:160}} />
             );
         }else{
             jsx=(

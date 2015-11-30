@@ -11,6 +11,7 @@ var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var Header=require('../Header/Header');
 var DiscountList=require('./DiscountList/DiscountList');
 var Classnav=require('../Classnav/Classnav');
+var Loading=require('../../../components/Loading/Loading');
 
 
 var {
@@ -46,9 +47,7 @@ var MeitunIndex =React.createClass({
 
         if (this.state.renderPlaceholderOnly) {
             return (
-                <View style={css.indexLoadingView}>
-                    <Text>index 努力加载中 ....</Text>
-                </View>
+                <Loading show={true}/>
             );
         }
 

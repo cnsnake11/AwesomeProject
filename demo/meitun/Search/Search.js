@@ -43,7 +43,7 @@ var Search =React.createClass({
 
         return (
 
-            <View>
+            <View style={{flex:1,}}>
 
                 <View style={[css.wrapper,React.Platform.OS=='ios'?css.iosWrapper:'']}>
                     <TextInput style={[css.input]} ref='input'
@@ -58,7 +58,7 @@ var Search =React.createClass({
                     </TouchableOpacity>
                 </View>
 
-                <Loading show={this.state.loading}/>
+                <Loading show={this.state.loading} />
             </View>
 
         );

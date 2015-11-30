@@ -5,6 +5,7 @@ var React=require('react-native');
 var css=require('./Classnav.css');
 var ClassParent=require('./ClassParent');
 var ClassChild=require('./ClassChild');
+var Loading=require('../../../components/Loading/Loading');
 
 var {
     AppRegistry,
@@ -41,11 +42,10 @@ var Classnav=React.createClass({
 
 
         if (this.state.animationFinish==false||this.state.data==null) {
+
             //动画未完成 或 数据未加载
             return (
-                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                    <Text>classnav 加载中 ....</Text>
-                </View>
+                <Loading show={true} />
             );
         }
 

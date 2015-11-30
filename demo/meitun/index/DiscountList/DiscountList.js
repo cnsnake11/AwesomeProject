@@ -6,6 +6,7 @@ var React=require('react-native');
 var Slider=require('../Slider/Slider');
 var css=require('./DiscountList.css');
 var Ssale=require('../../Ssale/Ssale');
+var Loading=require('../../../../components/Loading/Loading');
 
 
 var {
@@ -170,16 +171,14 @@ var DiscountList=React.createClass({
         if(this.state[this.state.curName+'_noData']==true){
             return(
                 <View style={css.footerLoadingView}>
-                    <Text style={css.footerLoadingText}>list 没有数据了</Text>
+                    <Text>list 没有数据了</Text>
                 </View>
             );
         }
 
         if(this.state[this.state.curName+'_loading']==true){
             return(
-                <View style={css.footerLoadingView}>
-                    <Text>list 数据加载中.... </Text>
-                </View>
+                <Loading style={css.footerLoadingView} show={true} />
             );
         }
 

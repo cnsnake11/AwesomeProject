@@ -3,6 +3,7 @@
 
 var React=require('react-native');
 var css=require('./ClassChild.css');
+var Loading=require('../../../components/Loading/Loading');
 
 var {
     AppRegistry,
@@ -33,9 +34,7 @@ var ClassChild=React.createClass({
         var loadingChild=classNav.state.loadingChild;
         if(loadingChild==true){
             jsx=(
-                <View style={[{flex:1,justifyContent:'center',alignItems:'center'}]}>
-                    <Text>class child 加载中 ....</Text>
-                </View>
+                <Loading show={loadingChild} />
             );
         }else{
             jsx=(

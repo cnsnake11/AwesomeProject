@@ -19,7 +19,7 @@ var {
 
 
 /**
- * 因为蒙板整个屏幕的效果是基于绝对定位做的，所以 Loading 组件必须要定义在根节点上面
+ * 无蒙板效果，只是统一加载loading的一个封装，方便整个项目统一更换loading样式
  */
 
 var Loading=React.createClass({
@@ -30,7 +30,7 @@ var Loading=React.createClass({
 
         if(this.props.show==true){
             return (
-                <View style={[css.wrapper]}>
+                <View style={[css.wrapper,this.props.style]}>
                     <Text style={[css.loadingText]}>努力加载中....</Text>
                 </View>
             );

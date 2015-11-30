@@ -21,11 +21,6 @@ var css=StyleSheet.create(
         },
 
 
-        indexLoadingView:{
-            flex:1,
-            alignItems:'center',
-            justifyContent:'center',
-        },
     }
 );
 

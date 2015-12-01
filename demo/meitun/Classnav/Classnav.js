@@ -5,7 +5,7 @@ var React=require('react-native');
 var css=require('./Classnav.css');
 var ClassParent=require('./ClassParent');
 var ClassChild=require('./ClassChild');
-var Loading=require('../../../BbtReactNative/components/Loading/Loading');
+var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 
 var {
     AppRegistry,

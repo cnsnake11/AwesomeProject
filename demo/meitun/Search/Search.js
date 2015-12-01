@@ -4,7 +4,6 @@
 
 var React=require('react-native');
 var css=require('./Search.css');
-var Loading=require('../../../BbtReactNative/components/Loading/Loading');
 var Result=require('./Result');
 
 
@@ -32,12 +31,6 @@ var {
 var Search =React.createClass({
 
 
-    getInitialState(){
-        return {
-            loading:false,
-        };
-    },
-
 
     render(){
         var nav=this.props.nav;
@@ -59,7 +52,6 @@ var Search =React.createClass({
                     </TouchableOpacity>
                 </View>
 
-                <Loading show={this.state.loading} />
             </View>
 
         );

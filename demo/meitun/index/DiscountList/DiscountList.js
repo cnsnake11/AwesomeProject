@@ -6,7 +6,7 @@ var React=require('react-native');
 var Slider=require('../Slider/Slider');
 var css=require('./DiscountList.css');
 var Ssale=require('../../Ssale/Ssale');
-var Loading=require('../../../../BbtReactNative/components/Loading/Loading');
+var Loading=require('../../../../BbtReactNative/views/Loading/Loading');
 
 
 var {

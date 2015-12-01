@@ -4,8 +4,8 @@
 
 var React=require('react-native');
 var css=require('./Result.css');
-var Loading=require('../../../BbtReactNative/components/Loading/Loading');
-var ListViewBindUrl=require('../../../BbtReactNative/components/ListViewBindUrl/ListViewBindUrl');
+var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
 
 
 var {

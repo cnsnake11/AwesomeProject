@@ -11,7 +11,7 @@ var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var Header=require('../Header/Header');
 var DiscountList=require('./DiscountList/DiscountList');
 var Classnav=require('../Classnav/Classnav');
-var Loading=require('../../../BbtReactNative/components/Loading/Loading');
+var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 
 
 var {

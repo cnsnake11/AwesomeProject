@@ -6,6 +6,8 @@
 var React=require('react-native');
 var css=require('./ListViewBindUrl.css');
 var Loading=require('../Loading/Loading');
+var checkProps=require('../CheckProps/CheckProps');
+var concatProps=require('../ConcatProps/ConcatProps');
 
 
 var {
@@ -33,9 +35,28 @@ var {
 var ListViewBindUrl =React.createClass({
 
 
+    //组件名称，一般输出调试信息的时候会比较有用
+    _compName:'ListViewBindUrl',
+
+    //组件的选项，定义在组件上，通过this.props来使用，
+    //通过查看此选项，可以方便的知道组件都有哪些属性
+    //利用checkProps可以方便的进行校验工作
+    options:{
+
+        getUrl:{
+            must:true,
+            type:'function'
+        },
+        getData:{
+            must:true,
+            type:'function',
+        },
+
+        //同时支持ListView的所有属性
+    },
+
     curPage:0,
     data:[],
-
 
     getInitialState(){
         return {
@@ -51,7 +72,7 @@ var ListViewBindUrl =React.createClass({
 
     componentWillMount(){
 
-        this._check();
+        checkProps.check(this);
 
         this._queryData();
 
@@ -62,35 +83,18 @@ var ListViewBindUrl =React.createClass({
 
         var props=this.props;
 
-        return (
-
+        var jsx=(
             <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true}
-                      renderRow={this.props.renderRow}
                       onEndReached={this._endReached }
                       onEndReachedThreshold={200}
-                      renderFooter={this._renderFooter}
-                />
-
+                      renderFooter={this._renderFooter} />
         );
-    },
 
-
-    _check(){
-        var p=this.props;
-        if(!p.getUrl){
-            console.error('没有定义getUrl方法。');
-        }
-
-        if(!p.getData){
-            console.error('没有定义getData方法。');
-        }
-
+        return concatProps.concat(this,jsx);
     },
 
 
     _renderFooter(){
-
-
 
         if(this.state._noData==true){
             return(

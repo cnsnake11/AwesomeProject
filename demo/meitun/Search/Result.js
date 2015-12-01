@@ -87,7 +87,27 @@ var Result =React.createClass({
                     </View>
 
                     <View style={[css.listRightView]}>
-                        <Text>{rowData.itemname}</Text>
+
+                        <View style={[css.topView]}>
+                            <Text>{rowData.itemname}</Text>
+                        </View>
+
+                        <View style={[css.bottomView]}>
+
+                            <View  style={[css.bottomView1]}>
+                                <Text style={[css.text1]}>{rowData.topicprice}</Text>
+                                <Text style={[css.text1]} >{rowData.saleprice}</Text>
+                                <Text style={[css.text1]}>{rowData.discount}折</Text>
+                            </View>
+
+                            <View  style={[css.bottomView2]}>
+                                <Text>{rowData.salescount}人已囤</Text>
+                            </View>
+
+                        </View>
+
+
+
                     </View>
                 </View>
 

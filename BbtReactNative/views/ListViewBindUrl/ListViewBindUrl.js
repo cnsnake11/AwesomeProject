@@ -81,8 +81,6 @@ var ListViewBindUrl =React.createClass({
 
     render(){
 
-        var props=this.props;
-
         var jsx=(
             <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true}
                       onEndReached={this._endReached }

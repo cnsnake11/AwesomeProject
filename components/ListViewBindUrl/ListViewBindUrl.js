@@ -64,7 +64,7 @@ var ListViewBindUrl =React.createClass({
 
         return (
 
-            <ListView dataSource={this.state.dataSource}
+            <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true}
                       renderRow={this.props.renderRow}
                       onEndReached={this._endReached }
                       onEndReachedThreshold={200}

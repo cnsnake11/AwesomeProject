@@ -79,7 +79,7 @@ var Result =React.createClass({
         return (
 
 
-            <TouchableOpacity >
+            <TouchableOpacity onPress={this._press} >
 
                 <View style={[css.listRowView]}>
                     <View style={[css.listLeftView]}>
@@ -96,6 +96,14 @@ var Result =React.createClass({
         );
     },
 
+    _press(){
+        //this.props.nav.pop();
+        console.log('pressed');
+    },
+
 });
+
+
+
 
 module.exports=Result;

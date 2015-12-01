@@ -131,6 +131,7 @@ var DiscountList=React.createClass({
     render(){
       return (
           <ListView dataSource={this.state.dataSource} onEndReachedThreshold={155}
+                    keyboardShouldPersistTaps={true}
                     renderRow={this._renderRow }
                     onEndReached={this._dealEnd }
                     renderHeader={this._renderHeader }

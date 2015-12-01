@@ -51,7 +51,7 @@ var Search =React.createClass({
                                returnKeyType='search'
                                autoFocus={true}
                                placeholder='商品或分类搜索'
-                               onSubmitEditing={this._search2}
+                               onSubmitEditing={this._search}
                         />
                     <TouchableOpacity style={[css.cancelTouch]}
                         onPress={()=>nav.pop()} >
@@ -67,7 +67,7 @@ var Search =React.createClass({
     },
 
 
-    _search2(e){
+    _search(e){
         var v=e.nativeEvent.text;
         if(!v)return;
 
@@ -77,60 +77,10 @@ var Search =React.createClass({
             'name':'result',
             'title':'搜索结果页面',
             'page':(
-                <Result keyWord={v} />
+                <Result keyWord={v} nav={nav} />
             ),
         };
         nav.push(router);
-    },
-
-    _search(e){
-        var v=e.nativeEvent.text;
-
-        if(!v||this.state.loading==true)return;
-
-        var url=this._getUrl(v,1);
-
-        console.log('do search keyword='+v);
-
-        this.setState({
-            loading:true,
-        });
-
-        fetch(url)
-            .then((res)=>res.json())
-            .then((res)=>{
-                this._dealResult(res);
-            })
-            .catch((error) => {
-                console.warn(error);
-            })
-            .done(()=>{
-                this.setState({
-                    loading:false,
-                });
-            });
-
-    },
-
-
-    _dealResult(res){
-
-        var nav=this.props.nav;
-        var router={
-            'name':'result',
-            'title':'搜索结果页面',
-            'page':(
-              <Result res={res} />
-            ),
-        };
-        nav.push(router);
-
-    },
-
-
-    _getUrl(keyWord,curpage){
-        var s=encodeURI(keyWord);
-        return 'http://m.meitun.com/mobile/search.htm?curpage='+curpage+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
     },
 
 

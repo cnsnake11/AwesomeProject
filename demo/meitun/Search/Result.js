@@ -6,6 +6,7 @@ var React=require('react-native');
 var css=require('./Result.css');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
+var Tab=require('../../../BbtReactNative/views/Tab/Tab');
 
 
 var {
@@ -48,10 +49,7 @@ var Result =React.createClass({
                     <Text> search bar </Text>
                 </View>
 
-                <View style={[{flex:0}]}>
-                    <Text> result tab </Text>
-                </View>
-
+                <Tab/>
 
                 <ListViewBindUrl style={[{flex:1}]}
                                  renderRow={this._renderRow }

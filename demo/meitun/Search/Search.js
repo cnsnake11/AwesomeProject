@@ -4,7 +4,7 @@
 
 var React=require('react-native');
 var css=require('./Search.css');
-var Loading=require('../../../components/Loading/Loading');
+var Loading=require('../../../BbtReactNative/components/Loading/Loading');
 var Result=require('./Result');
 
 

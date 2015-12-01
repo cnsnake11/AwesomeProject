@@ -3,7 +3,7 @@
 
 var React=require('react-native');
 var css=require('./ClassChild.css');
-var Loading=require('../../../components/Loading/Loading');
+var Loading=require('../../../BbtReactNative/components/Loading/Loading');
 
 var {
     AppRegistry,

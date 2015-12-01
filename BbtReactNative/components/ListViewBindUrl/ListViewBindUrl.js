@@ -6,8 +6,8 @@
 var React=require('react-native');
 var css=require('./ListViewBindUrl.css');
 var Loading=require('../Loading/Loading');
-var checkProps=require('../CheckProps/CheckProps');
-var concatProps=require('../ConcatProps/ConcatProps');
+var checkProps=require('../../base/CheckProps/CheckProps');
+var concatProps=require('../../base/ConcatProps/ConcatProps');
 
 
 var {

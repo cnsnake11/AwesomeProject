@@ -4,7 +4,7 @@
 
 var React=require('react-native');
 var css=require('./Loading.css');
-var checkProps=require('../CheckProps/CheckProps');
+var checkProps=require('../../base/CheckProps/CheckProps');
 
 var {
     AppRegistry,

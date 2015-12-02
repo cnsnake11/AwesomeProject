@@ -49,14 +49,32 @@ var css=StyleSheet.create(
 
                             bottomView1:{
                                 flexDirection:'row',
+                                alignItems:'flex-end',
                             },
 
                                 text1:{
                                     marginRight:5,
+                                    fontWeight:'700',
+                                },
+                                newPrice:{
+                                    color:'#ff9802',
+                                    fontSize:18,
+                                },
+                                oldPrice:{
+                                    textDecorationLine:'line-through',
+                                    color:'#999',
+                                },
+                                discount:{
+
+                                    color:'#ff9802',
                                 },
                             bottomView2:{
 
                             },
+                                salescount:{
+                                    fontWeight:'bold',
+                                    color:'#999',
+                                }
     }
 );
 

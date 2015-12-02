@@ -14,6 +14,8 @@ var DiscountList=require('./DiscountList/DiscountList');
 var Classnav=require('../Classnav/Classnav');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 
+var Search=require('../Search/Search');
+
 
 var {
     AppRegistry,
@@ -189,7 +191,8 @@ var MeitunIndex =React.createClass({
 
             return (
                <View style={[css.wrapper]}>
-                   <Header search={true} logo={true}  back={true} nav={nav} />
+                   <Header logo={true}  back={true} nav={nav}
+                           rightBtn='搜索' rightBtnPress={this._search} />
                    {this._tplBody()}
                    <BottomNavBar style={{flex: 0}} index={this} />
                </View>
@@ -206,6 +209,14 @@ var MeitunIndex =React.createClass({
             route.page
         );
 
+    },
+
+    _search(){
+        var nav=this.refs.nav;
+        nav.push({
+            name:'search',
+            page:(<Search nav={nav} />)
+        });
     },
 });
 

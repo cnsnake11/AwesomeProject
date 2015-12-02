@@ -32,10 +32,16 @@ var Ssale =React.createClass({
     render(){
         return (
             <View>
-                <Header back={true} title={this.props.title} share={true} nav={this.props.nav} />
+                <Header back={true} title={this.props.title} nav={this.props.nav}
+                        rightBtn='分享' rightBtnPress={this._share} />
                 <Text> in ssale</Text>
             </View>
         );
+    },
+
+
+    _share(){
+      console.log('share clicked .');
     },
 
 });

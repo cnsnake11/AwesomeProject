@@ -38,7 +38,7 @@ var Result =React.createClass({
 
             <View style={[{flex:1},css.wrapper]}>
 
-                <Header />
+                <Header back={true} title='搜索结果' rightBtn='搜索' />
 
                 <ResultTab result={this} ref='resultTab' />
 

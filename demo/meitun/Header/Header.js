@@ -4,8 +4,9 @@
 
 var React=require('react-native');
 var css=require('./Header.css');
-
+/*
 var Search=require('../Search/Search');
+*/
 
 var {
     AppRegistry,
@@ -47,14 +48,14 @@ var Header =React.createClass({
             type:'boolean',
         },
 
-        search:{
+        rightBtn:{
             must:false,
-            type:'boolean',
+            type:'string',
         },
 
-        share:{
+        rightBtnPress:{
             must:false,
-            type:'boolean',
+            type:'function',
         },
     },
 
@@ -100,33 +101,19 @@ var Header =React.createClass({
                 }
 
 
-
-                {this.props.search==true?
-                    <TouchableOpacity style={[css.titleBtnTouch]}
-                                      onPress={()=>{
-
-                                        nav.push({
-                                            name:'search',
-                                            page:(<Search nav={nav} />)
-                                        });
-
-                                      }}   >
-                        <Text style={[css.titleBtnText]}>搜索</Text>
+                {this.props.rightBtn?
+                    <TouchableOpacity style={[css.titleBtnTouch]} onPress={this.props.rightBtnPress} >
+                        <Text style={[css.titleBtnText]}>{this.props.rightBtn}</Text>
                     </TouchableOpacity>
                     :null
                 }
 
-
-                {this.props.share==true?
-                    <TouchableOpacity style={[css.titleBtnTouch]} onPress={()=>console.log('分享clicked')}   >
-                        <Text style={[css.titleBtnText]}>分享</Text>
-                    </TouchableOpacity>
-                    :null
-                }
             </View>
         );
 
     },
+
+
 });
 
 module.exports=Header;

@@ -4,9 +4,9 @@
 
 var React=require('react-native');
 var css=require('./Result.css');
-var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
 var ResultTab=require('./ResultTab');
+var Header=require('../Header/Header');
 
 var {
     AppRegistry,
@@ -38,21 +38,17 @@ var Result =React.createClass({
 
             <View style={[{flex:1},css.wrapper]}>
 
-
-                <View style={[{flex:0}]}>
-                    <Text> search bar </Text>
-                </View>
+                <Header />
 
                 <ResultTab result={this} ref='resultTab' />
 
-                <ListViewBindUrl style={[{flex:1}]} ref='list' 
+                <ListViewBindUrl style={[{flex:1}]} ref='list'
                                  renderRow={this._renderRow }
                                  getUrl={this._getUrl}
                                  getData={this._getData}
                 />
 
             </View>
-
 
         );
     },
@@ -72,7 +68,7 @@ var Result =React.createClass({
         var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree&sortfield=';
 
         var sort='mr';
-        if(this.refs.resultTab){
+        if(this.refs.resultTab){//在第一次render的时候取不到，直接用默认值
             sort=this.refs.resultTab.state.curName;
         }
 

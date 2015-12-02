@@ -44,8 +44,7 @@ var ResultTab =React.createClass({
 
         this._tabApi=new TabApi(
             {
-                curName:this.state.curName,
-                tabNames:['mr','xl','jg','sx'],
+                curName:this.state.curName
             }
         );
 
@@ -99,6 +98,7 @@ var ResultTabBtn =React.createClass({
         var resultTab=this.props.resultTab;
 
         if(tabApi.isCur(name)){
+            this.props.resultTab.props.result.refs.list.refs.list.getScrollResponder().scrollTo(0);
             return;
         }
 

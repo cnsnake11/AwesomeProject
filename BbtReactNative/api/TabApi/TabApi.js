@@ -14,10 +14,6 @@ class Tab {
                 must:true,
                 type:'string',
             },
-            tabNames:{
-                must:true,
-                type:'array',
-            },
         };
 
         propsCheck.check(this,props);
@@ -36,10 +32,6 @@ class Tab {
 
     clicked(name){
         this._curName=name;
-    }
-
-    getStatus(name){
-
     }
 
     getCurName(){

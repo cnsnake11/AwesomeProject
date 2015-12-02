@@ -31,6 +31,38 @@ var {
 var Header =React.createClass({
 
 
+    options:{
+        back:{
+            must:false,
+            type:'boolean',
+        },
+
+        logo:{
+            must:false,
+            type:'boolean',
+        },
+
+        title:{
+            must:false,
+            type:'boolean',
+        },
+
+        search:{
+            must:false,
+            type:'boolean',
+        },
+
+        share:{
+            must:false,
+            type:'boolean',
+        },
+    },
+
+    /*componentWillMount(){
+
+    },*/
+
+
     render(){
 
         var nav=this.props.nav;
@@ -46,7 +78,7 @@ var Header =React.createClass({
                                         if(nav){
                                             nav.pop()
                                         }else{
-                                            alert('获得不到导航器对象.');
+                                            console.error('获得不到导航器对象.');
                                         }
                                       }}  >
                         <Text style={[css.titleBtnText]}>返回</Text>
@@ -86,7 +118,7 @@ var Header =React.createClass({
 
 
                 {this.props.share==true?
-                    <TouchableOpacity style={[css.titleBtnTouch]} onPress={()=>alert('分享clicked')}   >
+                    <TouchableOpacity style={[css.titleBtnTouch]} onPress={()=>console.log('分享clicked')}   >
                         <Text style={[css.titleBtnText]}>分享</Text>
                     </TouchableOpacity>
                     :null

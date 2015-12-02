@@ -58,7 +58,7 @@ var ListViewBindUrl =React.createClass({
     curPage:0,
     data:[],
 
-    clear(){//重置状态
+    clear(){//重置状态,切换数据源之前请执行他
         this._threadId=Math.random();
         this.curPage=0;
         this.data=[];

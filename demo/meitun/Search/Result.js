@@ -31,13 +31,6 @@ var {
 
 var Result =React.createClass({
 
-    getInitialState(){
-        return {
-            dataSource:null,
-        };
-    },
-
-
     render(){
 
 
@@ -50,7 +43,7 @@ var Result =React.createClass({
                     <Text> search bar </Text>
                 </View>
 
-                <ResultTab result={this} />
+                <ResultTab result={this} ref='resultTab' />
 
                 <ListViewBindUrl style={[{flex:1}]} ref='list' 
                                  renderRow={this._renderRow }
@@ -67,11 +60,23 @@ var Result =React.createClass({
 
 
 
+    _sortId:{
+        'mr':'',
+        'xl':'SALES_COUNT_DESC',
+        'jg':'SALES_PRICE_ASC',
+    },
 
 
     _getUrl(curPage){
         var s=encodeURI(this.props.keyWord);
-        return 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+        var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree&sortfield=';
+
+        var sort='mr';
+        if(this.refs.resultTab){
+            sort=this.refs.resultTab.state.curName;
+        }
+
+        return url+this._sortId[sort];
     },
 
     _getData(res){

@@ -98,6 +98,11 @@ var ResultTabBtn =React.createClass({
         var tabApi=this.props.tabApi;
         var resultTab=this.props.resultTab;
 
+        if(tabApi.isCur(name)){
+            return;
+        }
+
+
         tabApi.clicked(name);
         resultTab.setState({
             curName:name,

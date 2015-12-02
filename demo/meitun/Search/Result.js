@@ -50,9 +50,9 @@ var Result =React.createClass({
                     <Text> search bar </Text>
                 </View>
 
-                <ResultTab />
+                <ResultTab result={this} />
 
-                <ListViewBindUrl style={[{flex:1}]}
+                <ListViewBindUrl style={[{flex:1}]} ref='list' 
                                  renderRow={this._renderRow }
                                  getUrl={this._getUrl}
                                  getData={this._getData}
@@ -63,6 +63,10 @@ var Result =React.createClass({
 
         );
     },
+
+
+
+
 
 
     _getUrl(curPage){

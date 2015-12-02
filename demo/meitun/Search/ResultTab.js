@@ -102,6 +102,9 @@ var ResultTabBtn =React.createClass({
         resultTab.setState({
             curName:name,
         });
+
+
+        this.props.resultTab.props.result.refs.list.reload();
     }
 
 

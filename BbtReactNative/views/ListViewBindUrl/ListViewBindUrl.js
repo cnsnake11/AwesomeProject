@@ -58,11 +58,30 @@ var ListViewBindUrl =React.createClass({
     curPage:0,
     data:[],
 
+    clear(){//重置状态
+        this.curPage=0;
+        this.data=[];
+        //修复安卓下，切换数据源，高度不变，导致endreached事件会触发很多次
+        if(React.Platform.OS=='android')this.refs.list.getScrollResponder().scrollTo(0);
+        this.setState(this.getInitialState());
+    },
+
+    load(){//装载数据
+        this._queryData();
+    },
+
+    reload(){//重置状态 并 装载数据
+        this.clear();
+        this.load();
+    },
+
+
     getInitialState(){
+        var ds=new ListView.DataSource({
+            rowHasChanged: (r1, r2) => true
+        });
         return {
-            dataSource:new ListView.DataSource({
-                rowHasChanged: (r1, r2) => true
-            }),
+            dataSource:ds.cloneWithRows([]),
 
             _loading:false,
             _noData:false,
@@ -82,7 +101,7 @@ var ListViewBindUrl =React.createClass({
     render(){
 
         var jsx=(
-            <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true}
+            <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true} ref='list'
                       onEndReached={this._endReached }
                       onEndReachedThreshold={200}
                       renderFooter={this._renderFooter} />

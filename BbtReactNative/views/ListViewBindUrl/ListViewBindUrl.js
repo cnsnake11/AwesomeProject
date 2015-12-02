@@ -59,6 +59,7 @@ var ListViewBindUrl =React.createClass({
     data:[],
 
     clear(){//重置状态
+        this._threadId=Math.random();
         this.curPage=0;
         this.data=[];
         //修复安卓下，切换数据源，高度不变，导致endreached事件会触发很多次
@@ -74,6 +75,9 @@ var ListViewBindUrl =React.createClass({
         this.clear();
         this.load();
     },
+
+
+    _threadId:'init',//线程id，控制多个请求发出的时候[切换数据源的时候是可以发出多个请求的]，只有正确的请求可以去更新view
 
 
     getInitialState(){
@@ -135,6 +139,7 @@ var ListViewBindUrl =React.createClass({
     },
 
     _queryData(){
+        var _threadId=this._threadId;
 
         if(this.state._loading==true){
             console.log('尚有查询请求未完成，不能执行新的请求.');
@@ -164,6 +169,11 @@ var ListViewBindUrl =React.createClass({
             .then((res)=>res.json())
             .then((res)=>{
 
+                if(this._threadId!=_threadId){
+                    console.log('threadId不一致，终止这次view更新.');
+                    return;
+                }
+
                 console.log('请求成功.');
 
                 var getData=props.getData;
@@ -184,6 +194,11 @@ var ListViewBindUrl =React.createClass({
             })
             .catch((error)=>console.error(error))
             .done(()=>{
+
+                if(this._threadId!=_threadId){
+                    //console.log('threadId不一致，终止这次view更新.22222');
+                    return;
+                }
                 this.setState({_loading:false});
             });
 

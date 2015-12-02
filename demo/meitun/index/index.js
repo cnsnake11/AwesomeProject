@@ -6,6 +6,7 @@
 
 var React=require('react-native');
 var css=require('./index.css');
+var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
 
 var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var Header=require('../Header/Header');
@@ -103,7 +104,7 @@ var MeitunIndex =React.createClass({
 
         if(this.state.selectedName!='mtmm'){
             //alert('in hidden css');
-            hiddenCss=css.hiddenCss;
+            hiddenCss=baseCss.hidden;
         }
 
         var tpl=(
@@ -132,7 +133,7 @@ var MeitunIndex =React.createClass({
         var hiddenCss='';
 
         if(this.state.selectedName!='classnav'){
-            hiddenCss=css.hiddenCss;
+            hiddenCss=baseCss.hidden;
         }
 
         var tpl=(
@@ -158,7 +159,7 @@ var MeitunIndex =React.createClass({
         var hiddenCss='';
 
         if(this.state.selectedName!='msd'){
-            hiddenCss=css.hiddenCss;
+            hiddenCss=baseCss.hidden;
         }
 
         var tpl=(
@@ -197,7 +198,7 @@ var MeitunIndex =React.createClass({
 
 
         if(!route.page){
-            alert('页面导航请求没有传入page参数.');
+            console.error('页面导航请求没有传入page参数.');
             return;
         }
 

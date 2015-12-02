@@ -4,7 +4,7 @@
 
 var React=require('react-native');
 var css=require('./Loading.css');
-var checkProps=require('../../base/CheckProps/CheckProps');
+var propsCheck=require('../../base/PropsCheck/PropsCheck');
 
 var {
     AppRegistry,
@@ -38,7 +38,7 @@ var Loading=React.createClass({
     },
 
     componentWillMount(){
-        checkProps.check(this);
+        propsCheck.check(this,this.props);
     },
 
 

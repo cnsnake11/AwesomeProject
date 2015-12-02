@@ -6,8 +6,8 @@
 var React=require('react-native');
 var css=require('./ListViewBindUrl.css');
 var Loading=require('../Loading/Loading');
-var checkProps=require('../../base/CheckProps/CheckProps');
-var concatProps=require('../../base/ConcatProps/ConcatProps');
+var propsCheck=require('../../base/PropsCheck/PropsCheck');
+var propsConcat=require('../../base/PropsConcat/PropsConcat');
 
 
 var {
@@ -72,7 +72,7 @@ var ListViewBindUrl =React.createClass({
 
     componentWillMount(){
 
-        checkProps.check(this);
+        propsCheck.check(this,this.props);
 
         this._queryData();
 
@@ -88,7 +88,7 @@ var ListViewBindUrl =React.createClass({
                       renderFooter={this._renderFooter} />
         );
 
-        return concatProps.concat(this,jsx);
+        return propsConcat.concat(this,jsx);
     },
 
 

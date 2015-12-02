@@ -1,9 +1,9 @@
 'use strict'
 
 
-var ConcatProps={
+var PropsConcat={
 
-    _compName:'ConcatProps',
+    _compName:'PropsConcat',
 
 
     /**
@@ -38,4 +38,4 @@ var ConcatProps={
 };
 
 
-module.exports=ConcatProps;
+module.exports=PropsConcat;

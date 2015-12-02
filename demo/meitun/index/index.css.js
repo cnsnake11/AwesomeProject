@@ -13,14 +13,6 @@ var css=StyleSheet.create(
             backgroundColor:'#fff',
         },
 
-        //todo 放入通用组件库中
-        hiddenCss:{
-            position:'absolute',
-            left:-9999,
-            height:10,//加高是为了解决listview不停触发底部滚动事件的
-        },
-
-
     }
 );
 

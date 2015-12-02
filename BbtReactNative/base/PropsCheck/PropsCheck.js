@@ -1,37 +1,51 @@
 'use strict'
 
-var CheckProps={
+var PropsCheck={
 
-    _compName:'CheckProps',
+    _compName:'PropsCheck',
 
     /**
      * 按照组件定义的options进行检查
      * 一般在componentWillMount中使用
      * todo 仅支持must的校验
      * todo 在生产环境下关闭检查功能
+     *
+     * comp 被检查的组件对象
+     * props 被检查的属性对象
+     * defProps 被检查的属性对象的默认值对象
      */
-    check(comp){
+    check(comp,props,defProps){
+
+
 
         if(!comp){
             console.error('comp must not be null.');
             return;
         }
 
-        var compName=comp._compName;
+        let compName=comp._compName;
 
         if(!compName){
             console.error('_compName must not be null.');
             return;
         }
 
-        var opt=comp.options;
+        let opt=comp.options;
 
         if(!opt){
             console.error(compName+'.options must not be null.');
             return;
         }
 
-        var props=comp.props;
+        if(!props){
+            //console.error(compName+' : props must not be null.');
+            //return;
+            props={};
+        }
+
+        if(!defProps){
+            defProps={};
+        }
 
         for(let key in opt){
             var o=opt[key];
@@ -39,7 +53,7 @@ var CheckProps={
 
             if(o.must==true){
                 if(!p){
-                    console.error(compName+'.'+key+' must not be null');
+                    console.error(compName+' : '+key+' must not be null');
                 }
             }
 
@@ -52,4 +66,4 @@ var CheckProps={
 };
 
 
-module.exports=CheckProps;
+module.exports=PropsCheck;

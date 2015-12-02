@@ -6,8 +6,7 @@ var React=require('react-native');
 var css=require('./Result.css');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
-var Tab=require('../../../BbtReactNative/views/Tab/Tab');
-
+var ResultTab=require('./ResultTab');
 
 var {
     AppRegistry,
@@ -41,15 +40,17 @@ var Result =React.createClass({
 
     render(){
 
+
         return (
 
             <View style={[{flex:1},css.wrapper]}>
+
 
                 <View style={[{flex:0}]}>
                     <Text> search bar </Text>
                 </View>
 
-                <Tab/>
+                <ResultTab />
 
                 <ListViewBindUrl style={[{flex:1}]}
                                  renderRow={this._renderRow }

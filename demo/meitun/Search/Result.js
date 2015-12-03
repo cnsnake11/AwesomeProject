@@ -4,9 +4,12 @@
 
 var React=require('react-native');
 var css=require('./Result.css');
+var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
 var ResultTab=require('./ResultTab');
 var Header=require('../Header/Header');
+var Filter=require('./Filter');
+var TabApi=require('../../../BbtReactNative/api/TabApi/TabApi');
 
 var {
     AppRegistry,
@@ -40,6 +43,17 @@ var Result =React.createClass({
     },
 
 
+    componentWillMount(){
+
+        this._tabApi=new TabApi(
+            {
+                curName:this.state.curName
+            }
+        );
+
+    },
+
+
     render(){
 
 
@@ -48,21 +62,20 @@ var Result =React.createClass({
 
             <View style={[{flex:1},css.wrapper]}>
 
-                <Header back={true} title='搜索结果' rightBtn='搜索' />
+                <Header back={true} title='搜索结果' rightBtn='搜索' nav={this.props.nav} />
 
                 <ResultTab result={this} ref='resultTab' />
 
 
-                {this.state.curName=='sx'?
-                    <View><Text>筛选</Text></View>
-                :
-                    <ListViewBindUrl style={[{flex:1}]} ref='list'
+
+                    <ListViewBindUrl ref='list'
+                                     style={[this.state.curName=='sx'?baseCss.hidden:'']}
                                      renderRow={this._renderRow }
                                      getUrl={this._getUrl}
                                      getData={this._getData}/>
-                }
 
 
+                    <Filter style={[this.state.curName=='sx'?'':baseCss.hidden]} />
 
 
             </View>
@@ -143,6 +156,9 @@ var Result =React.createClass({
     },
 
 });
+
+
+
 
 
 

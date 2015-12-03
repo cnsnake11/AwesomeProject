@@ -4,7 +4,7 @@
 
 var React=require('react-native');
 var css=require('./ResultTab.css');
-var TabApi=require('../../../BbtReactNative/api/TabApi/TabApi');
+
 
 
 var {
@@ -31,34 +31,15 @@ var {
 
 var ResultTab =React.createClass({
 
-    /*getInitialState(){
-
-        return {
-            curName:'mr',
-        };
-
-    },*/
-
-
-    componentWillMount(){
-
-        this._tabApi=new TabApi(
-            {
-                curName:this.props.result.state.curName
-            }
-        );
-
-    },
-
 
     render(){
 
         return (
           <View style={[css.wrapper]} >
-              <ResultTabBtn  title='默认' name='mr' tabApi={this._tabApi} resultTab={this} />
-              <ResultTabBtn  title='销量' name='xl' tabApi={this._tabApi} resultTab={this} />
-              <ResultTabBtn  title='价格' name='jg' tabApi={this._tabApi} resultTab={this} />
-              <ResultTabBtn  title='筛选' name='sx' tabApi={this._tabApi} resultTab={this}/>
+              <ResultTabBtn  title='默认' name='mr' tabApi={this.props.result._tabApi} resultTab={this} />
+              <ResultTabBtn  title='销量' name='xl' tabApi={this.props.result._tabApi} resultTab={this} />
+              <ResultTabBtn  title='价格' name='jg' tabApi={this.props.result._tabApi} resultTab={this} />
+              <ResultTabBtn  title='筛选' name='sx' tabApi={this.props.result._tabApi} resultTab={this}/>
           </View>
         );
 
@@ -94,28 +75,70 @@ var ResultTabBtn =React.createClass({
 
     _press(){
         var name=this.props.name;
+
+
+        //todo 感觉这块的逻辑写的有点复杂，是不是哪块设计的不合理？
+        if(name=='sx'){
+            this._pressSx();
+        }else{
+            this._pressOther();
+        }
+
+
+    },
+
+
+
+    _pressSx(){
+        var tabApi=this.props.tabApi;
+        var resultTab=this.props.resultTab;
+        var result=resultTab.props.result;
+
+        if(!tabApi.isCur('sx')){//记一下上次点击，等会恢复时候会用到
+            resultTab._lastCurName=result.state.curName;
+
+            tabApi.clicked('sx');
+            resultTab.props.result.setState({
+                curName:'sx',
+            });
+
+        }else{//点的自己
+
+            tabApi.clicked(resultTab._lastCurName);
+            resultTab.props.result.setState({
+                curName:resultTab._lastCurName,
+            });
+        }
+
+    },
+
+
+    _pressOther(){
+
+        var name=this.props.name;
         var tabApi=this.props.tabApi;
         var resultTab=this.props.resultTab;
 
-        if(tabApi.isCur(name)){
+        if(tabApi.isCur(name)){//点的自己
             resultTab.props.result.refs.list.refs.list.getScrollResponder().scrollTo(0);
             return;
         }
 
-
         tabApi.clicked(name);
-
         resultTab.props.result.setState({
             curName:name,
         });
 
 
-        if(name!='sx'){
+        if(resultTab._lastCurName!=name){
+
+            resultTab._lastCurName=null;
+
             //todo 这种直接调用接口的代码，而不是使用state来触发渲染的方式，还需要思考差异
             this.props.resultTab.props.result.refs.list.reload();
-        }
-
     }
+
+    },
 
 
 });

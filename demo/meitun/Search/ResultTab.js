@@ -31,20 +31,20 @@ var {
 
 var ResultTab =React.createClass({
 
-    getInitialState(){
+    /*getInitialState(){
 
         return {
             curName:'mr',
         };
 
-    },
+    },*/
 
 
     componentWillMount(){
 
         this._tabApi=new TabApi(
             {
-                curName:this.state.curName
+                curName:this.props.result.state.curName
             }
         );
 
@@ -98,18 +98,23 @@ var ResultTabBtn =React.createClass({
         var resultTab=this.props.resultTab;
 
         if(tabApi.isCur(name)){
-            this.props.resultTab.props.result.refs.list.refs.list.getScrollResponder().scrollTo(0);
+            resultTab.props.result.refs.list.refs.list.getScrollResponder().scrollTo(0);
             return;
         }
 
 
         tabApi.clicked(name);
-        resultTab.setState({
+
+        resultTab.props.result.setState({
             curName:name,
         });
 
 
-        this.props.resultTab.props.result.refs.list.reload();
+        if(name!='sx'){
+            //todo 这种直接调用接口的代码，而不是使用state来触发渲染的方式，还需要思考差异
+            this.props.resultTab.props.result.refs.list.reload();
+        }
+
     }
 
 

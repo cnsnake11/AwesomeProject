@@ -94,8 +94,9 @@ var ResultTabBtn =React.createClass({
         var resultTab=this.props.resultTab;
         var result=resultTab.props.result;
 
-        if(!tabApi.isCur('sx')){//记一下上次点击，等会恢复时候会用到
-            resultTab._lastCurName=result.state.curName;
+        if(!tabApi.isCur('sx')){
+
+            resultTab._storeName=result.state.curName;//当前缓存的list的name
 
             tabApi.clicked('sx');
             resultTab.props.result.setState({
@@ -104,9 +105,9 @@ var ResultTabBtn =React.createClass({
 
         }else{//点的自己
 
-            tabApi.clicked(resultTab._lastCurName);
+            tabApi.clicked(resultTab._storeName);
             resultTab.props.result.setState({
-                curName:resultTab._lastCurName,
+                curName:resultTab._storeName,
             });
         }
 
@@ -130,13 +131,13 @@ var ResultTabBtn =React.createClass({
         });
 
 
-        if(resultTab._lastCurName!=name){
+        if(resultTab._storeName!=name){//缓存的不是自己
 
-            resultTab._lastCurName=null;
+            resultTab._storeName=null;
 
             //todo 这种直接调用接口的代码，而不是使用state来触发渲染的方式，还需要思考差异
             this.props.resultTab.props.result.refs.list.reload();
-    }
+        }
 
     },
 

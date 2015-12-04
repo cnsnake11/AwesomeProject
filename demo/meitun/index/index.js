@@ -76,13 +76,12 @@ var MeitunIndex =React.createClass({
         });
 
 
-        BackAndroid.addEventListener('hardwareBackPress', function() {
+        BackAndroid.addEventListener('hardwareBackPress', ()=> {
             if(this.refs.nav){
                 this.refs.nav.pop();
             }
             return true;
-
-        }.bind(this));
+        });
 
     },
 

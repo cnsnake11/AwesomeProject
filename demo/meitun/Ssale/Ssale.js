@@ -24,7 +24,7 @@ var {
     LayoutAnimation,
     InteractionManager,
     BackAndroid,
-    }=React;
+}=React;
 
 
 var Ssale =React.createClass({

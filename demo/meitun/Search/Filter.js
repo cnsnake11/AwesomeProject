@@ -24,6 +24,9 @@ var {
     Animated,
     LayoutAnimation,
     InteractionManager,
+    SwitchAndroid,
+    SwitchIOS,
+    Switch,
     }=React;
 
 
@@ -33,7 +36,11 @@ var Filter =React.createClass({
 
         return (
             <View style={[css.wrapper,this.props.style]}>
+
                 <Text>in filter</Text>
+
+                <Switch />
+
             </View>
         );
 

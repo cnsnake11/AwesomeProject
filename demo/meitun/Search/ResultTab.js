@@ -34,12 +34,14 @@ var ResultTab =React.createClass({
 
     render(){
 
+        var tabApi=this.props.result._tabApi;
+
         return (
           <View style={[css.wrapper]} >
               <ResultTabBtn  title='默认' name='mr' tabApi={this.props.result._tabApi} resultTab={this} />
               <ResultTabBtn  title='销量' name='xl' tabApi={this.props.result._tabApi} resultTab={this} />
               <ResultTabBtn  title='价格' name='jg' tabApi={this.props.result._tabApi} resultTab={this} />
-              <ResultTabBtn  title='筛选' name='sx' tabApi={this.props.result._tabApi} resultTab={this}/>
+              <ResultTabBtn  title={tabApi.isCur('sx')?'关闭':'筛选'} name='sx' tabApi={this.props.result._tabApi} resultTab={this}/>
           </View>
         );
 

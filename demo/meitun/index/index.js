@@ -34,6 +34,7 @@ var {
     Animated,
     LayoutAnimation,
     InteractionManager,
+    BackAndroid,
     }=React;
 
 
@@ -73,7 +74,21 @@ var MeitunIndex =React.createClass({
         InteractionManager.runAfterInteractions(() => {
             this.setState({renderPlaceholderOnly: false});
         });
+
+
+        BackAndroid.addEventListener('hardwareBackPress', function() {
+            if(this.refs.nav){
+                this.refs.nav.pop();
+            }
+            return true;
+
+        }.bind(this));
+
     },
+
+
+
+
     componentWillUnmount(){
         if(Platform.OS=='ios'){
             StatusBarIOS.setStyle('default');
@@ -219,6 +234,8 @@ var MeitunIndex =React.createClass({
         });
     },
 });
+
+
 
 
 module.exports=MeitunIndex;

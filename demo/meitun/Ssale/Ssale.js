@@ -23,6 +23,7 @@ var {
     Animated,
     LayoutAnimation,
     InteractionManager,
+    BackAndroid,
     }=React;
 
 

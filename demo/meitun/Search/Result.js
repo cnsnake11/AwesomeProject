@@ -38,6 +38,7 @@ var Result =React.createClass({
 
         return {
             curName:'mr',
+            brandList:[],
         };
 
     },
@@ -75,7 +76,7 @@ var Result =React.createClass({
                                      getData={this._getData}/>
 
 
-                    <Filter style={[this.state.curName=='sx'?'':baseCss.hidden]} />
+                    <Filter style={[this.state.curName=='sx'?'':baseCss.hidden]} result={this} />
 
 
             </View>
@@ -106,6 +107,7 @@ var Result =React.createClass({
     },
 
     _getData(res){
+        this.setState({brandList:res.data.queries[0].value});
         return res.data.items;
     },
 

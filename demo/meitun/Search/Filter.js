@@ -65,34 +65,7 @@ var Filter =React.createClass({
 
                 <ScrollView style={[css.scrollView]}>
 
-                    <View style={[css.middleView2]}>
-                        <View style={[css.brandView]}>
-
-                            <Text style={[css.brandText]}>
-                                你好你好
-                            </Text>
-
-                        </View>
-
-
-
-                        <View style={[css.brandView,css.curBrandView]}>
-
-                            <Text style={[css.brandText,css.curBrandText]}>
-                                红果
-                            </Text>
-
-                        </View>
-
-                        <View style={[css.brandView]}>
-
-                            <Text style={[css.brandText]}>
-                                中国
-                            </Text>
-
-                        </View>
-                    </View>
-
+                    {this._tplBrandList()}
 
                 </ScrollView>
 
@@ -121,6 +94,51 @@ var Filter =React.createClass({
 
             </View>
         );
+
+    },
+
+
+    _tplBrandList(){
+
+
+        var brandList=this.props.result.state.brandList;
+
+        return(
+            <View style={[css.middleView2]}>
+
+
+                {
+                    brandList.map((brand)=>{
+
+                        return (
+
+                            <View style={[css.brandView]}
+
+                                  onPress={this._pressBrand.bind(this,brand.id)}>
+
+                                <Text style={[css.brandText]}>
+                                    {brand.name}
+                                </Text>
+
+                            </View>
+
+                        );
+
+                    })
+                }
+
+
+            </View>
+        );
+    },
+
+
+    //todo view对象貌似不支持 onpress
+    //todo 这里应该再封装一个按钮的组件，自己来存自己是否选中的状态，但是如何与提交的对象同步选中的数据呢
+
+    _pressBrand(id){
+
+      alert(id);
 
     },
 

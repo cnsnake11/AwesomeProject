@@ -73,6 +73,7 @@ var css=StyleSheet.create(
         middleView2:{
             flex:1,
             flexDirection:'row',
+            flexWrap:'wrap',
         },
             brandView:{
                 flex:0,

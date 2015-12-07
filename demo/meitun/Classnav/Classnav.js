@@ -55,10 +55,10 @@ var Classnav=React.createClass({
 
             <View style={[css.wrapper]}>
                 <View style={[css.left]}>
-                    <ClassParent classNav={this} ref='classParent' />
+                    <ClassParent classNav={this} ref='classParent' index={this.props.index}  />
                 </View>
                 <View style={[css.right]}>
-                    <ClassChild classNav={this} ref='classChild'/>
+                    <ClassChild classNav={this} ref='classChild' index={this.props.index} />
                 </View>
             </View>
 

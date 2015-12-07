@@ -63,7 +63,7 @@ var Result =React.createClass({
 
             <View style={[{flex:1},css.wrapper]}>
 
-                <Header back={true} title='搜索结果' rightBtn=' ' nav={this.props.nav} />
+                <Header back={true} title={this.props.title} rightBtn=' ' nav={this.props.nav} />
 
                 <ResultTab result={this} ref='resultTab' />
 
@@ -95,10 +95,21 @@ var Result =React.createClass({
 
 
     _getUrl(curPage){
-        var s=encodeURI(this.props.keyWord);
+
+        var keywords=null;
+        if(this.props.keyWord){
+            keywords=encodeURI(this.props.keyWord);
+        }
+
+        var fcategoryid=null;
+        if(this.props.fcategoryid){
+            fcategoryid=this.props.fcategoryid;
+        }
 
 
-        var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+
+
+        var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+keywords+'&fcategoryid='+fcategoryid+'&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
 
         /*var sort='mr';
         if(this.refs.resultTab){//在第一次render的时候取不到，直接用默认值

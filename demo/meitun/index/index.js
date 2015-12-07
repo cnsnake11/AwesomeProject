@@ -154,7 +154,7 @@ var MeitunIndex =React.createClass({
 
         var tpl=(
             <View style={[{flex:1},hiddenCss]}>
-                <Classnav />
+                <Classnav index={this} />
             </View>
 
         );

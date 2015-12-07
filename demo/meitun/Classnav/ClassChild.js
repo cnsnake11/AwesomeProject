@@ -4,6 +4,7 @@
 var React=require('react-native');
 var css=require('./ClassChild.css');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var Result=require('../Search/Result');
 
 var {
     AppRegistry,
@@ -14,6 +15,7 @@ var {
     Image,
     Navigator,
     TouchableHighlight,
+    TouchableOpacity,
     Platform,
     StatusBarIOS,
     ScrollView,
@@ -63,17 +65,35 @@ var ClassChild=React.createClass({
         var data=allData[curIndex].childs;
 
 
-
         return (
             data.map((d)=>{
                 return (
-                    <View style={[css.cellView]}>
-                        <Image style={[css.image]} source={{uri:d.logourl}} />
-                        <Text >{d.name}</Text>
-                    </View>
+                    <TouchableOpacity onPress={this._press.bind(this,d)} >
+                        <View style={[css.cellView]}>
+                            <Image style={[css.image]} source={{uri:d.logourl}} />
+                            <Text >{d.name}</Text>
+                        </View>
+                    </TouchableOpacity>
                 );
             })
         );
+
+    },
+
+    _press(data){
+        var id=data.id;
+        var name=data.name;
+        var nav=this.props.index.refs.nav;
+
+
+        var router={
+            'name':'result',
+            'page':(
+                <Result  nav={nav} fcategoryid={id} title={name} />
+            ),
+        };
+        nav.push(router);
+
 
     },
 
@@ -82,3 +102,32 @@ var ClassChild=React.createClass({
 
 
 module.exports=ClassChild;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

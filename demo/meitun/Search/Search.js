@@ -67,9 +67,8 @@ var Search =React.createClass({
         var nav=this.props.nav;
         var router={
             'name':'result',
-            'title':'搜索结果页面',
             'page':(
-                <Result keyWord={v} nav={nav} />
+                <Result keyWord={v} nav={nav} title={'搜索:'+v} />
             ),
         };
         nav.push(router);

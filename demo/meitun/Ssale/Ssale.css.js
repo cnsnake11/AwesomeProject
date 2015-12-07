@@ -22,39 +22,55 @@ var css=StyleSheet.create(
 
 
         listTouch:{
-            width:Dimensions.get('window').width/2,
-            padding:5,
-          },
+
+        },
 
         listCellWrapper:{
-            backgroundColor:'red',
-            height:100,
-            width:100,
+            width:Dimensions.get('window').width/2,
+            padding:8,
         },
 
 
         listCellImg:{
-            flex:1,
             height:145,
             resizeMode:'contain',
         },
 
 
+
+
+
         listCellWrapper2:{
             flexDirection:'row',
-
+            justifyContent:'flex-start',
+            alignItems:'center',
         },
 
-        listCellPrice:{
-            flex:1,
+            listCellPrice:{
+                color:'#ed5565',
+                fontWeight:'700',
+                marginRight:10,
+            },
+            listCellOldPrice:{
+                color:'#a0a0a0',
+                marginRight:10,
+                textDecorationLine:'line-through',
+                fontSize:12,
+            },
 
-        },
-        listCellOldPrice:{
-            flex:1,
-        },
-        listCellDiscount:{
-            flex:1,
-        },
+            listCellDiscountView:{
+                backgroundColor:'#ed5565',
+                borderRadius:3,
+                paddingLeft:2,
+                paddingRight:2,
+
+                position:'absolute',
+                right:0,
+            },
+            listCellDiscount:{
+                 color:'#fff',
+                 fontSize:12,
+             },
 
     }
 );

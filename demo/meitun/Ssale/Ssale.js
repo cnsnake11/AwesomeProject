@@ -46,6 +46,10 @@ var Ssale =React.createClass({
 
 
 
+
+
+
+
                 <ListViewBindUrl ref='list' style={{flex:1,}}
                                  contentContainerStyle={[css.listWraper]}
                                  renderRow={this._renderRow }
@@ -65,14 +69,16 @@ var Ssale =React.createClass({
 
             <TouchableOpacity style={[css.listTouch]} >
 
-                <View sytle={[css.listCellWrapper]} >
+                <View style={[css.listCellWrapper]} >
 
                     <Image style={css.listCellImg} source={{uri:data.imageurl[0]}} />
                     <Text style={css.listCellTitle} numberOfLines={2} >{data.name}</Text>
-                    <View sytle={[css.listCellWrapper2]}>
-                        <Text sytle={[css.listCellPrice]}>{data.price}</Text>
-                        <Text sytle={[css.listCellOldPrice]}>{data.oldprice}</Text>
-                        <Text sytle={[css.listCellDiscount]}>5.4折</Text>
+                    <View style={[css.listCellWrapper2]}>
+                        <Text style={[css.listCellPrice]}>￥{data.price}</Text>
+                        <Text style={[css.listCellOldPrice]}>{data.oldprice}</Text>
+                        <View style={[css.listCellDiscountView]}>
+                            <Text style={[css.listCellDiscount]}>5.4折</Text>
+                        </View>
                     </View>
 
                 </View>

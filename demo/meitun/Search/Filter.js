@@ -44,7 +44,7 @@ var Filter =React.createClass({
         return (
             <View style={[css.wrapper,this.props.style]}>
 
-                <View style={[css.topView]} >
+                 <View style={[css.topView]} >
 
                     <Text style={[css.topText]}>只显示有货</Text>
                     <Switch style={[css.topSwitch]}
@@ -91,6 +91,7 @@ var Filter =React.createClass({
                     </TouchableOpacity>
 
                 </View>
+
 
             </View>
         );

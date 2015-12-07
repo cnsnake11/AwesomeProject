@@ -163,7 +163,7 @@ var ListViewBindUrl =React.createClass({
         }
 
 
-        console.log('开始发起新的请求....');
+        console.log('开始发起新的请求....url='+url);
 
         fetch(url)
             .then((res)=>res.json())

@@ -219,7 +219,7 @@ var DiscountList=React.createClass({
 
 
         return (
-            <TouchableHighlight style={[css.touch]} onPress={this._pressSale.bind(this,rowData.name)}>
+            <TouchableHighlight style={[css.touch]} onPress={this._pressSale.bind(this,rowData)}>
                 <View>
                     <Image style={[css.image]} source={{uri:rowData.imageurl}} />
                     <View  style={[css.textView]}>
@@ -304,11 +304,11 @@ var DiscountList=React.createClass({
     },
 
 
-    _pressSale(name){
+    _pressSale(data){
         var nav=this.props.index.refs.nav;
         nav.push({
             name: 'ssale',
-            page: <Ssale nav={nav} title={name}/>
+            page: <Ssale nav={nav} title={data.name} data={data} />
         });
     },
 

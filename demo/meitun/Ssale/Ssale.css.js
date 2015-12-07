@@ -13,6 +13,14 @@ var css=StyleSheet.create(
     {
 
 
+        topImage:{
+
+            width:Dimensions.get('window').width,
+            height:150,
+            resizeMode:'stretch',
+         },
+
+
 
         listWraper:{
             flexDirection:'row',

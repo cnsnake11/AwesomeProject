@@ -6,6 +6,7 @@ var css=require('./Ssale.css');
 
 var Header=require('../Header/Header');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
+var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 
 var {
     AppRegistry,
@@ -31,6 +32,9 @@ var {
 
 var Ssale =React.createClass({
 
+
+
+
     componentWillMount(){
 
         this._fetchDetail();
@@ -39,29 +43,34 @@ var Ssale =React.createClass({
 
 
     render(){
+
         return (
             <View style={{flex:1,backgroundColor:'white',}} >
                 <Header back={true} title={this.props.title} nav={this.props.nav}
                         rightBtn='分享' rightBtnPress={this._share} />
 
-
-
-
-
-
-
                 <ListViewBindUrl ref='list' style={{flex:1,}}
+                                 renderHeader={this._renderHeader}
                                  contentContainerStyle={[css.listWraper]}
                                  renderRow={this._renderRow }
                                  getUrl={this._getUrl}
                                  getData={this._getData}/>
-
-
             </View>
         );
     },
 
+    loadingTopImage:true,
 
+    _renderHeader(){
+
+        return  (
+                 this.loadingTopImage==true?
+                <View />
+                :
+                this._tplTopImage()
+
+         );
+    },
 
     _renderRow(data){
 
@@ -108,8 +117,55 @@ var Ssale =React.createClass({
 
         var url='http://m.meitun.com/mobile/special/details.htm?specialid='+data.specialid+'&isTmrNotice=1&oem=IOS&osversion=8.0%20&screenwidth=414&screenheight=736&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
 
+        fetch(url).then((res)=>res.json())
+        .then((res)=>{
+
+                var imageStr=res.brandimages;
+
+                this.topImages=this._getImageUrl(imageStr);
+
+                this.loadingTopImage=false;
+            });
 
     },
+
+    _tplTopImage(){
+
+        return (
+            <View>
+                {
+                    this.topImages.map((img)=>{
+                        return (
+                            <Image source={{uri:img}}
+                                   style={[css.topImage]}>
+                            </Image>
+                        );
+                    })
+                }
+            </View>
+        );
+
+    },
+
+    _getImageUrl(imageStr,res){
+        if(!res)res=[];
+
+        var index=imageStr.indexOf('src="');
+
+        if(index==-1)return res;
+
+        imageStr=imageStr.substring(index+5,imageStr.length);
+
+        index=imageStr.indexOf('" ');
+        var one=imageStr.substring(0,index);
+
+        res.push(one.trim());
+
+        imageStr=imageStr.substring(index,imageStr.length);
+
+        return this._getImageUrl(imageStr,res);
+    },
+
 
     _share(){
       console.log('share clicked .');

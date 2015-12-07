@@ -16,7 +16,7 @@ var css=StyleSheet.create(
             justifyContent:'center',
 
             width:Dimensions.get('window').width,
-            flex:0,
+            flex:0,//一行多列要加这个，否则宽度不生效，因为loading组件的flex默认为1
         },
     }
 );

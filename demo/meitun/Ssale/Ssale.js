@@ -7,6 +7,7 @@ var css=require('./Ssale.css');
 var Header=require('../Header/Header');
 var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var Detail=require('../Detail/Detail');
 
 var {
     AppRegistry,
@@ -76,7 +77,8 @@ var Ssale =React.createClass({
 
         return (
 
-            <TouchableOpacity style={[css.listTouch]} >
+            <TouchableOpacity style={[css.listTouch]}
+                              onPress={this._pressProduct.bind(this,data)}>
 
                 <View style={[css.listCellWrapper]} >
 
@@ -166,6 +168,20 @@ var Ssale =React.createClass({
         return this._getImageUrl(imageStr,res);
     },
 
+
+    _pressProduct(data){
+
+        var nav=this.props.nav;
+
+        nav.push(
+            {
+                name:'detail',
+                page:(
+                    <Detail nav={nav} productId={data.productid} title={data.name} specialId={data.specialid}/>
+                ),
+            }
+        );
+    },
 
     _share(){
       console.log('share clicked .');

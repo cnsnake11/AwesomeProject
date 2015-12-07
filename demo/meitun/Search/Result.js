@@ -10,6 +10,7 @@ var ResultTab=require('./ResultTab');
 var Header=require('../Header/Header');
 var Filter=require('./Filter');
 var TabApi=require('../../../BbtReactNative/api/TabApi/TabApi');
+var Detail=require('../Detail/Detail');
 
 var {
     AppRegistry,
@@ -137,7 +138,7 @@ var Result =React.createClass({
         return (
 
 
-            <TouchableOpacity onPress={this._press} >
+            <TouchableOpacity onPress={this._press.bind(this,rowData)} >
 
                 <View style={[css.listRowView]}>
                     <View style={[css.listLeftView]}>
@@ -174,9 +175,19 @@ var Result =React.createClass({
         );
     },
 
-    _press(){
-        //this.props.nav.pop();
-        console.log('pressed');
+    _press(data){
+
+        var nav=this.props.nav;
+
+        nav.push(
+            {
+                name:'detail',
+                page:(
+                  <Detail nav={nav} productId={data.sku} title={data.itemname} specialId={data.topicid}/>
+                ),
+            }
+        );
+
     },
 
 });

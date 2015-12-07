@@ -36,6 +36,7 @@ var css=StyleSheet.create(
             titleBtnTouch:{
                 paddingLeft:5,
                 paddingRight:5,
+                width:40,
             },
             titleBtnText:{
                 color:'#fff',

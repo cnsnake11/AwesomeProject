@@ -136,7 +136,8 @@ var Filter =React.createClass({
 
     _pressCancel(){
 
-        this._getBtn(this.curBtnId).setState({cur:false});
+        var btn=this._getBtn(this.curBtnId);
+        if(btn)btn.setState({cur:false});
         this.curBtnId=null;
     },
 

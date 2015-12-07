@@ -63,7 +63,7 @@ var Result =React.createClass({
 
             <View style={[{flex:1},css.wrapper]}>
 
-                <Header back={true} title='搜索结果' rightBtn='搜索' nav={this.props.nav} />
+                <Header back={true} title='搜索结果' rightBtn=' ' nav={this.props.nav} />
 
                 <ResultTab result={this} ref='resultTab' />
 

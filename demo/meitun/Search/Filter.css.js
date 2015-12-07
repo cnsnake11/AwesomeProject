@@ -91,7 +91,6 @@ var css=StyleSheet.create(
             },
             curBrandText:{
                 color:'#fff',
-                fontWeight:'bold',
             },
 
 

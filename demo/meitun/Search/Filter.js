@@ -73,7 +73,7 @@ var Filter =React.createClass({
                 <View style={[css.bottomView]}>
 
 
-                    <TouchableOpacity style={[css.bottomTouch1]} >
+                    <TouchableOpacity style={[css.bottomTouch1]} onPress={this._pressCancel} >
 
                         <Text style={[css.bottomText1]}>
                             清除选项
@@ -82,7 +82,7 @@ var Filter =React.createClass({
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={[css.bottomTouch2]}>
+                    <TouchableOpacity style={[css.bottomTouch2]} onPress={this._pressOk}>
 
                         <Text style={[css.bottomText2]}>
                             确定
@@ -106,39 +106,92 @@ var Filter =React.createClass({
         return(
             <View style={[css.middleView2]}>
 
-
                 {
                     brandList.map((brand)=>{
 
                         return (
-
-                            <View style={[css.brandView]}
-
-                                  onPress={this._pressBrand.bind(this,brand.id)}>
-
-                                <Text style={[css.brandText]}>
-                                    {brand.name}
-                                </Text>
-
-                            </View>
-
+                            <FilterBtn brand={brand} filter={this}
+                                       ref={'brandId_'+brand.id} />
                         );
 
                     })
                 }
-
 
             </View>
         );
     },
 
 
-    //todo view对象貌似不支持 onpress
-    //todo 这里应该再封装一个按钮的组件，自己来存自己是否选中的状态，但是如何与提交的对象同步选中的数据呢
+
+    _pressOk(){
+
+        var brandId=this.curBtnId;
+
+        //if(!brandId)return;
+
+        this.props.result.refs.resultTab._closeSx();
+        this.props.result.refs.list.reload();
+    },
+
+
+    _pressCancel(){
+
+        this._getBtn(this.curBtnId).setState({cur:false});
+        this.curBtnId=null;
+    },
+
+    _getBtn(id){
+        return this.refs['brandId_'+id];
+    }
+
+
+});
+
+
+
+var FilterBtn=React.createClass({
+
+    getInitialState(){
+      return {
+          cur:false,
+      }
+    },
+
+    render(){
+
+        var brand=this.props.brand;
+
+        return (
+
+            <TouchableWithoutFeedback  onPress={this._pressBrand.bind(this,brand.id)}>
+                <View style={[css.brandView,this.state.cur==true?css.curBrandView:'']} >
+
+                    <Text style={[css.brandText,this.state.cur==true?css.curBrandText:'']}>
+                        {brand.name}
+                    </Text>
+
+                </View>
+            </TouchableWithoutFeedback>
+
+        );
+
+
+    },
+
 
     _pressBrand(id){
 
-      alert(id);
+        var filter=this.props.filter;
+
+        var lastId=filter.curBtnId;
+
+        var lastBtn=filter._getBtn(lastId);
+
+        if(lastBtn)lastBtn.setState({cur:false});
+
+        this.setState({cur:true});
+
+        filter.curBtnId=id;
 
     },
 
@@ -150,3 +203,24 @@ var Filter =React.createClass({
 
 
 module.exports=Filter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

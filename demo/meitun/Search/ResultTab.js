@@ -47,6 +47,18 @@ var ResultTab =React.createClass({
 
     },
 
+
+    _closeSx(){
+        var tabApi=this.props.result._tabApi;
+        var result=this.props.result;
+
+        tabApi.clicked(this._storeName);
+        this.props.result.setState({
+            curName:this._storeName,
+        });
+
+    },
+
 });
 
 
@@ -89,8 +101,6 @@ var ResultTabBtn =React.createClass({
 
     },
 
-
-
     _pressSx(){
         var tabApi=this.props.tabApi;
         var resultTab=this.props.resultTab;
@@ -107,10 +117,7 @@ var ResultTabBtn =React.createClass({
 
         }else{//点的自己
 
-            tabApi.clicked(resultTab._storeName);
-            resultTab.props.result.setState({
-                curName:resultTab._storeName,
-            });
+            resultTab._closeSx();
         }
 
     },
@@ -142,6 +149,8 @@ var ResultTabBtn =React.createClass({
         }
 
     },
+
+
 
 
 });

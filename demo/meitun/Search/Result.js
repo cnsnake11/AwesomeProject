@@ -76,7 +76,7 @@ var Result =React.createClass({
                                      getData={this._getData}/>
 
 
-                    <Filter style={[this.state.curName=='sx'?'':baseCss.hidden]} result={this} />
+                    <Filter style={[this.state.curName=='sx'?'':baseCss.hidden]} result={this} ref='filter' />
 
 
             </View>
@@ -96,14 +96,25 @@ var Result =React.createClass({
 
     _getUrl(curPage){
         var s=encodeURI(this.props.keyWord);
-        var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree&sortfield=';
+
+
+        var url= 'http://m.meitun.com/mobile/search.htm?curpage='+(curPage+1)+'&keywords='+s+'&fcategoryid=null&oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=627&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
 
         /*var sort='mr';
         if(this.refs.resultTab){//在第一次render的时候取不到，直接用默认值
             sort=this.refs.resultTab.state.curName;
         }*/
 
-        return url+this._sortId[this.state.curName];
+
+        var filter=this.refs.filter;
+
+        if(filter){
+            var brandId=filter.curBtnId;
+            if(brandId)url=url+'&brandid='+brandId;
+        }
+
+
+        return url+'&sortfield='+this._sortId[this.state.curName];
     },
 
     _getData(res){

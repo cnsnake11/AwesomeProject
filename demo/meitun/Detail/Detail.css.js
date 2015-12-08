@@ -117,9 +117,137 @@ var css=StyleSheet.create(
             alignItems:'center',
         },
 
-        guaranteeImg:{width:40,height:40,resizeMode:'contain',marginBottom:10,},
+        guaranteeImg:{width:40,height:40,resizeMode:'stretch',marginBottom:10,},
 
         guaranteeText:{},
+
+
+
+
+
+        numView:{
+            padding:10,
+            flexDirection:'row',
+            alignItems:'center',
+            borderTopColor:'#dcdcdc',
+            borderTopWidth:1,
+            borderBottomColor:'#dcdcdc',
+            borderBottomWidth:1,
+
+        },
+        numText1:{
+          fontSize:16,
+        },
+        numText2:{
+            fontSize:16,
+            position:'absolute',
+            right:10,
+        },
+
+
+        
+
+        borderView:{
+            height:10,
+            backgroundColor:'#f3f3f3',
+        },
+
+
+
+
+        commentView:{
+            borderTopColor:'#dcdcdc',
+            borderTopWidth:1,
+            borderBottomColor:'#dcdcdc',
+            borderBottomWidth:1,
+            paddingLeft:10,
+            paddingRight:10,
+        },
+
+
+        commentTitleView:{
+            paddingTop:20,
+            paddingBottom:20,
+            flexDirection:'row',
+        },
+
+        commentTitleText1:{
+            fontSize:16,
+        },
+        commentTitleText2:{
+            fontSize:16,
+            position:'absolute',
+            right:0,
+        },
+
+        commentUserText:{
+            color:'#a0a0a0',
+        },
+
+        commentUserView:{
+            flexDirection:'row',
+            alignItems:'center',
+            justifyContent:'space-between',
+            borderTopWidth:1,
+            borderTopColor:'#dcdcdc',
+            borderStyle:'dotted',
+            paddingTop:15,
+            paddingBottom:15,
+        },
+        commentContentView:{
+            paddingBottom:15,
+        },
+
+        commentContentText:{
+            color:'#666',
+        },
+
+
+
+
+
+
+
+        bottomView:{
+            flexDirection:'row',
+
+        },
+
+        bottomBaseView:{
+            height:45,
+            justifyContent:'center',
+            alignItems:'center',
+        },
+
+        bottomCarView:{
+            borderTopWidth:1,
+            borderTopColor:'#dcdcdc'
+        },
+        bottomCarImg:{
+            width:30,
+            height:25,
+            resizeMode:'stretch',
+        },
+
+        bottomAddView:{
+            backgroundColor:'#ff9802',
+            padding:10,
+        },
+
+        bottomBuyView:{
+            backgroundColor:'#00bcd6',
+            padding:10,
+        },
+
+        bottomText:{
+            color:'#fff',
+            fontSize:16,
+            fontWeight:'bold',
+            textAlign:'center',
+        },
+
+
+
 
     }
 );

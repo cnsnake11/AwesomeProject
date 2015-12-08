@@ -38,7 +38,7 @@ var Slider = React.createClass({
 
         return (
             <Swiper showsButtons={false} autoplay={true}
-                    height={400} showsPagination={true}>
+                    height={340} showsPagination={true}>
                 {this.props.data.map(
                     (img)=>{
                        return (

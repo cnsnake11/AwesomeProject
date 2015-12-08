@@ -65,7 +65,7 @@ var Detail =React.createClass({
       return (
          <View style={{flex:1,backgroundColor:'#fff'}} >
 
-             <Header btnOnly={true} nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
+
 
              {this.state.init==true&&this.state.initTrans==true?
                  (
@@ -145,32 +145,47 @@ var Detail =React.createClass({
                          <View style={[css.borderView]} />
 
 
+                         {d.reputation?
+                             <View style={[css.commentView]} >
+                                 <TouchableOpacity>
+                                     <View style={[css.commentTitleView]} >
+                                         <Text style={[css.commentTitleText1]}>
+                                             用户评论({d.reputation.count}条)
+                                         </Text>
+                                         <Text style={[css.commentTitleText2]}>
+                                             >
+                                         </Text>
+                                     </View>
+                                 </TouchableOpacity>
 
-                         <View style={[css.commentView]} >
-                             <TouchableOpacity>
-                                <View style={[css.commentTitleView]} >
-                                    <Text style={[css.commentTitleText1]}>
-                                        用户评论({d.reputation.count}条)
-                                    </Text>
-                                    <Text style={[css.commentTitleText2]}>
-                                        >
-                                    </Text>
-                                </View>
-                             </TouchableOpacity>
-
-                             <View style={[css.commentUserView]} >
-                                <Text style={[css.commentUserText]}>{d.reputation.info.name}</Text>
-                                <Text style={[css.commentUserText]}>{d.reputation.info.time}</Text>
-                            </View>
-                            <View style={[css.commentContentView]}>
-                                <Text style={[css.commentContentText]}>
-                                    {d.reputation.info.comment}
-                                </Text>
-                            </View>
-                          </View>
+                                 <View style={[css.commentUserView]} >
+                                     <Text style={[css.commentUserText]}>{d.reputation.info.name}</Text>
+                                     <Text style={[css.commentUserText]}>{d.reputation.info.time}</Text>
+                                 </View>
+                                 <View style={[css.commentContentView]}>
+                                     <Text style={[css.commentContentText]}>
+                                         {d.reputation.info.comment}
+                                     </Text>
+                                 </View>
+                             </View>
+                             :
+                             (null)
+                         }
 
 
 
+                         <View style={[css.borderView,{height:50,alignItems:'center',justifyContent:'center'}]} >
+
+                             <Text>上拉查看商品详情.</Text>
+
+                         </View>
+
+
+                        {
+                            this._getImageUrl(d.imagethreeurl).map((img)=>{
+                                return <Image source={{uri:img}} style={{height:400,resizeMode:'contain'}}/>
+                            })
+                        }
 
 
                      </ScrollView>
@@ -178,6 +193,11 @@ var Detail =React.createClass({
                  :
                  <Loading show={true}/>
              }
+
+
+             <Header style={{position:'absolute',top:0,opacity:0.9 ,width:Dimensions.get('window').width}}
+                 nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
+
 
              <View style={[css.bottomView]}>
 
@@ -223,7 +243,28 @@ var Detail =React.createClass({
 
             });
 
-    }
+    },
+
+
+
+    _getImageUrl(imageStr,res){
+        if(!res)res=[];
+
+        var index=imageStr.indexOf('src="');
+
+        if(index==-1)return res;
+
+        imageStr=imageStr.substring(index+5,imageStr.length);
+
+        index=imageStr.indexOf('" ');
+        var one=imageStr.substring(0,index);
+
+        res.push(one.trim());
+
+        imageStr=imageStr.substring(index,imageStr.length);
+
+        return this._getImageUrl(imageStr,res);
+    },
 
 });
 

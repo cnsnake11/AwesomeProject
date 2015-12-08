@@ -36,6 +36,7 @@ var css=StyleSheet.create(
         },
         h1Text:{
             fontSize:16,
+            color:'#000'
         },
 
 
@@ -126,8 +127,12 @@ var css=StyleSheet.create(
 
 
         numView:{
-            padding:10,
+            paddingTop:20,
+            paddingBottom:20,
+            paddingLeft:10,
+            paddingRight:10,
             flexDirection:'row',
+            justifyContent:'space-between',
             alignItems:'center',
             borderTopColor:'#dcdcdc',
             borderTopWidth:1,
@@ -140,8 +145,6 @@ var css=StyleSheet.create(
         },
         numText2:{
             fontSize:16,
-            position:'absolute',
-            right:10,
         },
 
 
@@ -214,7 +217,7 @@ var css=StyleSheet.create(
         },
 
         bottomBaseView:{
-            height:45,
+            height:50,
             justifyContent:'center',
             alignItems:'center',
         },
@@ -231,12 +234,10 @@ var css=StyleSheet.create(
 
         bottomAddView:{
             backgroundColor:'#ff9802',
-            padding:10,
         },
 
         bottomBuyView:{
             backgroundColor:'#00bcd6',
-            padding:10,
         },
 
         bottomText:{

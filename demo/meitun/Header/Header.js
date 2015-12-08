@@ -48,7 +48,7 @@ var Header =React.createClass({
 
 
         return (
-            <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'']}>
+            <View style={[css.titleView,{flex: 0},React.Platform.OS=='ios'?css.iosTitleView:'',this.props.style]}>
 
 
                 {this.props.back==true?

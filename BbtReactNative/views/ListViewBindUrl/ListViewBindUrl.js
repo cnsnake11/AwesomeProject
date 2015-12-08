@@ -99,6 +99,8 @@ var ListViewBindUrl =React.createClass({
 
     componentWillMount(){
 
+        InteractionManager.runAfterInteractions(()=>this.setState({_initAnimateing:false}));
+
         propsCheck.check(this,this.props);
 
         this._queryData();
@@ -109,18 +111,22 @@ var ListViewBindUrl =React.createClass({
     render(){
 
         var jsx=(
+            this.state._initLoading==true||this.state._initAnimateing==true?
+            <Loading show={true} />
+            :
             <ListView  ref='list'
-                    {...this.props}
-                    dataSource={this.state.dataSource}
-                    keyboardShouldPersistTaps={true}
-                    onEndReached={this._endReached }
-                    onEndReachedThreshold={200}
-                    renderFooter={this._renderFooter}
+                {...this.props}
+                       dataSource={this.state.dataSource}
+                       keyboardShouldPersistTaps={true}
+                       onEndReached={this._endReached }
+                       onEndReachedThreshold={200}
+                       renderFooter={this._renderFooter}
                 />
         );
 
         //return propsConcat.concat(this,jsx);
         return jsx;
+
     },
 
 
@@ -208,7 +214,7 @@ var ListViewBindUrl =React.createClass({
                     //console.log('threadId不一致，终止这次view更新.22222');
                     return;
                 }
-                this.setState({_loading:false});
+                this.setState({_loading:false,_initLoading:false});
             });
 
 

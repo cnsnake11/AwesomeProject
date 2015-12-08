@@ -215,7 +215,7 @@ var Detail =React.createClass({
 
                  <TouchableOpacity style={[{flex:1,}]} >
                      <View style={[css.bottomBaseView,css.bottomBuyView]}>
-                         <Text style={[css.bottomText]}>加入购物车</Text>
+                         <Text style={[css.bottomText]}>立即购买</Text>
                      </View>
                  </TouchableOpacity>
 

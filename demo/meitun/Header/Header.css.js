@@ -4,6 +4,7 @@
 var React=require('react-native');
 var {
     StyleSheet,
+    Dimensions,
     }=React;
 
 var css=StyleSheet.create(
@@ -41,7 +42,11 @@ var css=StyleSheet.create(
             titleBtnText:{
                 color:'#fff',
                 fontSize:12,
+
+                opacity:1,
             },
+
+
 
 
     }

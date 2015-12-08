@@ -64,13 +64,13 @@ var Detail =React.createClass({
       return (
          <View style={{flex:1}} >
 
-             <Header nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
 
              {this.state.init==true&&this.state.initTrans==true?
                  <Slider data={this.initData.imageurl} />
                  :
                  <Loading show={true}/>
              }
+             <Header btnOnly={true} nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
 
          </View>
       )

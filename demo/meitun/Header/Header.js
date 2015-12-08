@@ -32,36 +32,14 @@ var {
 var Header =React.createClass({
 
 
-    options:{
-        back:{
-            must:false,
-            type:'boolean',
-        },
-
-        logo:{
-            must:false,
-            type:'boolean',
-        },
-
-        title:{
-            must:false,
-            type:'boolean',
-        },
-
-        rightBtn:{
-            must:false,
-            type:'string',
-        },
-
-        rightBtnPress:{
-            must:false,
-            type:'function',
-        },
+    propTypes:{
+        back:React.PropTypes.boolean,
+        logo:React.PropTypes.boolean,
+        title:React.PropTypes.boolean,
+        rightBtn:React.PropTypes.boolean,
+        rightBtnPress:React.PropTypes.func,
+        nav:React.PropTypes.instanceOf(Navigator).isRequired,
     },
-
-    /*componentWillMount(){
-
-    },*/
 
 
     render(){

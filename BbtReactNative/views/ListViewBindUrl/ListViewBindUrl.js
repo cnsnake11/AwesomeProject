@@ -105,13 +105,18 @@ var ListViewBindUrl =React.createClass({
     render(){
 
         var jsx=(
-            <ListView dataSource={this.state.dataSource} keyboardShouldPersistTaps={true} ref='list'
-                      onEndReached={this._endReached }
-                      onEndReachedThreshold={200}
-                      renderFooter={this._renderFooter} />
+            <ListView  ref='list'
+                    {...this.props}
+                    dataSource={this.state.dataSource}
+                    keyboardShouldPersistTaps={true}
+                    onEndReached={this._endReached }
+                    onEndReachedThreshold={200}
+                    renderFooter={this._renderFooter}
+                />
         );
 
-        return propsConcat.concat(this,jsx);
+        //return propsConcat.concat(this,jsx);
+        return jsx;
     },
 
 

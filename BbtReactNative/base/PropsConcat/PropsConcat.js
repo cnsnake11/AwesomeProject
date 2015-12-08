@@ -29,7 +29,7 @@ var PropsConcat={
             }
 
             var p=props[key];
-            jsx.props[key]=p;
+            if(p)jsx.props[key]=p;
         }
 
         return jsx;

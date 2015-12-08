@@ -32,6 +32,17 @@ var {
 
 var Detail =React.createClass({
 
+
+    propTypes:{
+
+        nav:React.PropTypes.instanceOf(Navigator).isRequired,
+        title:React.PropTypes.string.isRequired,
+        productId:React.PropTypes.string.isRequired,
+        specialId:React.PropTypes.string.isRequired,
+
+    },
+
+
     getInitialState(){
       return {
             init:false,//初始化

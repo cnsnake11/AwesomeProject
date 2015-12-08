@@ -183,7 +183,8 @@ var Detail =React.createClass({
 
                         {
                             this._getImageUrl(d.imagethreeurl).map((img)=>{
-                                return <Image source={{uri:img}} style={{height:400,resizeMode:'contain'}}/>
+                                return <Image source={{uri:img}}
+                                              style={{height:600,resizeMode:'cover'}}/>
                             })
                         }
 

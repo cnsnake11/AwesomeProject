@@ -89,6 +89,10 @@ var ListViewBindUrl =React.createClass({
 
             _loading:false,
             _noData:false,
+
+
+            _initLoading:true,
+            _initAnimateing:true,
         };
     },
 

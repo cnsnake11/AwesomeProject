@@ -60,21 +60,85 @@ var Detail =React.createClass({
 
     render(){
 
+        var d=this.initData;
 
       return (
-         <View style={{flex:1}} >
+         <View style={{flex:1,backgroundColor:'white'}} >
 
+             <Header btnOnly={true} nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
 
              {this.state.init==true&&this.state.initTrans==true?
-                 <Slider data={this.initData.imageurl} />
+                 <ScrollView>
+                     <Slider data={this.initData.imageurl} />
+
+                     <View style={[css.flagView]} >
+                         {d.countryimagepath?<Image style={[css.flagImg]} source={{uri:d.countryimagepath}} />:null}
+                         <Text style={[css.flagText]}>{d.sendtype}</Text>
+                     </View>
+
+                     <View style={[css.h1View]}>
+                        <Text style={[css.h1Text]}>{d.name}</Text>
+                     </View>
+
+
+                     <View style={[css.h2View]}>
+                         <Text style={[css.h2Text]}>{d.detail}</Text>
+                     </View>
+
+                     <View style={[css.moneyView]}>
+                         <Text style={[css.moneyText]}>￥{d.price}</Text>
+                     </View>
+
+
+                     <View style={[css.postageView]}>
+                         <Text style={[css.postageText]}>包邮</Text>
+                     </View>
+
+
+                     <View style={[css.taxView]}>
+                         <View style={[css.leftView]}>
+                             <Text style={[css.taxText]}>关税说明：</Text>
+                         </View>
+
+                         <View style={[css.rightView]}>
+                             <Text style={[css.taxText]}>税费 = 不含税价格 × 件数 × 商品税率</Text>
+                             <Text style={[css.taxText]}>根据海关规定，本商品适用税率为0%,若订单总税额 ≤ 50元，海关予以免征。</Text>
+                         </View>
+                     </View>
+
+
+                     <View>
+                        <Image style={{width:Dimensions.get('window').width,height:40,resizeMode:'contain',}}
+                               source={{uri:'http://ms.meitun.com/resources/images/product_details/grain_5bd2ae0.png'}} ></Image>
+                     </View>
+
+
+                     <View style={[css.guaranteeView]} >
+
+                        <View style={[css.guaranteeView1]}>
+                            <Image style={[css.guaranteeImg]}
+                                source={{uri:'http://ms.meitun.com/resources/images/product_details/tips001_5deb2f8.png'}} />
+                            <Text style={[css.guaranteeText]} >宝宝树正品保证</Text>
+                        </View>
+
+
+                         <View style={[css.guaranteeView1]}>
+                             <Image  style={[css.guaranteeImg]}
+                                    source={{uri:'http://ms.meitun.com/resources/images/product_details/tips003_21ae2e4.png'}} />
+                             <Text  style={[css.guaranteeText]} >宝宝树妈妈首选</Text>
+                         </View>
+
+                     </View>
+
+                 </ScrollView>
                  :
                  <Loading show={true}/>
              }
-             <Header btnOnly={true} nav={this.props.nav} back={true} title={this.props.title} rightBtn='分享' />
 
          </View>
       )
     },
+
 
 
 

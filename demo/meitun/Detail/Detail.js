@@ -7,7 +7,7 @@ var css=require('./Detail.css');
 var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 var Header=require('../Header/Header');
-var Slider = require('./Slider');
+var Slider = require('./Slider2');
 
 var {
     AppRegistry,

@@ -3,6 +3,7 @@
 
 
 var React=require('react-native');
+var Loading=require('../../../../BbtReactNative/views/Loading/Loading');
 
 var {
     AppRegistry,
@@ -22,53 +23,86 @@ var {
 
 
 
- var ViewPager = require('react-native-viewpager');
- var deviceWidth = Dimensions.get('window').width;
+var ViewPager = require('react-native-viewpager');
+var deviceWidth = Dimensions.get('window').width;
 
- var IMGS = [
- 'http://img01.meituncdn.com/group1/M00/44/FD/wKgyOlZPGmiABkItAALFKzvqD0o953.jpg',
- 'http://img04.meituncdn.com/group1/M00/45/BC/wKgyOlZSgViAPIk_AAPq3Gp6zkU960.jpg',
- 'http://img01.meituncdn.com/group1/M00/38/9D/wKgyOlYzH7-Aecy3AAEXg9gCPHs270.jpg'
- ];
 
- var styles = StyleSheet.create({
- page: {
- width: deviceWidth,
- },
- });
 
- var Slider = React.createClass({
- getInitialState: function() {
- var dataSource = new ViewPager.DataSource({
- pageHasChanged: (p1, p2) => p1 !== p2,
- });
+var styles = StyleSheet.create({
+    page: {
+        width: deviceWidth,
+        height:160,
+    },
+});
 
- return {
- dataSource: dataSource.cloneWithPages(IMGS),
- };
- },
+var Slider = React.createClass({
 
- render: function() {
- return (
- <View style={{flexDirection:'row',height:170}}>
- <ViewPager
- style={{flex:1}}
- dataSource={this.state.dataSource}
- renderPage={this._renderPage}
- isLoop={true}
- autoPlay={true}/>
- </View>
- );
- },
+    getInitialState: function() {
 
- _renderPage: function(data,pageID) {
+        return {
+            isLoading:true,
+        };
+    },
 
- return (
- <Image
- source={{uri: data}}
- style={styles.page} />
- );
- },
- });
+    ds:null,
 
- module.exports=Slider;
+    shouldComponentUpdate(){
+        if(this.state.isLoading==false){
+            return false;
+        }else{
+            return true;
+        }
+    },
+
+    componentWillMount(){
+        var url='http://m.meitun.com/mobile/home/getgg.htm?oem=IOS&osversion=8.0%20&screenwidth=375&screenheight=662&apptype=1&appversion=1.0.1&nettype=unknown&regcode=250&provcode=264&partner=babytree';
+
+        fetch(url)
+            .then((response) => response.json())
+            .then(function(res){
+
+                var dataSource = new ViewPager.DataSource({
+                    pageHasChanged: () => true,
+                });
+                this.ds=dataSource.cloneWithPages(res.urls);
+
+                this.setState({isLoading: false});
+
+            }.bind(this));
+    },
+
+    render: function() {
+        var jsx;
+        if(this.state.isLoading==true){
+            jsx=(
+                <Loading show={true}  style={{height:160}} />
+            );
+        }else{
+            jsx=(
+                <View style={{flexDirection:'row',height:160}}>
+                    <ViewPager
+                        style={{flex:1}}
+                        dataSource={this.ds}
+                        renderPage={this._renderPage}
+                        isLoop={true}
+                        autoPlay={true}/>
+                </View>
+            );
+        }
+
+        return jsx;
+
+
+    },
+
+    _renderPage: function(data,pageID) {
+
+        return (
+            <Image
+                source={{uri: data.imageurl}}
+                style={styles.page} />
+        );
+    },
+});
+
+module.exports=Slider;

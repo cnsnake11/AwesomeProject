@@ -250,6 +250,28 @@ var css=StyleSheet.create(
 
 
 
+        headerBtnTouch:{
+            position:'absolute',
+            top:20,
+            left:10,
+
+         },
+
+        headerBtnView:{
+            opacity:0.8,
+            width:25,
+            height:25,
+            borderRadius:13,
+            backgroundColor:'#00bcd6',
+            justifyContent:'center',
+            alignItems:'center',
+        },
+        headerBtnText:{
+            color:'white',
+            fontWeight:'bold',
+            fontSize:18,
+        },
+
     }
 );
 

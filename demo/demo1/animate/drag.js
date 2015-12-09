@@ -21,18 +21,27 @@ class DraggableView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pan: new Animated.ValueXY({x:0,y:0}), // inits to zero
+            pan: new Animated.ValueXY({x:100,y:100}), // inits to zero
         };
         this.state.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
-            onPanResponderMove: Animated.event([null, {
-                dx: this.state.pan.x, // x,y are Animated.Value
-                dy: this.state.pan.y,
-            }]),
+
+
+            //onPanResponderMove: Animated.event([null, {
+            //    dx: this.state.pan.x, // x,y are Animated.Value
+            //    dy: this.state.pan.y,
+            //}]),
+
+
+            onPanResponderMove:(evt,gestureState)=>{
+                this.state.pan.setValue({x:gestureState.dx+100,y:gestureState.dy+100});
+            },
+
+
             onPanResponderRelease: () => {
                 Animated.spring(
                     this.state.pan,         // Auto-multiplexed
-                    {toValue: {x: 0, y: 0}} // Back to zero
+                    {toValue: {x: 100, y: 100},friction: 3, } // Back to zero
                 ).start();
             },
 

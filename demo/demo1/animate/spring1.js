@@ -44,7 +44,7 @@ class Playground extends React.Component {
             this.state.bounceValue,                 // Animate `bounceValue`
             {
                 toValue: 0.8,                         // Animate to smaller size
-                friction: 1,                          // Bouncier spring
+                friction: 0.8,                          // Bouncier spring
             }
         ).start();                                // Start the animation
     }

@@ -18,6 +18,7 @@ var {
 
 
 var Drag=require('./animate/drag');
+var Spring1=require('./animate/spring1');
 
 class Demo1Index extends Component{
 
@@ -25,9 +26,13 @@ class Demo1Index extends Component{
 
         var data=[
             {
-                title:'拖拽测试',
+                title:'拖拽测试1',
                 page:(<Drag />)
-            }
+            },
+            {
+                title:'弹性测试1-图片较大,可能第二次才会看到动画效果.',
+                page:(<Spring1 />)
+            },
         ];
 
         var ds=new ListView.DataSource({rowHasChanged:()=>true}).cloneWithRows(data);

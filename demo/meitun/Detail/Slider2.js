@@ -47,7 +47,7 @@ var Slider = React.createClass({
                     dataSource={ds}
                     renderPage={this._renderPage}
                     isLoop={true}
-                    autoPlay={true}/>
+                    autoPlay={false}/>
             </View>
         );
     },

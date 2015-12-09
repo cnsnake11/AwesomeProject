@@ -80,7 +80,23 @@ class DemoApp extends Component{
 
     _render_page(route, navigator){
 
-        if(route.name=='UIExplorer'){
+       if(route.page){
+
+
+            return (
+                <View style={{flex:1,}}>
+
+                    <TouchableHighlight style={{backgroundColor:'white'}} onPress={()=>navigator.pop()}>
+                        <View style={css.navView}>
+                            <Text style={css.navText}>返回</Text>
+                        </View>
+                    </TouchableHighlight>
+
+                    {route.page}
+                </View>
+            );
+
+       }else if(route.name=='UIExplorer'){
 
             //这种很简单的结构，没有必要为了封装而封装
             return (//官方给的例子没法加返回按钮，会报错
@@ -164,15 +180,15 @@ class DemoApp extends Component{
     _tplDemo1Index(route,navigator){
 
         return (
-            <View>
+            <View style={{flex:1,}}>
 
-                <TouchableHighlight onPress={this._back.bind(this,route,navigator)}>
+                <TouchableHighlight style={{backgroundColor:'white'}} onPress={this._back.bind(this,route,navigator)}>
                     <View style={css.navView}>
                         <Text style={css.navText}>返回</Text>
                     </View>
                 </TouchableHighlight>
 
-                <Demo1Index/>
+                <Demo1Index nav={navigator} style={{flex:1,}}/>
             </View>
         );
 

@@ -54,7 +54,7 @@ var Detail =React.createClass({
             initTrans:false,//页面初始化转场
 
 
-            initPage2:false,
+            initPage2:true,
             scrollY:new Animated.Value(0),
       };
     },
@@ -71,7 +71,6 @@ var Detail =React.createClass({
         this._panRender=PanResponder.create({
             onStartShouldSetPanResponder: (e,gs) => {
 
-                debugger;
 
                 return false;
             },
@@ -115,7 +114,6 @@ var Detail =React.createClass({
                     <Animated.View style={[{flex:1}, {transform: [{translateY:this.state.scrollY}]}]}
                          {...this._panRender.panHandlers} >
                      {this._tplBody1()}
-                     {this._tplBody2()}
                     </Animated.View>
                  )
                  :
@@ -181,12 +179,12 @@ var Detail =React.createClass({
 
 
 
-    _topPage(){
+    _add(){
 
     },
 
-    _bottomPage(){
-        debugger;
+    _buy(){
+
 
     },
 
@@ -320,6 +318,8 @@ var Detail =React.createClass({
                 </View>
 
 
+                {this._tplBody2()}
+
             </ScrollView>
         );
     },
@@ -331,7 +331,7 @@ var Detail =React.createClass({
         return (
                 this.state.initPage2==true?
                 (
-                    <View style={[baseCss.hidden]} >
+                    <View _style={[baseCss.hidden]} >
 
                         {
                             this._getImageUrl(d.imagethreeurl).map((img)=>{
@@ -364,13 +364,13 @@ var Detail =React.createClass({
                                source={{uri:'http://ms.meitun.com/resources/images/icon/icon_car_2_175c837.png'}} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[{flex:1,}]} onPress={this._topPage} >
+                <TouchableOpacity style={[{flex:1,}]} onPress={this._add} >
                     <View style={[css.bottomBaseView,css.bottomAddView]}>
                         <Text style={[css.bottomText]}>加入购物车</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[{flex:1,}]} onPress={this._bottomPage}>
+                <TouchableOpacity style={[{flex:1,}]} onPress={this._buy}>
                     <View style={[css.bottomBaseView,css.bottomBuyView]}>
                         <Text style={[css.bottomText]}>立即购买</Text>
                     </View>

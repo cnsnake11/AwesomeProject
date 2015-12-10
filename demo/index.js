@@ -196,6 +196,17 @@ class DemoApp extends Component{
 
 }
 
-var Login =require('./meitun/Login/Login');
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
 
+
+var Detail =require('./meitun/Detail/Detail');
+var d=React.createClass({
+    render(){
+        return(
+            <Navigator
+                renderScene={ (r,nav)=><Detail nav={nav} title='测试用' productId='07030400270101' specialId='7306' /> }
+                />
+        );
+    },
+});
+AppRegistry.registerComponent('AwesomeProject',()=>d);
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

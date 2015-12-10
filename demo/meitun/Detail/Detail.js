@@ -10,7 +10,11 @@ var Header=require('../Header/Header');
 var Slider = require('./Slider2');
 var Login = require('../Login/Login');
 
+
 var TimerMixin = require('react-timer-mixin');
+
+
+var PopPage=require('./PopPage');
 
 var {
     AppRegistry,
@@ -53,6 +57,8 @@ var Detail =React.createClass({
       return {
             init:false,//初始化
             initTrans:false,//页面初始化转场
+
+            showModal:false,
 
 
             initPage2:true,
@@ -134,6 +140,9 @@ var Detail =React.createClass({
 
              {this._tplBottom()}
 
+
+             <PopPage detail={this} _ref='popPage'/>
+
          </View>
       )
     },
@@ -176,6 +185,12 @@ var Detail =React.createClass({
         imageStr=imageStr.substring(index,imageStr.length);
 
         return this._getImageUrl(imageStr,res);
+    },
+
+
+
+    _pressNum(){
+        this.setState({showModal:true});
     },
 
 
@@ -278,7 +293,7 @@ var Detail =React.createClass({
 
 
 
-                <TouchableOpacity style={[css.numTouch]}>
+                <TouchableOpacity style={[css.numTouch]} onPress={this._pressNum}>
                     <View style={[css.numView]}>
                         <Text style={[css.numText1]}>选择：数量1</Text>
                         <Text style={[css.numText2]}>></Text>
@@ -329,6 +344,8 @@ var Detail =React.createClass({
                 {this._tplBody2()}
 
             </ScrollView>
+
+
         );
     },
 

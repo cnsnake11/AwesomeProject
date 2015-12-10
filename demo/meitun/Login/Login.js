@@ -28,6 +28,7 @@ var {
     PanResponder,
     LayoutAnimation,
     InteractionManager,
+    ToastAndroid,
     }=React;
 
 var Login =React.createClass({
@@ -92,6 +93,18 @@ var Login =React.createClass({
 
     _login(){
 
+
+        if(!this.state.username){
+            this._msg('用户名不能为空.');
+            return ;
+        }
+
+        if(!this.state.password){
+            this._msg('密码不能为空.');
+            return ;
+        }
+
+
         var url='http://m.meitun.com/mobile/user/signin.htm';
 
         fetch(url, {
@@ -124,12 +137,23 @@ var Login =React.createClass({
         .then((res)=>{
 
                 //todo 验证码
-                alert(res.rescode.info);
+                this._msg(res.rescode.info);
 
             });
 
 
-    }
+    },
+
+
+    _msg(s){
+      if(Platform.OS=='ios'){
+          alert(s);
+      }else{
+          ToastAndroid.show(s,ToastAndroid.LONG);
+      }
+    },
+
+
 
 
 

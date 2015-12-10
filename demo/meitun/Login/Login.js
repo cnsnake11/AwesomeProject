@@ -38,50 +38,66 @@ var Login =React.createClass({
           return {
               username:null,
               password:null,
+
+
+              initLoading:true,
           };
+    },
+
+
+    componentWillMount(){
+
+      InteractionManager.runAfterInteractions(()=>this.setState({initLoading:false}));
     },
 
 
     render(){
 
         return (
+
             <View style={{flex:1}}>
                 <Header nav={this.props.nav} back={true} title='登录' rightBtn=' '></Header>
-                <View style={[css.wrapper]}>
-                    <TextInput value={this.state.username}
-                               autoFocus={true}
-                               onSubmitEditing={(e)=>{this.refs.pwd.focus()}}
-                               onChange={(e)=>{this.setState({username:e.nativeEvent.text})}}
-                               style={[css.textInput]} placeholder='手机号/宝宝树账号' />
-                    <Image style={[css.img]} source={require('./img/login.png')}/>
 
-                    <TextInput ref='pwd'
-                               value={this.state.password}
-                               onSubmitEditing={(e)=>{this._login()}}
-                               onChange={(e)=>{this.setState({password:e.nativeEvent.text})}}
-                               style={[css.textInput]} placeholder='请输入密码' secureTextEntry={true} />
-                    <Image style={[css.img,{top:80}]} source={require('./img/pwd.png')}/>
+                {
+                    this.state.initLoading==true?
+                        <Loading show={true} />
+                        :
+                        <View style={[css.wrapper]}>
+                            <TextInput value={this.state.username}
+                                       autoFocus={true}
+                                       onSubmitEditing={(e)=>{this.refs.pwd.focus()}}
+                                       onChange={(e)=>{this.setState({username:e.nativeEvent.text})}}
+                                       style={[css.textInput]} placeholder='手机号/宝宝树账号' />
+                            <Image style={[css.img]} source={require('./img/login.png')}/>
 
-                    <TouchableOpacity style={[css.touch]} onPress={this._login}>
-                        <View style={[css.btnView]}>
-                            <Text style={[css.btnText]}>登录</Text>
+                            <TextInput ref='pwd'
+                                       value={this.state.password}
+                                       onSubmitEditing={(e)=>{this._login()}}
+                                       onChange={(e)=>{this.setState({password:e.nativeEvent.text})}}
+                                       style={[css.textInput]} placeholder='请输入密码' secureTextEntry={true} />
+                            <Image style={[css.img,{top:80}]} source={require('./img/pwd.png')}/>
+
+                            <TouchableOpacity style={[css.touch]} onPress={this._login}>
+                                <View style={[css.btnView]}>
+                                    <Text style={[css.btnText]}>登录</Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={[css.touch]} >
+                                <View style={[css.btnView,{backgroundColor:'#49b9c3'}]}>
+                                    <Text style={[css.btnText]}>注册</Text>
+                                </View>
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity style={[css.forgetTouch]}>
+                                <View style={[css.forgetBtnView]}>
+                                    <Text style={[css.forgetBtnText]}>忘记密码</Text>
+                                </View>
+                            </TouchableOpacity>
+
                         </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={[css.touch]} >
-                        <View style={[css.btnView,{backgroundColor:'#49b9c3'}]}>
-                            <Text style={[css.btnText]}>注册</Text>
-                        </View>
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={[css.forgetTouch]}>
-                        <View style={[css.forgetBtnView]}>
-                            <Text style={[css.forgetBtnText]}>忘记密码</Text>
-                        </View>
-                    </TouchableOpacity>
-
-                </View>
+                }
 
             </View>
 

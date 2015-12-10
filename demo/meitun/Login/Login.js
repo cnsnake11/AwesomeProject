@@ -124,6 +124,7 @@ var Login =React.createClass({
         .then((res)=>{
 
                 //todo 验证码
+                alert(res.rescode.info);
 
             });
 

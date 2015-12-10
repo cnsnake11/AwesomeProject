@@ -113,7 +113,7 @@ class DemoApp extends Component{
             return this._tplDemo1Index(...arguments);
         }else if(route.name=='meitun'){
             return (
-                <MeitunIndex/>
+                <MeitunIndex nav={navigator}/>
             );
         }else{//home
             return this._tplHome(...arguments);
@@ -196,6 +196,6 @@ class DemoApp extends Component{
 
 }
 
-
+var Login =require('./meitun/Login/Login');
 AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
 

@@ -205,7 +205,7 @@ var MeitunIndex =React.createClass({
 
             return (
                <View style={[css.wrapper]}>
-                   <Header logo={true}  back={true} nav={nav}
+                   <Header logo={true}  back={true} nav={this.props.nav}
                            rightBtn='搜索' rightBtnPress={this._search} />
                    {this._tplBody()}
                    <BottomNavBar style={{flex: 0}} index={this} />

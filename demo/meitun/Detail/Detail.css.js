@@ -254,6 +254,7 @@ var css=StyleSheet.create(
             position:'absolute',
             top:20,
             left:10,
+            backgroundColor:'transparent',
 
          },
 

@@ -8,6 +8,7 @@ var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
 var Loading=require('../../../BbtReactNative/views/Loading/Loading');
 var Header=require('../Header/Header');
 var Slider = require('./Slider2');
+var Login = require('../Login/Login');
 
 var TimerMixin = require('react-timer-mixin');
 
@@ -181,10 +182,17 @@ var Detail =React.createClass({
 
     _add(){
 
+
+
     },
 
     _buy(){
 
+
+        this.props.nav.push({
+            name:'login',
+            page:(<Login nav={this.props.nav} />),
+        });
 
     },
 

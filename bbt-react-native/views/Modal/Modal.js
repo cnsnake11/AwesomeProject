@@ -37,7 +37,7 @@ var css=StyleSheet.create({
     wrapper:{
         position:'absolute',
         width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height-20,//todo -20是兼容安卓高不准的问题
+        height:Dimensions.get('window').height-20,//todo -20是兼容安卓高不准的问题,此问题还需要解决
         top:0,
         left:0,
         backgroundColor:'transparent',
@@ -126,15 +126,15 @@ var Modal=React.createClass({
         this.state.offset.setValue(-(Dimensions.get('window').width));
         this.setState({reallyHidden:false});
         Animated.spring(
-            this.state.offset,         // Auto-multiplexed
-            {toValue: 0,friction: 5, } // Back to zero
+            this.state.offset,
+            {toValue: 0,friction: 5, }
         ).start();
     },
 
     _hide(){
         Animated.timing(
-            this.state.offset,         // Auto-multiplexed
-            {toValue: -(Dimensions.get('window').width),duration: 200, } // Back to zero
+            this.state.offset,
+            {toValue: -(Dimensions.get('window').width),duration: 200, }
         ).start(()=>this.setState({reallyHidden:true}));
     },
 

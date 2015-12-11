@@ -71,7 +71,7 @@ var BottomNavBarCell = React.createClass({
         var navBar=this.props.navBar;
         var index=this.props.index;
 
-        LayoutAnimation.spring();
+        //LayoutAnimation.spring();
 
         navBar.setState({selectedName:name});
 

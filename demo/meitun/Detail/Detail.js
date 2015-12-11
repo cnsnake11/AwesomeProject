@@ -141,7 +141,9 @@ var Detail =React.createClass({
              {this._tplBottom()}
 
 
-             <PopPage detail={this} _ref='popPage'/>
+             <PopPage data={this.initData} show={this.state.showModal}
+                      onPressMask={()=>this.setState({showModal:false})}
+                      _ref='popPage'/>
 
          </View>
       )

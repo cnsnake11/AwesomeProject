@@ -1,12 +1,13 @@
 
+
 'use strict'
 
 
 var React=require('react-native');
-var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
+var baseCss=require('../../base/BaseCss/Base.css');
+
 var TimerMixin = require('react-timer-mixin');
 
-var Mask=require('./Mask');
 
 var {
     AppRegistry,
@@ -31,55 +32,37 @@ var {
 
 
 var css=StyleSheet.create({
-
-    wrapper:{
-        position:'absolute',
+    mask:{
         width:Dimensions.get('window').width,
         height:Dimensions.get('window').height,
+        backgroundColor:'#000',
+        opacity:0.4,
+        position:'absolute',
         top:0,
         left:0,
-        backgroundColor:'transparent',
     },
-
-    modal:{
-        position:'absolute',
-        left:0,
-        bottom:0,
-    },
-
 });
 
-var Modal=React.createClass({
+var Mask=React.createClass({
 
     propTypes:{
-        show:React.PropTypes.boolean,
+        show:React.PropTypes.bool,
     },
+
 
     render(){
         return (
-
             this.props.show==true?
-
-                <TouchableOpacity  style={css.wrapper} onPress={()=>alert(1)} >
-
-                    <Mask show={true} />
-
-                    <Animated.View  style={css.modal} >
-                        {this.props.children}
-                    </Animated.View>
-
-                </TouchableOpacity>
+                <View style={css.mask}  />
                 :
                 null
-
         );
     },
-
 
 });
 
 
-module.exports=Modal;
+module.exports=Mask;
 
 
 

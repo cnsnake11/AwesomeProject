@@ -3,11 +3,12 @@
 
 
 var React=require('react-native');
-var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
-
+var BbtRN=require('../../../bbt-react-native');
 var TimerMixin = require('react-timer-mixin');
-
-var Modal=require('./Modal');
+var {
+    baseCss,
+    Modal,
+    }=BbtRN;
 
 var {
     AppRegistry,
@@ -28,6 +29,7 @@ var {
     PanResponder,
     LayoutAnimation,
     InteractionManager,
+    PropTypes,
     }=React;
 
 
@@ -43,14 +45,22 @@ var css=StyleSheet.create({
 
 var PopPage=React.createClass({
 
+
+    propTypes:{
+
+        show:PropTypes.boolean,
+        data:PropTypes.object.isRequired,
+        onPressMask:PropTypes.func,
+    },
+
+
+
     render(){
 
-        var detail=this.props.detail;
-        var show=detail.state.showModal;
 
         return (
 
-            <Modal show={show}>
+            <Modal show={this.props.show} onPressMask={this.props.onPressMask} >
 
                 <View style={[css.wrapper]}>
                     <Text> hello modal </Text>

@@ -198,7 +198,7 @@ class DemoApp extends Component{
 
 
 
-/*var Detail =require('./meitun/Detail/Detail');
+var Detail =require('./meitun/Detail/Detail');
 var d=React.createClass({
     render(){
         return(
@@ -208,5 +208,5 @@ var d=React.createClass({
         );
     },
 });
-AppRegistry.registerComponent('AwesomeProject',()=>d);*/
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+AppRegistry.registerComponent('AwesomeProject',()=>d);
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

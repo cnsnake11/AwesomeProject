@@ -12,9 +12,11 @@ var BbtReactNative={
     //views
     Loading:require('./views/Loading/Loading'),
     ListViewBindUrl:require('./views/ListViewBindUrl/ListViewBindUrl'),
+    Mask:require('./views/Mask/Mask'),
+    Modal:require('./views/Modal/Modal'),
 
     //apis
-    TabApi:require('./TabApi/TabApi'),
+    TabApi:require('./api/TabApi/TabApi'),
 
 
 };

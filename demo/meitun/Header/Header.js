@@ -33,10 +33,10 @@ var Header =React.createClass({
 
 
     propTypes:{
-        back:React.PropTypes.boolean,
-        logo:React.PropTypes.boolean,
-        title:React.PropTypes.boolean,
-        rightBtn:React.PropTypes.boolean,
+        back:React.PropTypes.bool,
+        logo:React.PropTypes.bool,
+        title:React.PropTypes.bool,
+        rightBtn:React.PropTypes.bool,
         rightBtnPress:React.PropTypes.func,
         nav:React.PropTypes.instanceOf(Navigator).isRequired,
     },

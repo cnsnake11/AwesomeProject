@@ -5,6 +5,7 @@
 var React=require('react-native');
 var {
     StyleSheet,
+    Dimensions,
     }=React;
 
 var css=StyleSheet.create(
@@ -272,6 +273,15 @@ var css=StyleSheet.create(
             fontWeight:'bold',
             fontSize:18,
         },
+
+
+
+        modalWrapper: {
+            backgroundColor: '#fff',
+            width: Dimensions.get('window').width,
+            justifyContent:'center',
+            alignItems:'center',
+        }
 
     }
 );

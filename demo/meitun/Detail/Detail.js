@@ -9,12 +9,17 @@ var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 var Header=require('../Header/Header');
 var Slider = require('./Slider2');
 var Login = require('../Login/Login');
+var BbtRN=require('../../../bbt-react-native');
 
 
 var TimerMixin = require('react-timer-mixin');
 
 
-var PopPage=require('./PopPage');
+var {
+    baseCss,
+    Modal,
+    }=BbtRN;
+
 
 var {
     AppRegistry,
@@ -58,7 +63,7 @@ var Detail =React.createClass({
             init:false,//初始化
             initTrans:false,//页面初始化转场
 
-            showModal:false,
+            showModal:true,
 
 
             initPage2:true,
@@ -110,6 +115,7 @@ var Detail =React.createClass({
     render(){
 
         var d=this.initData;
+        var w=Dimensions.get('window').width;
 
       return (
          <View style={{flex:1,backgroundColor:'#fff'}} >
@@ -141,9 +147,9 @@ var Detail =React.createClass({
              {this._tplBottom()}
 
 
-             <PopPage data={this.initData} show={this.state.showModal}
-                      onPressMask={()=>this.setState({showModal:false})}
-                      _ref='popPage'/>
+             {this.state.init == true && this.state.initTrans == true ?
+                 this._tplModal():null
+             }
 
          </View>
       )
@@ -220,7 +226,57 @@ var Detail =React.createClass({
 
 
 
+    _tplModal(){
+        var d=this.initData;
+        var w=Dimensions.get('window').width;
 
+
+        return (
+            <Modal show={this.state.showModal}
+                   onPressMask={()=>this.setState({showModal:false})} >
+
+                <View style={[css.modalWrapper]}>
+
+
+                    <View style={{width:w,flexDirection:'row',padding:20,borderBottomColor:'#eee',borderBottomWidth:1,}}>
+
+                        <View style={[{width:100}]} >
+                            <Image style={{height:100,width:100,resizeMode:'contain'}}
+                                   source={{uri:d.imageurl[0]}} />
+                        </View>
+
+
+                        <View style={[{flex:1}]} >
+                            <Text>{d.name}</Text>
+                            <Text style={css.moneyText}>￥{d.price}</Text>
+                            <Text style={{alignSelf:'flex-end',fontSize:14,color:'#999'}}>请选择合适的规格</Text>
+                        </View>
+                    </View>
+
+
+
+
+                    <View style={{flexDirection:'row',width:Dimensions.get('window').width}}>
+
+                        <TouchableOpacity style={[{flex:1,}]} onPress={this._add} >
+                            <View style={[css.bottomBaseView,css.bottomAddView]}>
+                                <Text style={[css.bottomText]}>加入购物车</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={[{flex:1,}]} onPress={this._buy}>
+                            <View style={[css.bottomBaseView,css.bottomBuyView]}>
+                                <Text style={[css.bottomText]}>立即购买</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+
+            </Modal>
+        );
+    },
 
 
 

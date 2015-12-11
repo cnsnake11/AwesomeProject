@@ -41,6 +41,12 @@ var css=StyleSheet.create({
         top:0,
         left:0,
         backgroundColor:'transparent',
+
+        padding:0,
+        margin:0,
+        flex:1,
+        overflow:'visible',
+        flexDirection:'row',
     },
 
     modal:{
@@ -86,8 +92,19 @@ var Modal=React.createClass({
 
             </TouchableWithoutFeedback>
 
+
         );
     },
+
+
+
+
+    componentWillMount(){
+        if(this.props.show==true)
+        this._show();
+    },
+
+
 
     componentWillReceiveProps(props2){
 

@@ -35,8 +35,8 @@ var Header =React.createClass({
     propTypes:{
         back:React.PropTypes.bool,
         logo:React.PropTypes.bool,
-        title:React.PropTypes.bool,
-        rightBtn:React.PropTypes.bool,
+        title:React.PropTypes.string,
+        rightBtn:React.PropTypes.string,
         rightBtnPress:React.PropTypes.func,
         nav:React.PropTypes.instanceOf(Navigator).isRequired,
     },

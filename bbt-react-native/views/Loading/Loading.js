@@ -4,7 +4,7 @@
 
 var React=require('react-native');
 var css=require('./Loading.css');
-var propsCheck=require('../../base/PropsCheck/PropsCheck');
+//var propsCheck=require('../../base/PropsCheck/PropsCheck');
 
 var {
     AppRegistry,
@@ -15,6 +15,7 @@ var {
     Platform,
     ProgressViewIOS,
     ProgressBarAndroid,
+    PropTypes,
     }=React;
 
 
@@ -24,7 +25,14 @@ var {
 
 var Loading=React.createClass({
 
-    _compName:'Loading',
+
+
+    propTypes:{
+        show:PropTypes.bool,
+        style:PropTypes.any,//这没找到好的类型
+    },
+
+    /*_compName:'Loading',
 
     options:{
         show:{
@@ -39,7 +47,7 @@ var Loading=React.createClass({
 
     componentWillMount(){
         propsCheck.check(this,this.props);
-    },
+    },*/
 
 
     render(){

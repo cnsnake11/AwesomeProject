@@ -30,7 +30,7 @@ class Demo1Index extends Component{
                 page:(<Drag />)
             },
             {
-                title:'弹性测试1-图片较大,可能第二次才会看到动画效果.',
+                title:'弹性测试1',
                 page:(<Spring1 />)
             },
         ];

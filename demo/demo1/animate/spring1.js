@@ -15,6 +15,7 @@ var {
     ListView,
     Animated,
     PanResponder,
+    Dimensions,
     }=React;
 
 
@@ -27,9 +28,11 @@ class Playground extends React.Component {
     }
     render() {
         return (
-            <Animated.Image                         // Base: Image, Text, View
-                source={{uri: 'http://i.imgur.com/XMKOH81.jpg'}}
+            <Animated.View                         // Base: Image, Text, View
                 style={{
+               width:Dimensions.get('window').width,
+               height:Dimensions.get('window').height,
+               backgroundColor:'green',
           flex: 1,
           transform: [                        // `transform` is an ordered array
             {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`

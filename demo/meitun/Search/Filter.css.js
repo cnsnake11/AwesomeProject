@@ -58,8 +58,6 @@ var css=StyleSheet.create(
 
             middleTouch:{
                 flex:0,
-                fontSize:16,
-                color:'#333'
             },
 
 

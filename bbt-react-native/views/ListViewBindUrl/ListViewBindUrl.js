@@ -6,8 +6,8 @@
 var React=require('react-native');
 var css=require('./ListViewBindUrl.css');
 var Loading=require('../Loading/Loading');
-var propsCheck=require('../../base/PropsCheck/PropsCheck');
-var propsConcat=require('../../base/PropsConcat/PropsConcat');
+//var propsCheck=require('../../base/PropsCheck/PropsCheck');
+//var propsConcat=require('../../base/PropsConcat/PropsConcat');
 
 
 var {
@@ -29,13 +29,24 @@ var {
     LayoutAnimation,
     InteractionManager,
     ListView,
+    PropTypes,
     }=React;
 
 
 var ListViewBindUrl =React.createClass({
 
 
-    //组件名称，一般输出调试信息的时候会比较有用
+    propTypes:{
+        //还支持listview的所有属性
+        //...ListView.propTypes,//加这个会提示一些错误,比如datasoure为定义等等
+        getUrl:PropTypes.func.isRequired,
+        getData:PropTypes.func.isRequired,
+        renderRow:PropTypes.func.isRequired,
+    },
+
+
+
+    /*//组件名称，一般输出调试信息的时候会比较有用
     _compName:'ListViewBindUrl',
 
     //组件的选项，定义在组件上，通过this.props来使用，
@@ -53,7 +64,7 @@ var ListViewBindUrl =React.createClass({
         },
 
         //同时支持ListView的所有属性
-    },
+    },*/
 
     curPage:0,
     data:[],
@@ -104,7 +115,7 @@ var ListViewBindUrl =React.createClass({
 
         InteractionManager.runAfterInteractions(()=>this.setState({_initAnimateing:false}));
 
-        propsCheck.check(this,this.props);
+        //propsCheck.check(this,this.props);
 
         this._queryData();
 

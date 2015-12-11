@@ -5,8 +5,8 @@ var PropsCheck={
     _compName:'PropsCheck',
 
     /**
-     * 按照组件定义的options进行检查
-     * 一般在componentWillMount中使用
+     * 按照API组件定义的options进行检查
+     * View组件请用RN体系的PropTypes
      * todo 仅支持must的校验
      * todo 在生产环境下关闭检查功能
      *

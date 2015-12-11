@@ -64,7 +64,10 @@ var ListViewBindUrl =React.createClass({
         this.data=[];
         //修复安卓下，切换数据源，高度不变，导致endreached事件会触发很多次
         if(React.Platform.OS=='android')this.refs.list.getScrollResponder().scrollTo(0);
-        this.setState(this.getInitialState());
+
+        var o=this.getInitialState();
+        o._initAnimateing=false;
+        this.setState(o);
     },
 
     load(){//装载数据
@@ -211,7 +214,7 @@ var ListViewBindUrl =React.createClass({
             .done(()=>{
 
                 if(this._threadId!=_threadId){
-                    //console.log('threadId不一致，终止这次view更新.22222');
+                    //console.log('threadId不一致，终止这次view更新.');
                     return;
                 }
                 this.setState({_loading:false,_initLoading:false});

@@ -4,8 +4,6 @@
 
 var React=require('react-native');
 var css=require('./Detail.css');
-var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
-var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 var Header=require('../Header/Header');
 var Slider = require('./Slider2');
 var Login = require('../Login/Login');
@@ -18,6 +16,7 @@ var TimerMixin = require('react-timer-mixin');
 var {
     baseCss,
     Modal,
+    Loading,
     }=BbtRN;
 
 
@@ -63,7 +62,7 @@ var Detail =React.createClass({
             init:false,//初始化
             initTrans:false,//页面初始化转场
 
-            showModal:true,
+            showModal:false,
 
 
             initPage2:true,
@@ -205,12 +204,10 @@ var Detail =React.createClass({
 
     _add(){
 
-
-
+        this.setState({showModal:true});
     },
 
     _buy(){
-
 
         this.props.nav.push({
             name:'login',

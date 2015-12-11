@@ -37,7 +37,7 @@ var css=StyleSheet.create({
     wrapper:{
         position:'absolute',
         width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
+        height:Dimensions.get('window').height-20,//todo -20是兼容安卓高不准的问题
         top:0,
         left:0,
         backgroundColor:'transparent',
@@ -67,7 +67,7 @@ var Modal=React.createClass({
 
     getInitialState(){
         return {
-            animateRight:new Animated.Value(-9999),
+            offset:new Animated.Value(-9999),
             reallyHidden:true,
         }
     },
@@ -83,7 +83,7 @@ var Modal=React.createClass({
                     <Mask show={true} />
 
                     <TouchableWithoutFeedback   onPress={()=>false}>
-                        <Animated.View  style={[css.modal,{left:this.state.animateRight}]} >
+                        <Animated.View  style={[css.modal,{transform:[{translateX:this.state.offset}]}]} >
                             {this.props.children}
                         </Animated.View>
                     </TouchableWithoutFeedback>
@@ -123,17 +123,17 @@ var Modal=React.createClass({
     },
 
     _show(){
-        this.state.animateRight.setValue(-(Dimensions.get('window').width));
+        this.state.offset.setValue(-(Dimensions.get('window').width));
         this.setState({reallyHidden:false});
         Animated.spring(
-            this.state.animateRight,         // Auto-multiplexed
+            this.state.offset,         // Auto-multiplexed
             {toValue: 0,friction: 5, } // Back to zero
         ).start();
     },
 
     _hide(){
         Animated.timing(
-            this.state.animateRight,         // Auto-multiplexed
+            this.state.offset,         // Auto-multiplexed
             {toValue: -(Dimensions.get('window').width),duration: 200, } // Back to zero
         ).start(()=>this.setState({reallyHidden:true}));
     },

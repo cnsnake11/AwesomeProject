@@ -115,7 +115,7 @@ var ListViewBindUrl =React.createClass({
 
         var jsx=(
             this.state._initLoading==true||this.state._initAnimateing==true?
-            <Loading show={true} />
+            <Loading show={true} style={this.props.style}/>
             :
             <ListView  ref='list'
                 {...this.props}

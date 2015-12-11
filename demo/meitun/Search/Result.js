@@ -4,12 +4,12 @@
 
 var React=require('react-native');
 var css=require('./Result.css');
-var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
-var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
+var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
+var ListViewBindUrl=require('../../../bbt-react-native/views/ListViewBindUrl/ListViewBindUrl');
 var ResultTab=require('./ResultTab');
 var Header=require('../Header/Header');
 var Filter=require('./Filter');
-var TabApi=require('../../../BbtReactNative/api/TabApi/TabApi');
+var TabApi=require('../../../bbt-react-native/api/TabApi/TabApi');
 var Detail=require('../Detail/Detail');
 
 var {

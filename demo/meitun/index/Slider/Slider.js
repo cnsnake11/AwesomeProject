@@ -3,7 +3,7 @@
 
 
 var React=require('react-native');
-var Loading=require('../../../../BbtReactNative/views/Loading/Loading');
+var Loading=require('../../../../bbt-react-native/views/Loading/Loading');
 
 var {
     AppRegistry,

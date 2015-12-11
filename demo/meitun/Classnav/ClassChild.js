@@ -3,7 +3,7 @@
 
 var React=require('react-native');
 var css=require('./ClassChild.css');
-var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 var Result=require('../Search/Result');
 
 var {

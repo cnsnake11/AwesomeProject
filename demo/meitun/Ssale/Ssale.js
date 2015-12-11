@@ -5,8 +5,8 @@ var React=require('react-native');
 var css=require('./Ssale.css');
 
 var Header=require('../Header/Header');
-var ListViewBindUrl=require('../../../BbtReactNative/views/ListViewBindUrl/ListViewBindUrl');
-var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var ListViewBindUrl=require('../../../bbt-react-native/views/ListViewBindUrl/ListViewBindUrl');
+var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 var Detail=require('../Detail/Detail');
 
 var {

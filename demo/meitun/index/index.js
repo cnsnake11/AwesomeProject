@@ -6,13 +6,13 @@
 
 var React=require('react-native');
 var css=require('./index.css');
-var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
+var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
 
 var BottomNavBar=require('./BottomNavBar/BottomNavBar');
 var Header=require('../Header/Header');
 var DiscountList=require('./DiscountList/DiscountList');
 var Classnav=require('../Classnav/Classnav');
-var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 
 var Search=require('../Search/Search');
 

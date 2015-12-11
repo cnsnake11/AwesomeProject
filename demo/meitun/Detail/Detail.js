@@ -4,8 +4,8 @@
 
 var React=require('react-native');
 var css=require('./Detail.css');
-var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
-var Loading=require('../../../BbtReactNative/views/Loading/Loading');
+var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
+var Loading=require('../../../bbt-react-native/views/Loading/Loading');
 var Header=require('../Header/Header');
 var Slider = require('./Slider2');
 var Login = require('../Login/Login');

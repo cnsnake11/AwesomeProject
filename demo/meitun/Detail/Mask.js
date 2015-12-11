@@ -4,7 +4,7 @@
 
 
 var React=require('react-native');
-var baseCss=require('../../../BbtReactNative/base/BaseCss/Base.css');
+var baseCss=require('../../../bbt-react-native/base/BaseCss/Base.css');
 
 var TimerMixin = require('react-timer-mixin');
 

@@ -108,10 +108,10 @@ var Filter =React.createClass({
             <View style={[css.middleView2]}>
 
                 {
-                    brandList.map((brand)=>{
+                    brandList.map((brand,index)=>{
 
                         return (
-                            <FilterBtn brand={brand} filter={this}
+                            <FilterBtn brand={brand} filter={this} key={index}
                                        ref={'brandId_'+brand.id} />
                         );
 

@@ -4,7 +4,7 @@
 //依赖引入
 //import React from 'react-native';
 var React=require('react-native');
-var UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
+//var UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
 var MoviesApp=require('../Examples/Movies/MoviesApp');
 
 var Demo1Index=require('./demo1/index');
@@ -99,8 +99,9 @@ class DemoApp extends Component{
        }else if(route.name=='UIExplorer'){
 
             //这种很简单的结构，没有必要为了封装而封装
-            return (//官方给的例子没法加返回按钮，会报错
-                <UIExplorer/>
+            return (//官方给的例子没法加返回按钮，会报错 todo ios会有warning，影响调试
+                /*<UIExplorer/>*/
+                null
             );
 
         }else if(route.name=='movies'){

@@ -136,9 +136,9 @@ var Ssale =React.createClass({
         return (
             <View>
                 {
-                    this.topImages.map((img)=>{
+                    this.topImages.map((img,index)=>{
                         return (
-                            <Image source={{uri:img}}
+                            <Image source={{uri:img}} key={index}
                                    style={[css.topImage]}>
                             </Image>
                         );

@@ -59,7 +59,7 @@ var MeitunIndex =React.createClass({
 
           <Navigator  ref='nav'
                       initialRoute={{name: 'home'}}
-                      renderScene={ this._render_page.bind(this) }
+                      renderScene={ this._render_page }
               ></Navigator>
 
       );

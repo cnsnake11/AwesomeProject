@@ -66,9 +66,9 @@ var ClassChild=React.createClass({
 
 
         return (
-            data.map((d)=>{
+            data.map((d,index)=>{
                 return (
-                    <TouchableOpacity onPress={this._press.bind(this,d)} >
+                    <TouchableOpacity onPress={this._press.bind(this,d)} key={index} >
                         <View style={[css.cellView]}>
                             <Image style={[css.image]} source={{uri:d.logourl}} />
                             <Text >{d.name}</Text>

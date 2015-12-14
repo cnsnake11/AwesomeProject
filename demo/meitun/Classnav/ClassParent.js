@@ -50,7 +50,7 @@ var ClassParent=React.createClass({
         return (
             data.map((d,index)=>{
               return(
-                  <TouchableHighlight onPress={this._press.bind(this,d.id,index)} underlayColor='#e0e0e0' >
+                  <TouchableHighlight key={index} onPress={this._press.bind(this,d.id,index)} underlayColor='#e0e0e0' >
                       <View style={[css.wrapperView,this.state.curIndex==index?css.curWrapperView:null]}>
                           <Text style={[css.text,this.state.curIndex==index?css.curText:null]}>{d.name}</Text>
                       </View>

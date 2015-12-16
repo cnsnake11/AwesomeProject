@@ -66,7 +66,7 @@ class DemoApp extends Component{
                 >
             </Navigator>
         );
-    }
+}
 
 
 
@@ -199,8 +199,8 @@ class DemoApp extends Component{
 
 
 
-/*var Detail =require('./meitun/Detail/Detail');
-var d=React.createClass({
+/*var TodoList =require('./demo1/todolist/TodoListIndex');
+/!*var d=React.createClass({
     render(){
         return(
             <Navigator
@@ -208,6 +208,6 @@ var d=React.createClass({
                 />
         );
     },
-});
-AppRegistry.registerComponent('AwesomeProject',()=>d);*/
+});*!/
+AppRegistry.registerComponent('AwesomeProject',()=>TodoList);*/
 AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

@@ -19,6 +19,7 @@ var {
 
 var Drag=require('./animate/drag');
 var Spring1=require('./animate/spring1');
+var TodoList=require('./todolist/TodoListIndex');
 
 class Demo1Index extends Component{
 
@@ -32,6 +33,10 @@ class Demo1Index extends Component{
             {
                 title:'弹性测试1',
                 page:(<Spring1 />)
+            },
+            {
+                title:'todolist',
+                page:(<TodoList />)
             },
         ];
 

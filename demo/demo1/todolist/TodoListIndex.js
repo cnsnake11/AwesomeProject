@@ -55,13 +55,15 @@ var  TodoListIndex =React.createClass({
 
     //这里可以使用OO的设计方式拆成多个对象
     _pressTodo(todo){
-        let name=todo.name;
+
         let data=this.state.data;
         let i=data.indexOf(todo);
-        todo.completed=!todo.completed;
+        //todo.completed=!todo.completed;
 
-        data.set(i,todo);
-        this.setState({data:data});
+        var todo2=Object.assign({},todo,{completed:!todo.completed});
+
+        var data2=data.set(i,todo2);
+        this.setState({data:data2});
     },
 
 });

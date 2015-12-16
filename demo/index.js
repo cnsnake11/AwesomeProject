@@ -199,8 +199,8 @@ class DemoApp extends Component{
 
 
 
-/*var TodoList =require('./demo1/todolist/TodoListIndex');
-/!*var d=React.createClass({
+var TodoList =require('./demo1/todolist/TodoListIndex');
+/*var d=React.createClass({
     render(){
         return(
             <Navigator
@@ -208,6 +208,6 @@ class DemoApp extends Component{
                 />
         );
     },
-});*!/
-AppRegistry.registerComponent('AwesomeProject',()=>TodoList);*/
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+});*/
+AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

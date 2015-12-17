@@ -15,12 +15,13 @@ var {
     TouchableOpacity,
     Platform,
     ListView,
-    TextInput
+    TextInput,
+    ScrollView,
     }=React;
 
 //root组件开始-----------------
 
-var  TodoListIndex =React.createClass({
+var  Root =React.createClass({
 
     //初始化模拟数据，
     data:[{
@@ -42,13 +43,15 @@ var  TodoListIndex =React.createClass({
     componentWillMount(){
         this.addTodoObj=new AddTodoObj(this);
         this.todoListObj=new TodoListObj(this);
+        this.filterObj=new FilterObj(this);
     },
 
 
     getInitialState(){
       return {
-          data:Immutable.fromJS(this.data),
-          //addText:'',//新任务的text
+          data:Immutable.fromJS(this.data),//模拟的初始化数据
+          todoName:'',//新任务的text
+          curFilter:'all',//过滤条件 all no ok
       }
     },
 
@@ -56,14 +59,17 @@ var  TodoListIndex =React.createClass({
 
     render(){
         return (
-            <View style={{marginTop:40}}>
+            <View style={{marginTop:40,flex:1}}>
 
-                <AddTodo addText={this.addTodoObj.addText}
+                <AddTodo todoName={this.state.todoName}
                         changeText={this.addTodoObj.change.bind(this.addTodoObj)}
                          pressAdd={this.addTodoObj.press.bind(this.addTodoObj)} />
 
                 <TodoList todos={this.state.data}
                           onTodoPress={this.todoListObj.pressTodo.bind(this.todoListObj)} />
+
+                <Footer curFilter={this.state.curFilter}
+                    onFilterPress={this.filterObj.filter.bind(this.filterObj)} />
 
             </View>
         );
@@ -78,27 +84,24 @@ var  TodoListIndex =React.createClass({
 
 
 
-//modal对象开始-------------------------可以使用OO的设计方式拆成多个对象
+//业务逻辑对象开始-------------------------可以使用OO的设计方式设计成多个对象
 
 
 class AddTodoObj{
 
     constructor(root){
         this.root=root;
-        this.addText='111111'
     }
 
 
     press(){
         var list=this.root.state.data;
-        var todo=Immutable.fromJS({name:this.addText,completed:false,});
-        this.addText='';
-        this.root.setState({data:list.push(todo)});
+        var todo=Immutable.fromJS({name:this.root.state.todoName,completed:false,});
+        this.root.setState({data:list.push(todo),todoName:''});
     }
 
     change(e){
-        this.addText=e.nativeEvent.text;
-        //this.setState({addText:e.nativeEvent.text});
+        this.root.setState({todoName:e.nativeEvent.text});
     }
 
 }
@@ -124,10 +127,87 @@ class TodoListObj{
 }
 
 
+class FilterObj{
 
+    constructor(root){
+        this.root=root;
+    }
+
+
+    filter(type){
+
+        var data=this.root.state.data.toJS();
+        if(type=='all'){
+            data.map((todo)=>{
+                todo.show=true;
+            });
+        }else if(type=='no'){
+            data.map((todo)=>{
+                if(todo.completed)todo.show=false;
+                else todo.show=true;
+             });
+        }else if(type=='ok'){
+            data.map((todo)=>{
+                if(todo.completed)todo.show=true;
+                else todo.show=false;
+            });
+        }
+
+
+        this.root.setState({curFilter:type,data:Immutable.fromJS(data)});
+    }
+
+
+
+}
 
 
 //view组件开始---------------------------
+
+
+var Footer=React.createClass({
+
+    render(){
+
+        return (
+
+
+            <View style={{flexDirection:'row', justifyContent:'flex-end',marginBottom:10,}}>
+
+                <FooterBtn {...this.props} title='全部' name='all'  cur={this.props.curFilter=='all'?true:false} />
+                <FooterBtn {...this.props} title='未完成' name='no' cur={this.props.curFilter=='no'?true:false} />
+                <FooterBtn {...this.props} title='已完成' name='ok' cur={this.props.curFilter=='ok'?true:false} />
+
+            </View>
+
+
+
+        );
+    },
+
+
+});
+
+
+var FooterBtn=React.createClass({
+
+    render(){
+
+        return (
+
+            <TouchableOpacity onPress={()=>this.props.onFilterPress(this.props.name)}
+                              style={[{padding:10,marginRight:10},this.props.cur?{backgroundColor:'green'}:null]} >
+                <Text style={[this.props.cur?{color:'fff'}:null]}>
+                    {this.props.title}
+                </Text>
+            </TouchableOpacity>
+
+        );
+    },
+
+
+});
+
 
 var AddTodo=React.createClass({
 
@@ -139,7 +219,7 @@ var AddTodo=React.createClass({
             <View style={{flexDirection:'row', alignItems:'center'}}>
 
 
-                <TextInput value={this.props.addText}
+                <TextInput value={this.props.todoName}
                     onChange={this.props.changeText}
                     style={{width:200,height:40,borderWidth:1,borderColor:'e5e5e5',margin:10,}}></TextInput>
 
@@ -168,12 +248,14 @@ var Todo=React.createClass({
     render(){
         var todo=this.props.todo;
         return (
+            todo.get("show")!=false?
             <TouchableOpacity  onPress={()=>this.props.onTodoPress(todo)}
                 style={{padding:10,borderBottomWidth:1,borderBottomColor:'#e5e5e5'}}>
                 <Text style={[todo.get('completed')==true?{textDecorationLine:'line-through',color:'#999'}:null]} >
                     {todo.get('completed')==true?'已完成   ':'未完成   '} {todo.get('name')}
                 </Text>
             </TouchableOpacity>
+             :null
         );
     },
 
@@ -184,9 +266,9 @@ var Todo=React.createClass({
 var TodoList=React.createClass({
     render(){
         return (
-            <View>
-                {this.props.todos.map((todo, index) => <Todo {...this.props} todo={todo} key={index}  />)}
-            </View>
+            <ScrollView style={{flex:1}}>
+                {this.props.todos.reverse().map((todo, index) => <Todo {...this.props} todo={todo} key={index}  />)}
+            </ScrollView>
         );
     },
 });
@@ -194,4 +276,4 @@ var TodoList=React.createClass({
 
 
 
-module.exports=TodoListIndex;
+module.exports=Root;

@@ -210,8 +210,8 @@ class DemoApp extends Component{
     },
 });*/
 
-AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
+//AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
 
-//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

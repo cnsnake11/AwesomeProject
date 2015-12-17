@@ -5,7 +5,13 @@ let React=require('react-native');
 let css=require('./Classnav.css');
 let ClassParent=require('./ClassParent');
 let ClassChild=require('./ClassChild');
-let Loading=require('../../../bbt-react-native/views/Loading/Loading');
+let BbtRN=require('../../../bbt-react-native');
+let Result=require('../Search/Result');
+
+let {
+    BaseLogicObj,
+    Loading,
+    }=BbtRN;
 
 let {
     AppRegistry,
@@ -27,7 +33,7 @@ let {
     }=React;
 
 
-let Classnav=React.createClass({
+let Root=React.createClass({
 
 
     getInitialState(){
@@ -35,6 +41,8 @@ let Classnav=React.createClass({
             animationFinish: false,//动画是否完成
             data:null,
             loadingChild:false,//是否正在加载子分类
+
+            curIndex:0,
         };
     },
 
@@ -55,10 +63,14 @@ let Classnav=React.createClass({
 
             <View style={[css.wrapper]}>
                 <View style={[css.left]}>
-                    <ClassParent classNav={this} ref='classParent' index={this.props.index}  />
+                    <ClassParent onPress={this.parentObj.press.bind(this.parentObj)}
+                        curIndex={this.state.curIndex}
+                        classNav={this} ref='classParent'    />
                 </View>
                 <View style={[css.right]}>
-                    <ClassChild classNav={this} ref='classChild' index={this.props.index} />
+                    <ClassChild onPress={this.childObj.press.bind(this.childObj)}
+                        curIndex={this.state.curIndex}
+                        classNav={this} ref='classChild'   />
                 </View>
             </View>
 
@@ -69,7 +81,10 @@ let Classnav=React.createClass({
 
     componentWillMount(){
 
-        this._getData();
+        this.parentObj=new ParentObj(this);
+        this.childObj=new ChildObj(this);
+
+        this.parentObj._getData();
 
         InteractionManager.runAfterInteractions(() => {
             this.setState({animationFinish: true});
@@ -78,11 +93,29 @@ let Classnav=React.createClass({
     },
 
 
+
+
+});
+
+
+
+class ParentObj extends BaseLogicObj{
+
+
+    press(pid,index){
+        if(index==this.getState().curIndex){
+            return;
+        }
+        this.setState({curIndex:index});
+        this._getData(pid,index);
+    }
+
+
     _getData(pid,index){
 
         this.setState({loadingChild:true});
 
-        let allData=this.state.data;
+        let allData=this.getState().data;
         if(allData&&allData[index].childs&&allData[index].childs.length>0){
             console.log('数据请求过了，不发请求.');
             this.setState({loadingChild:false});
@@ -114,12 +147,12 @@ let Classnav=React.createClass({
                     this.setState({data:res.data.frontcategorys});
                 }else{
 
-                    if(index!=this.refs.classParent.state.curIndex){
+                    if(index!=this.getState().curIndex){
                         console.log('成功获得返回数据，但是当前页已经切换了，不进行view渲染操作....pid='+pid);
                         return;
                     }
 
-                    let data=this.state.data;
+                    let data=this.getState().data;
                     data[index].childs=res.data.frontcategorys;
                     this.setState({data:data});
                 }
@@ -127,8 +160,28 @@ let Classnav=React.createClass({
                 console.log('加载数据成功....pid='+pid);
 
             });
-    },
+    }
+}
 
-});
+class ChildObj extends BaseLogicObj{
 
-module.exports=Classnav;
+    press(data){
+
+        let id=data.id;
+        let name=data.name;
+        let nav=this.getProps().index.refs.nav;
+
+
+        let router={
+            'name':'result',
+            'page':(
+                <Result  nav={nav} fcategoryid={id} title={name} />
+            ),
+        };
+        nav.push(router);
+
+
+    }
+}
+
+module.exports=Root;

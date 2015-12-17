@@ -21,6 +21,14 @@ class BaseLogicObj{
         this.root.setState(s);
     }
 
+    getRefs(){
+        return this.root.refs;
+    }
+
+    getProps(){
+        return this.root.props;
+    }
+
 }
 
 module.exports=BaseLogicObj;

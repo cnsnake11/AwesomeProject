@@ -27,11 +27,6 @@ let {
 let ClassParent=React.createClass({
 
 
-    getInitialState(){
-        return {
-          curIndex:0
-        };
-    },
 
     render(){
       return (
@@ -50,9 +45,9 @@ let ClassParent=React.createClass({
         return (
             data.map((d,index)=>{
               return(
-                  <TouchableHighlight key={index} onPress={this._press.bind(this,d.id,index)} underlayColor='#e0e0e0' >
-                      <View style={[css.wrapperView,this.state.curIndex==index?css.curWrapperView:null]}>
-                          <Text style={[css.text,this.state.curIndex==index?css.curText:null]}>{d.name}</Text>
+                  <TouchableHighlight key={index} onPress={()=>this.props.onPress(d.id,index)} underlayColor='#e0e0e0' >
+                      <View style={[css.wrapperView,this.props.curIndex==index?css.curWrapperView:null]}>
+                          <Text style={[css.text,this.props.curIndex==index?css.curText:null]}>{d.name}</Text>
                       </View>
                   </TouchableHighlight>
               );
@@ -61,13 +56,6 @@ let ClassParent=React.createClass({
 
     },
 
-    _press(pid,index){
-        if(index==this.state.curIndex){
-            return;
-        }
-        this.setState({curIndex:index});
-        this.props.classNav._getData(pid,index);
-    },
 
 });
 

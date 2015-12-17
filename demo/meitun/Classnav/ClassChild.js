@@ -3,8 +3,14 @@
 
 let React=require('react-native');
 let css=require('./ClassChild.css');
-let Loading=require('../../../bbt-react-native/views/Loading/Loading');
-let Result=require('../Search/Result');
+//let Result=require('../Search/Result');
+
+let BbtRN=require('../../../bbt-react-native');
+
+let {
+    BaseLogicObj,
+    Loading,
+    }=BbtRN;
 
 let {
     AppRegistry,
@@ -54,12 +60,8 @@ let ClassChild=React.createClass({
     _tpl(){
 
         let classNav=this.props.classNav;
-        let classParent=classNav.refs.classParent;
 
-        let curIndex=0;
-        if(classParent){//第一次渲染会没有
-            curIndex=classParent.state.curIndex;
-        }
+        let curIndex=this.props.curIndex;
 
         let allData=classNav.state.data;
         let data=allData[curIndex].childs;
@@ -68,7 +70,7 @@ let ClassChild=React.createClass({
         return (
             data.map((d,index)=>{
                 return (
-                    <TouchableOpacity onPress={this._press.bind(this,d)} key={index} >
+                    <TouchableOpacity onPress={()=>this.props.onPress(d)} key={index} >
                         <View style={[css.cellView]}>
                             <Image style={[css.image]} source={{uri:d.logourl}} />
                             <Text >{d.name}</Text>
@@ -80,22 +82,6 @@ let ClassChild=React.createClass({
 
     },
 
-    _press(data){
-        let id=data.id;
-        let name=data.name;
-        let nav=this.props.index.refs.nav;
-
-
-        let router={
-            'name':'result',
-            'page':(
-                <Result  nav={nav} fcategoryid={id} title={name} />
-            ),
-        };
-        nav.push(router);
-
-
-    },
 
 
 });

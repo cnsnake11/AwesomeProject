@@ -7,6 +7,7 @@ var BbtReactNative={
 
     //base
     baseCss:require('./base/BaseCss/Base.css'),
+    BaseLogicObj:require('./base/BaseLogicObj/BaseLogicObj'),
 
 
     //views

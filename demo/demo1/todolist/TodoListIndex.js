@@ -4,6 +4,14 @@
 
 let React=require('react-native');
 let Immutable = require('immutable');
+var BbtRN=require('../../../bbt-react-native');
+
+
+var {
+    BaseLogicObj,
+    }=BbtRN;
+
+
 let {
     AppRegistry,
     Component,
@@ -87,57 +95,46 @@ let  Root =React.createClass({
 //业务逻辑对象开始-------------------------可以使用OO的设计方式设计成多个对象
 
 
-class AddTodoObj{
-
-    constructor(root){
-        this.root=root;
-    }
-
+class AddTodoObj extends BaseLogicObj{
 
     press(){
-        if(!this.root.state.todoName)return;
-        let list=this.root.state.data;
-        let todo=Immutable.fromJS({name:this.root.state.todoName,completed:false,});
-        this.root.setState({data:list.push(todo),todoName:''});
+        if(!this.getState().todoName)return;
+        let list=this.getState().data;
+        let todo=Immutable.fromJS({name:this.getState().todoName,completed:false,});
+        this.setState({data:list.push(todo),todoName:''});
     }
 
     change(e){
-        this.root.setState({todoName:e.nativeEvent.text});
+        this.setState({todoName:e.nativeEvent.text});
     }
 
 }
 
 
-class TodoListObj{
+class TodoListObj extends BaseLogicObj {
 
-    constructor(root){
-        this.root=root;
-    }
+
 
 
     pressTodo(todo){
 
-        let data=this.root.state.data;
+        let data=this.getState().data;
 
         let i=data.indexOf(todo);
 
         let todo2=todo.set('completed',!todo.get('completed'));
 
-        this.root.setState({data:data.set(i,todo2)});
+        this.setState({data:data.set(i,todo2)});
     }
 }
 
 
-class FilterObj{
-
-    constructor(root){
-        this.root=root;
-    }
+class FilterObj extends BaseLogicObj {
 
 
     filter(type){
 
-        let data=this.root.state.data.toJS();
+        let data=this.getState().data.toJS();
         if(type=='all'){
             data.map((todo)=>{
                 todo.show=true;
@@ -155,7 +152,7 @@ class FilterObj{
         }
 
 
-        this.root.setState({curFilter:type,data:Immutable.fromJS(data)});
+        this.setState({curFilter:type,data:Immutable.fromJS(data)});
     }
 
 

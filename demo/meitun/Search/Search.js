@@ -37,7 +37,7 @@ var Search =React.createClass({
 
         return (
 
-            <View style={{flex:1,}}>
+            <View style={{flex:1,backgroundColor:'#f3f3f3',}}>
 
                 <View style={[css.wrapper,React.Platform.OS=='ios'?css.iosWrapper:'']}>
                     <TextInput style={[css.input]} ref='input'

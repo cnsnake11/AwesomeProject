@@ -11,7 +11,7 @@ var css=StyleSheet.create(
     {
 
         wrapper:{
-
+            backgroundColor:'#f3f3f3',
         },
 
             listRowView:{

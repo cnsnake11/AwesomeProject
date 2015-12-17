@@ -55,7 +55,7 @@ var Login =React.createClass({
 
         return (
 
-            <View style={{flex:1}}>
+            <View style={{flex:1,backgroundColor:'#f3f3f3',}}>
                 <Header nav={this.props.nav} back={true} title='登录' rightBtn=' '></Header>
 
                 {

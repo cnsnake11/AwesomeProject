@@ -210,6 +210,6 @@ class DemoApp extends Component{
     },
 });*/
 
- var TodoList =require('./demo1/todolist/TodoListIndex');
- AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
-//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+ //var TodoList =require('./demo1/todolist/TodoListIndex');
+ //AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
+AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

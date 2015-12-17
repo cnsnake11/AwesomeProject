@@ -2,9 +2,9 @@
 'use strict'
 
 
-var React=require('react-native');
-var Immutable = require('immutable');
-var {
+let React=require('react-native');
+let Immutable = require('immutable');
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -21,7 +21,7 @@ var {
 
 //root组件开始-----------------
 
-var  Root =React.createClass({
+let  Root =React.createClass({
 
     //初始化模拟数据，
     data:[{
@@ -95,8 +95,9 @@ class AddTodoObj{
 
 
     press(){
-        var list=this.root.state.data;
-        var todo=Immutable.fromJS({name:this.root.state.todoName,completed:false,});
+        if(!this.root.state.todoName)return;
+        let list=this.root.state.data;
+        let todo=Immutable.fromJS({name:this.root.state.todoName,completed:false,});
         this.root.setState({data:list.push(todo),todoName:''});
     }
 
@@ -120,7 +121,7 @@ class TodoListObj{
 
         let i=data.indexOf(todo);
 
-        var todo2=todo.set('completed',!todo.get('completed'));
+        let todo2=todo.set('completed',!todo.get('completed'));
 
         this.root.setState({data:data.set(i,todo2)});
     }
@@ -136,7 +137,7 @@ class FilterObj{
 
     filter(type){
 
-        var data=this.root.state.data.toJS();
+        let data=this.root.state.data.toJS();
         if(type=='all'){
             data.map((todo)=>{
                 todo.show=true;
@@ -165,7 +166,7 @@ class FilterObj{
 //view组件开始---------------------------
 
 
-var Footer=React.createClass({
+let Footer=React.createClass({
 
     render(){
 
@@ -189,7 +190,7 @@ var Footer=React.createClass({
 });
 
 
-var FooterBtn=React.createClass({
+let FooterBtn=React.createClass({
 
     render(){
 
@@ -209,7 +210,7 @@ var FooterBtn=React.createClass({
 });
 
 
-var AddTodo=React.createClass({
+let AddTodo=React.createClass({
 
     render(){
 
@@ -243,10 +244,10 @@ var AddTodo=React.createClass({
 
 
 
-var Todo=React.createClass({
+let Todo=React.createClass({
 
     render(){
-        var todo=this.props.todo;
+        let todo=this.props.todo;
         return (
             todo.get("show")!=false?
             <TouchableOpacity  onPress={()=>this.props.onTodoPress(todo)}
@@ -263,7 +264,7 @@ var Todo=React.createClass({
 });
 
 
-var TodoList=React.createClass({
+let TodoList=React.createClass({
     render(){
         return (
             <ScrollView style={{flex:1}}>

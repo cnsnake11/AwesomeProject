@@ -1,13 +1,13 @@
 'use strict'
 
 
-var React=require('react-native');
-var css=require('./Classnav.css');
-var ClassParent=require('./ClassParent');
-var ClassChild=require('./ClassChild');
-var Loading=require('../../../bbt-react-native/views/Loading/Loading');
+let React=require('react-native');
+let css=require('./Classnav.css');
+let ClassParent=require('./ClassParent');
+let ClassChild=require('./ClassChild');
+let Loading=require('../../../bbt-react-native/views/Loading/Loading');
 
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -27,7 +27,7 @@ var {
     }=React;
 
 
-var Classnav=React.createClass({
+let Classnav=React.createClass({
 
 
     getInitialState(){
@@ -82,14 +82,14 @@ var Classnav=React.createClass({
 
         this.setState({loadingChild:true});
 
-        var allData=this.state.data;
+        let allData=this.state.data;
         if(allData&&allData[index].childs&&allData[index].childs.length>0){
             console.log('数据请求过了，不发请求.');
             this.setState({loadingChild:false});
             return;
         }
 
-        var url;
+        let url;
 
         if(pid){
             url=url+'&parentid='+pid;
@@ -119,7 +119,7 @@ var Classnav=React.createClass({
                         return;
                     }
 
-                    var data=this.state.data;
+                    let data=this.state.data;
                     data[index].childs=res.data.frontcategorys;
                     this.setState({data:data});
                 }

@@ -163,7 +163,7 @@ class FilterObj{
 }
 
 
-//view组件开始---------------------------
+//view子组件开始---------------------------
 
 
 let Footer=React.createClass({

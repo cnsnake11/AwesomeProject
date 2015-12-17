@@ -1,12 +1,12 @@
 'use strict'
 
 
-var React=require('react-native');
-var css=require('./ClassChild.css');
-var Loading=require('../../../bbt-react-native/views/Loading/Loading');
-var Result=require('../Search/Result');
+let React=require('react-native');
+let css=require('./ClassChild.css');
+let Loading=require('../../../bbt-react-native/views/Loading/Loading');
+let Result=require('../Search/Result');
 
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -27,13 +27,13 @@ var {
     }=React;
 
 
-var ClassChild=React.createClass({
+let ClassChild=React.createClass({
 
     render(){
 
-        var jsx;
-        var classNav=this.props.classNav;
-        var loadingChild=classNav.state.loadingChild;
+        let jsx;
+        let classNav=this.props.classNav;
+        let loadingChild=classNav.state.loadingChild;
         if(loadingChild==true){
             jsx=(
                 <Loading show={loadingChild} />
@@ -53,16 +53,16 @@ var ClassChild=React.createClass({
 
     _tpl(){
 
-        var classNav=this.props.classNav;
-        var classParent=classNav.refs.classParent;
+        let classNav=this.props.classNav;
+        let classParent=classNav.refs.classParent;
 
-        var curIndex=0;
+        let curIndex=0;
         if(classParent){//第一次渲染会没有
             curIndex=classParent.state.curIndex;
         }
 
-        var allData=classNav.state.data;
-        var data=allData[curIndex].childs;
+        let allData=classNav.state.data;
+        let data=allData[curIndex].childs;
 
 
         return (
@@ -81,12 +81,12 @@ var ClassChild=React.createClass({
     },
 
     _press(data){
-        var id=data.id;
-        var name=data.name;
-        var nav=this.props.index.refs.nav;
+        let id=data.id;
+        let name=data.name;
+        let nav=this.props.index.refs.nav;
 
 
-        var router={
+        let router={
             'name':'result',
             'page':(
                 <Result  nav={nav} fcategoryid={id} title={name} />

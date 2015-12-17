@@ -212,4 +212,6 @@ class DemoApp extends Component{
 
  //var TodoList =require('./demo1/todolist/TodoListIndex');
  //AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+
+AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

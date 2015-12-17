@@ -1,10 +1,10 @@
 'use strict'
 
 
-var React=require('react-native');
-var css=require('./ClassParent.css');
+let React=require('react-native');
+let css=require('./ClassParent.css');
 
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -24,7 +24,7 @@ var {
     }=React;
 
 
-var ClassParent=React.createClass({
+let ClassParent=React.createClass({
 
 
     getInitialState(){
@@ -44,8 +44,8 @@ var ClassParent=React.createClass({
 
     _tpl(){
 
-        var nav=this.props.classNav;
-        var data=nav.state.data;
+        let nav=this.props.classNav;
+        let data=nav.state.data;
 
         return (
             data.map((d,index)=>{

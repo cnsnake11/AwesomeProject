@@ -199,7 +199,7 @@ class DemoApp extends Component{
 
 
 
-var TodoList =require('./demo1/todolist/TodoListIndex');
+
 /*var d=React.createClass({
     render(){
         return(
@@ -209,5 +209,7 @@ var TodoList =require('./demo1/todolist/TodoListIndex');
         );
     },
 });*/
-AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
+
+ var TodoList =require('./demo1/todolist/TodoListIndex');
+ AppRegistry.registerComponent('AwesomeProject',()=>TodoList);
 //AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

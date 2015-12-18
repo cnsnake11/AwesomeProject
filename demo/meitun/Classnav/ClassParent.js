@@ -39,8 +39,7 @@ let ClassParent=React.createClass({
 
     _tpl(){
 
-        let nav=this.props.classNav;
-        let data=nav.state.data;
+        let data=this.props.data;
 
         return (
             data.map((d,index)=>{

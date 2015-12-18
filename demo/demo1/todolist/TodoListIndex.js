@@ -49,12 +49,19 @@ let  Root =React.createClass({
 
 
     componentWillMount(){
+
+        //初始化业务逻辑对象
         this.addTodoObj=new AddTodoObj(this);
         this.todoListObj=new TodoListObj(this);
         this.filterObj=new FilterObj(this);
+
+        //下面可以继续做一些组件初始化动作，比如请求数据等.
+        //当然了这些动作最好是业务逻辑对象提供的，这样root组件将非常干净.
+        //例如这样：this.todoListObj.queryData();
     },
 
 
+    //状态初始化
     getInitialState(){
       return {
           data:Immutable.fromJS(this.data),//模拟的初始化数据
@@ -65,7 +72,9 @@ let  Root =React.createClass({
 
 
 
+    //这里组合子view组件 并 注册业务逻辑对象提供的方法到各个子view组件上
     render(){
+
         return (
             <View style={{marginTop:40,flex:1}}>
 
@@ -94,7 +103,8 @@ let  Root =React.createClass({
 
 //业务逻辑对象开始-------------------------可以使用OO的设计方式设计成多个对象
 
-
+//业务逻辑对象要符合命名规范：以Obj结尾
+//BaseLogicObj是架构提供的基类，里面封装了构造器和一些常用取值函数
 class AddTodoObj extends BaseLogicObj{
 
     press(){
@@ -163,6 +173,7 @@ class FilterObj extends BaseLogicObj {
 //view子组件开始---------------------------
 
 
+//子view对象中仅仅关注：从this.props转化成view
 let Footer=React.createClass({
 
     render(){

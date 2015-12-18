@@ -38,9 +38,9 @@ let ClassChild=React.createClass({
     render(){
 
         let jsx;
-        let classNav=this.props.classNav;
-        let loadingChild=classNav.state.loadingChild;
-        if(loadingChild==true){
+        let loading=this.props.loadingChild;
+
+        if(loading==true){
             jsx=(
                 <Loading show={loadingChild} />
             );
@@ -59,12 +59,8 @@ let ClassChild=React.createClass({
 
     _tpl(){
 
-        let classNav=this.props.classNav;
 
-        let curIndex=this.props.curIndex;
-
-        let allData=classNav.state.data;
-        let data=allData[curIndex].childs;
+        let data=this.props.data;
 
 
         return (

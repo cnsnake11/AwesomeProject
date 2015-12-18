@@ -65,12 +65,13 @@ let Root=React.createClass({
                 <View style={[css.left]}>
                     <ClassParent onPress={this.parentObj.press.bind(this.parentObj)}
                         curIndex={this.state.curIndex}
-                        classNav={this} ref='classParent'    />
+                        data={this.state.data}      />
                 </View>
                 <View style={[css.right]}>
                     <ClassChild onPress={this.childObj.press.bind(this.childObj)}
-                        curIndex={this.state.curIndex}
-                        classNav={this} ref='classChild'   />
+                        loading={this.state.loadingChild}
+                        data={this.state.data[this.state.curIndex].childs}
+                        />
                 </View>
             </View>
 

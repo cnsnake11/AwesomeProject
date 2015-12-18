@@ -211,7 +211,20 @@ class DemoApp extends Component{
 });*/
 
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
-AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
+//AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
+
+/*var Result=require('./meitun/Search/Result');
+var tmp=React.createClass({
+    render(){
+        return(
+            <Navigator
+                renderScene={ (r,nav)=><Result nav={nav} keyWord='fff' title='test' /> }
+                />
+        );
+    },
+});
+AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
 
-//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+
+AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

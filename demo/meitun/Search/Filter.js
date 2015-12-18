@@ -33,12 +33,6 @@ var {
 var Filter =React.createClass({
 
 
-    getInitialState(){
-        return {
-            showYh:false,
-        };
-    },
-
     render(){
 
         return (
@@ -48,8 +42,8 @@ var Filter =React.createClass({
 
                     <Text style={[css.topText]}>只显示有货</Text>
                     <Switch style={[css.topSwitch]}
-                            onValueChange={(v)=>{this.setState({showYh:v})}}
-                            value={this.state.showYh} />
+                            onValueChange={(v)=>{this.props.onChangeSwitch(v)}}
+                            value={this.props.showYh} />
 
                 </View>
 
@@ -73,7 +67,7 @@ var Filter =React.createClass({
                 <View style={[css.bottomView]}>
 
 
-                    <TouchableOpacity style={[css.bottomTouch1]} onPress={this._pressCancel} >
+                    <TouchableOpacity style={[css.bottomTouch1]} onPress={this.props.pressCancel} >
 
                         <Text style={[css.bottomText1]}>
                             清除选项
@@ -82,7 +76,7 @@ var Filter =React.createClass({
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={[css.bottomTouch2]} onPress={this._pressOk}>
+                    <TouchableOpacity style={[css.bottomTouch2]} onPress={this.props.pressOk}>
 
                         <Text style={[css.bottomText2]}>
                             确定
@@ -102,7 +96,7 @@ var Filter =React.createClass({
     _tplBrandList(){
 
 
-        var brandList=this.props.result.state.brandList;
+        var brandList=this.props.brandList;
 
         return(
             <View style={[css.middleView2]}>
@@ -111,7 +105,9 @@ var Filter =React.createClass({
                     brandList.map((brand,index)=>{
 
                         return (
-                            <FilterBtn brand={brand} filter={this} key={index}
+                            <FilterBtn pressBrand={this.props.pressBrand}
+                                       curBtnId={this.props.curBtnId}
+                                brand={brand} filter={this} key={index}
                                        ref={'brandId_'+brand.id} />
                         );
 
@@ -124,40 +120,12 @@ var Filter =React.createClass({
 
 
 
-    _pressOk(){
-
-        var brandId=this.curBtnId;
-
-        //if(!brandId)return;
-
-        this.props.result.refs.resultTab._closeSx();
-        this.props.result.refs.list.reload();
-    },
-
-
-    _pressCancel(){
-
-        var btn=this._getBtn(this.curBtnId);
-        if(btn)btn.setState({cur:false});
-        this.curBtnId=null;
-    },
-
-    _getBtn(id){
-        return this.refs['brandId_'+id];
-    }
-
-
 });
 
 
 
 var FilterBtn=React.createClass({
 
-    getInitialState(){
-      return {
-          cur:false,
-      }
-    },
 
     render(){
 
@@ -165,10 +133,10 @@ var FilterBtn=React.createClass({
 
         return (
 
-            <TouchableWithoutFeedback  onPress={this._pressBrand.bind(this,brand.id)}>
-                <View style={[css.brandView,this.state.cur==true?css.curBrandView:'']} >
+            <TouchableWithoutFeedback  onPress={()=>this.props.pressBrand(brand.id)}>
+                <View style={[css.brandView,this.props.curBtnId==brand.id?css.curBrandView:'']} >
 
-                    <Text style={[css.brandText,this.state.cur==true?css.curBrandText:'']}>
+                    <Text style={[css.brandText,this.props.curBtnId==brand.id?css.curBrandText:'']}>
                         {brand.name}
                     </Text>
 
@@ -177,23 +145,6 @@ var FilterBtn=React.createClass({
 
         );
 
-
-    },
-
-
-    _pressBrand(id){
-
-        var filter=this.props.filter;
-
-        var lastId=filter.curBtnId;
-
-        var lastBtn=filter._getBtn(lastId);
-
-        if(lastBtn)lastBtn.setState({cur:false});
-
-        this.setState({cur:true});
-
-        filter.curBtnId=id;
 
     },
 

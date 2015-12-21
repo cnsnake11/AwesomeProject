@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "immutable": "^3.7.6",
-    "react-native": "^0.16.0",
+    "react-native": "^0.17.0",
     "react-native-page-swiper": "0.0.2",
     "react-native-swiper": "^1.3.0",
     "react-native-viewpager": "^0.1.4"

@@ -11,6 +11,11 @@ var {
 
 var css=StyleSheet.create(
     {
+
+
+        /**
+         * 隐藏
+         */
         hidden:{
             position:'absolute',
             left:-9999,

@@ -28,26 +28,17 @@ var Loading=React.createClass({
 
 
     propTypes:{
+        /**
+         *是否显示，默认为false
+         */
         show:PropTypes.bool,
+
+
+        /**
+         *可以为其设置style，此style会设置在loading的根view上
+         */
         style:PropTypes.any,//这没找到好的类型
     },
-
-    /*_compName:'Loading',
-
-    options:{
-        show:{
-            must:false,
-            type:'boolean'
-        },
-        style:{
-            must:false,
-            type:'object',
-        },
-    },
-
-    componentWillMount(){
-        propsCheck.check(this,this.props);
-    },*/
 
 
     render(){

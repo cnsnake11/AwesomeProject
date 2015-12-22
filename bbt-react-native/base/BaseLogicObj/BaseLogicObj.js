@@ -3,6 +3,12 @@
 
 'use strict'
 
+
+/**
+ * 业务逻辑对象基类
+ * 封装了对this.root的初始化和校验
+ * 提供了一系列取值赋值接口
+ */
 class BaseLogicObj{
 
 

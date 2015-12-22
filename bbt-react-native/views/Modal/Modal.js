@@ -60,7 +60,15 @@ var css=StyleSheet.create({
 var Modal=React.createClass({
 
     propTypes:{
+
+        /**
+         *是否显示，默认为false
+         */
         show:PropTypes.bool,
+
+        /**
+         * 点击蒙板触发的事件
+         */
         onPressMask:PropTypes.func
     },
 

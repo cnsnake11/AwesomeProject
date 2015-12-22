@@ -46,6 +46,9 @@ var css=StyleSheet.create({
 var Mask=React.createClass({
 
     propTypes:{
+        /**
+         *是否显示，默认为false
+         */
         show:React.PropTypes.bool,
     },
 

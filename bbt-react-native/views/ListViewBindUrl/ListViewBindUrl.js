@@ -32,44 +32,56 @@ var {
     PropTypes,
     }=React;
 
-
+/**
+ * 绑定服务器分页服务的listview
+ * 滚动到底部会自动访问服务器服务
+ */
 var ListViewBindUrl =React.createClass({
 
 
     propTypes:{
+
         //还支持listview的所有属性
-        //...ListView.propTypes,//加这个会提示一些错误,比如datasoure为定义等等
+        //...ListView.propTypes,//没加上这句的原因是：加这个会提示一些错误,比如datasoure为定义等等
+
+
+        /**
+         * (curpage) => string
+         * 根据传入的当前页curpage，返回一个url，此url是提供分页数据的url。
+         */
         getUrl:PropTypes.func.isRequired,
+
+
+        /**
+         * (res) => array
+         * 根据传入的fetch返回数据res，返回listview要用的数据，类型是数组。
+         */
         getData:PropTypes.func.isRequired,
+
+
+        /**
+         * (rowdata) => renderable
+         * 根据传入的行数据rowdata，返回一个jsx，用做listview的一行。
+         * 此属性与listview的renderRow是同一个属性。
+         */
         renderRow:PropTypes.func.isRequired,
     },
 
 
-
-    /*//组件名称，一般输出调试信息的时候会比较有用
-    _compName:'ListViewBindUrl',
-
-    //组件的选项，定义在组件上，通过this.props来使用，
-    //通过查看此选项，可以方便的知道组件都有哪些属性
-    //利用checkProps可以方便的进行校验工作
-    options:{
-
-        getUrl:{
-            must:true,
-            type:'function'
-        },
-        getData:{
-            must:true,
-            type:'function',
-        },
-
-        //同时支持ListView的所有属性
-    },*/
-
+    /**
+     * 当前所处页数
+     */
     curPage:0,
+
+    /**
+     * 已经请求过的所有数据
+     */
     data:[],
 
-    clear(){//重置状态,切换数据源之前请执行他
+    /**
+     * 重置状态,切换数据源之前请执行他
+     */
+    clear(){
         this._threadId=Math.random();
         this.curPage=0;
         this.data=[];
@@ -81,14 +93,21 @@ var ListViewBindUrl =React.createClass({
         this.setState(o);
     },
 
-    load(){//装载数据
+    /**
+     * 装载数据
+     */
+    load(){
         this._queryData();
     },
 
-    reload(){//重置状态 并 装载数据
+    /**
+     * 重置状态 并 装载数据
+     */
+    reload(){
         this.clear();
         this.load();
     },
+
 
 
     _threadId:'init',//线程id，控制多个请求发出的时候[切换数据源的时候是可以发出多个请求的]，只有正确的请求可以去更新view

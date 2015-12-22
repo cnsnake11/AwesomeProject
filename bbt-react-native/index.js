@@ -2,7 +2,10 @@
 
 'use strict';
 
-
+/**
+ * 统一的对外发布出口
+ * 业务使用只require这一个类即可
+ */
 var BbtReactNative={
 
     //base

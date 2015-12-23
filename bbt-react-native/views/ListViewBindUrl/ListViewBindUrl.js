@@ -62,7 +62,7 @@ var ListViewBindUrl =React.createClass({
         /**
          * (rowdata) => renderable
          * 根据传入的行数据rowdata，返回一个jsx，用做listview的一行。
-         * 此属性与listview的renderRow是同一个属性。
+         * 此属性与listview的renderRow是。
          */
         renderRow:PropTypes.func.isRequired,
     },

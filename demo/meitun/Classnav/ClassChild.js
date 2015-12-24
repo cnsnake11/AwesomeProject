@@ -38,11 +38,11 @@ let ClassChild=React.createClass({
     render(){
 
         let jsx;
-        let loading=this.props.loadingChild;
+        let loading=this.props.loading;
 
         if(loading==true){
             jsx=(
-                <Loading show={loadingChild} />
+                <Loading show={true} />
             );
         }else{
             jsx=(

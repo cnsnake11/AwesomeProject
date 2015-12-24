@@ -40,7 +40,7 @@ var Login =React.createClass({
               password:null,
 
 
-              initLoading:true,
+              initLoading:true,//转场动画是否执行中。
           };
     },
 
@@ -58,23 +58,30 @@ var Login =React.createClass({
             <View style={{flex:1,backgroundColor:'#f3f3f3',}}>
                 <Header nav={this.props.nav} back={true} title='登录' rightBtn=' '></Header>
 
-                {
-                    this.state.initLoading==true?
-                        <Loading show={true} />
-                        :
+
                         <View style={[css.wrapper]}>
+                            {
+                            this.state.initLoading==true?
+                            <Text style={[css.textInput]}></Text>
+                            :
                             <TextInput value={this.state.username}
                                        autoFocus={true}
                                        onSubmitEditing={(e)=>{this.refs.pwd.focus()}}
                                        onChange={(e)=>{this.setState({username:e.nativeEvent.text})}}
                                        style={[css.textInput]} placeholder='手机号/宝宝树账号' />
+                            }
                             <Image style={[css.img]} source={require('./img/login.png')}/>
 
+                            {
+                            this.state.initLoading==true?
+                            <Text style={[css.textInput]}></Text>
+                            :
                             <TextInput ref='pwd'
                                        value={this.state.password}
                                        onSubmitEditing={(e)=>{this._login()}}
                                        onChange={(e)=>{this.setState({password:e.nativeEvent.text})}}
                                        style={[css.textInput]} placeholder='请输入密码' secureTextEntry={true} />
+                            }
                             <Image style={[css.img,{top:80}]} source={require('./img/pwd.png')}/>
 
                             <TouchableOpacity style={[css.touch]} onPress={this._login}>
@@ -97,7 +104,6 @@ var Login =React.createClass({
                             </TouchableOpacity>
 
                         </View>
-                }
 
             </View>
 

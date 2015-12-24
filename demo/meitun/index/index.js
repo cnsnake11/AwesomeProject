@@ -51,7 +51,7 @@ var MeitunIndex =React.createClass({
 
         if (this.state.renderPlaceholderOnly) {
             return (
-                <Loading show={true}/>
+                <Loading show={true} style={{backgroundColor:'fff'}}/>
             );
         }
 

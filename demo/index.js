@@ -3,16 +3,18 @@
 
 //依赖引入
 //import React from 'react-native';
-var React=require('react-native');
-//var UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
-var MoviesApp=require('../Examples/Movies/MoviesApp');
+let React=require('react-native');
+//let UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
+let MoviesApp=require('../Examples/Movies/MoviesApp');
 
-var Demo1Index=require('./demo1/index');
-var MeitunIndex=require('./meitun/index/index');
+let Demo1Index=require('./demo1/index');
+let MeitunIndex=require('./meitun/index/index');
+
+let CanEatIndex=require('./can-eat/CanEatIndex/CanEatIndex.js');
 
 
 //变量定义
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -24,7 +26,7 @@ var {
     }=React;
 
 //样式定义
-var css=StyleSheet.create({
+let css=StyleSheet.create({
     wrapper:{
         paddingTop:150,
 
@@ -116,14 +118,18 @@ class DemoApp extends Component{
             return (
                 <MeitunIndex nav={navigator}/>
             );
-        }else{//home
+        }else if(route.name=='canEat'){
+           return (
+               <CanEatIndex nav={navigator}/>
+           );
+       }else{//home
             return this._tplHome(...arguments);
         }
     }
 
 
     _forward(route, navigator,routeName){
-        var nextIndex = route.index + 1;
+        let nextIndex = route.index + 1;
         navigator.push({
             name: routeName,
             index: nextIndex,
@@ -168,10 +174,17 @@ class DemoApp extends Component{
 
                     <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'meitun')}>
                         <View style={css.navView}>
-                            <Text style={css.navText}>美囤RN版</Text>
+                            <Text style={css.navText}>美囤妈妈</Text>
                         </View>
                     </TouchableHighlight>
 
+
+
+                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'canEat')}>
+                        <View style={css.navView}>
+                            <Text style={css.navText}>能不能吃</Text>
+                        </View>
+                    </TouchableHighlight>
 
                 </View>
             </View>
@@ -200,7 +213,7 @@ class DemoApp extends Component{
 
 
 
-/*var d=React.createClass({
+/*let d=React.createClass({
     render(){
         return(
             <Navigator
@@ -213,8 +226,8 @@ class DemoApp extends Component{
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
-/*var Result=require('./meitun/Search/Result');
-var tmp=React.createClass({
+/*let Result=require('./meitun/Search/Result');
+let tmp=React.createClass({
     render(){
         return(
             <Navigator

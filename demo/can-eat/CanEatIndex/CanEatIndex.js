@@ -13,24 +13,44 @@ import React,{
     TouchableOpacity,
     Platform,
     ListView,
+    StatusBarIOS,
 } from 'react-native';
 
 import Header from '../Header/Header';
-
-
+import Search from '../Search/Search';
+import IndexMenu from '../IndexMenu/IndexMenu';
 
 
 class CanEatIndex extends Component{
+
+    componentWillMount(){
+        if(Platform.OS=='ios'){
+            StatusBarIOS.setStyle('light-content');
+        }
+
+    }
+
+
+
+    componentWillUnmount(){
+        if(Platform.OS=='ios'){
+            StatusBarIOS.setStyle('default');
+        }
+    }
+
+
 
     render(){
 
         return (
 
-            <View style={{backgroundColor:'white',flex:1}}>
+            <View style={{backgroundColor:'#efeff4',flex:1}}>
 
-                <Header />
+                <Header title='能不能吃' nav={this.props.nav}/>
 
-                 <Text> in can eat index</Text>
+                <Search />
+
+                <IndexMenu />
 
             </View>
         );

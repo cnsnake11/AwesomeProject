@@ -1,27 +1,16 @@
 {
     "rules": {
-        "indent": [
-            2,
-            "tab"
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-
-        "semi": [
-            2,
-            "always"
-        ]
+        "no-unused-vars": [0],//未用到的变量声明
+        "comma-dangle": [0, "always"]//对象后面逗号,有bug:jsx里的{}会识别成对象
     },
     "env": {
-        "es6": true,
-        "browser": true
+        "es6": true //bug:es6的export default目前在rn中有bug，so现在暂时使用moudle.exports
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {
         "jsx": true,
-        "experimentalObjectRestSpread": true
+        "modules": true,
+        "arrowFunctions": true
     },
     "plugins": [
         "react"

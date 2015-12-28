@@ -226,18 +226,17 @@ class DemoApp extends Component{
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
-/*let Result=require('./meitun/Search/Result');
 let tmp=React.createClass({
     render(){
         return(
             <Navigator
-                renderScene={ (r,nav)=><Result nav={nav} keyWord='fff' title='test' /> }
+                renderScene={ (r,nav)=><CanEatIndex nav={nav}   /> }
                 />
         );
     },
 });
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
+AppRegistry.registerComponent('AwesomeProject',()=>tmp);
 
 
 
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

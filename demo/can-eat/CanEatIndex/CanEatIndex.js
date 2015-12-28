@@ -14,6 +14,7 @@ import React,{
     Platform,
     ListView,
     StatusBarIOS,
+    BackAndroid,
 } from 'react-native';
 
 import Header from '../Header/Header';
@@ -27,6 +28,14 @@ class CanEatIndex extends Component{
         if(Platform.OS=='ios'){
             StatusBarIOS.setStyle('light-content');
         }
+
+
+        BackAndroid.addEventListener('hardwareBackPress', ()=> {
+            if(this.refs.nav){
+                this.refs.nav.pop();
+            }
+            return true;
+        });
 
     }
 
@@ -44,15 +53,38 @@ class CanEatIndex extends Component{
 
         return (
 
-            <View style={{backgroundColor:'#efeff4',flex:1}}>
+            <Navigator ref='nav'
+                initialRoute={{name: 'home'}}
+                renderScene={ this._render_page }  />
+        );
 
-                <Header title='能不能吃' nav={this.props.nav}/>
+    }
 
-                <Search />
 
-                <IndexMenu />
+    _render_page(route, nav){
+        console.log('in render page '+route.name);
 
-            </View>
+        if(route.name=='home'){
+
+            return (
+                <View  style={{backgroundColor:'#efeff4',flex:1}}>
+                    <Header title='能不能吃' nav={nav}/>
+
+                    <Search />
+
+                    <IndexMenu nav={nav} />
+                </View>
+            );
+        }
+
+
+        if(!route.page){
+            console.error('页面导航请求没有传入page参数.');
+            return;
+        }
+
+        return (
+            route.page
         );
 
     }

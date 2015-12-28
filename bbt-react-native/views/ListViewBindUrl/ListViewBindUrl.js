@@ -227,7 +227,8 @@ var ListViewBindUrl =React.createClass({
                 var getData=props.getData;
                 var data=getData(res);
 
-                if(!data||data.length==0){
+
+                if(!data||data.length==undefined|| data.length==0){
                     this.setState({_noData:true});
                     console.log('服务器已经没有数据了.');
                 }else{

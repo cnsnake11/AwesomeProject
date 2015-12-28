@@ -19,6 +19,13 @@ import React,{
     Dimensions,
 } from 'react-native';
 
+import {
+    ListViewBindUrl,
+    Loading,
+    BaseLogicObj,
+} from '../../../bbt-react-native';
+
+import ResultList from '../ResultList/ResultList';
 
 
 //静态数据
@@ -92,7 +99,10 @@ var _data=[
 class IndexMenu extends Component{
 
 
+    componentWillMount(){
 
+        this.indexMenuObj=new IndexMenuObj(this);
+     }
 
 
 
@@ -112,8 +122,6 @@ class IndexMenu extends Component{
                 {
                     d.map((one,index)=> {
 
-                        var img ='./img/'+one.img;
-
                         return (
                             <View
                                 key={index}
@@ -122,6 +130,7 @@ class IndexMenu extends Component{
                                     alignItems:'center',
                                 }}>
                                 <TouchableOpacity
+                                    onPress={this.indexMenuObj.toResultList.bind(this.indexMenuObj,one.id,one.title)}
                                     style={{
                                         width:60,
                                         marginTop:25,
@@ -148,7 +157,7 @@ class IndexMenu extends Component{
 
                                 </TouchableOpacity>
                             </View>
-                        )
+                        );
 
                     })
                 }
@@ -162,6 +171,27 @@ class IndexMenu extends Component{
     }
 
 
+}
+
+
+
+
+class IndexMenuObj extends BaseLogicObj{
+
+    toResultList(id,title){
+
+        var nav=this.getProps().nav;
+
+
+        nav.push(
+            {
+                page:(
+                    <ResultList nav={nav} id={id} title={title}/>
+                ),
+            }
+        );
+
+    }
 }
 
 

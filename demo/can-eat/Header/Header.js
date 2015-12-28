@@ -2,8 +2,7 @@
 'use strict'
 
 
-let React=require('react-native');
-let {
+import React,{
     AppRegistry,
     Component,
     StyleSheet,
@@ -14,7 +13,7 @@ let {
     TouchableOpacity,
     Platform,
     ListView,
-    }=React;
+} from 'react-native';
 
 
 class Header extends Component{

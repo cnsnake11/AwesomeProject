@@ -1,47 +1,53 @@
 
 'use strict'
 
-
-import React,{
-    AppRegistry,
+import React, {
     Component,
-    StyleSheet,
-    Text,
     View,
-    Navigator,
-    TouchableHighlight,
-    TouchableOpacity,
-    Platform,
-    ListView,
-    StatusBarIOS,
     TextInput,
     Image,
 } from 'react-native';
 
+import {
+    BaseLogicObj,
+} from '../../../bbt-react-native';
 
+import SearchObj from './SearchObj';
 
+class Search extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            searchText: '',
+        };
+    }
 
-class Search extends Component{
-
-
+    componentWillMount() {
+        this.searchObj = new SearchObj(this);
+    }
 
     render(){
 
         return (
 
-            <View style={{backgroundColor:'white',padding:10,}}>
+            <View style={{backgroundColor: 'white', padding: 10, }} >
 
                <TextInput
-                   style={{ borderColor:'#ff537b',
-                            borderWidth:1,
-                            height:28,
-                            borderRadius:10,
-                            backgroundColor:'#fff',
-                            padding:0,
-                            paddingLeft:35,}}
+                   style={{
+                       borderColor: '#ff537b',
+                       borderWidth: 1,
+                       height: 28,
+                       borderRadius: 10,
+                       backgroundColor: '#fff',
+                       padding: 0,
+                       paddingLeft: 35,
+                   }}
 
                    placeholder='输入食物，了解能不能吃'
+                   value={this.state.searchText}
+                   onChange={this.searchObj.changeText.bind(this.searchObj)}
+                   onSubmitEditing={this.searchObj.search.bind(this.searchObj)}
                    />
 
                 <Image
@@ -62,7 +68,6 @@ class Search extends Component{
 
 }
 
-
-module.exports=Search;
+module.exports = Search;
 
 

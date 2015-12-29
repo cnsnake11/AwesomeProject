@@ -15,8 +15,17 @@ import {
 class ResultListObj extends BaseLogicObj {
 
     getUrl(curPage) {
-        const url = `http://www.babytree.com/api/mobile_toolcms/can_eat_list?` +
-            `atype=ajax&pg=${curPage}&cat_id=${this.getProps().id}`;
+        let url=null;
+
+        let keyWord = this.getProps().keyWord;
+        if(keyWord) {
+            keyWord=encodeURI(keyWord);
+            url = `http://www.babytree.com/api/mobile_toolcms/can_eat_search?` +
+                `atype=ajax&pg=${curPage+1}&q=${keyWord}`;
+        } else {
+            url = `http://www.babytree.com/api/mobile_toolcms/can_eat_list?` +
+                `atype=ajax&pg=${curPage+1}&cat_id=${this.getProps().id}`;
+        }
 
         return url;
     }

@@ -10,7 +10,7 @@ import {
     ListViewBindUrl,
 } from '../../../bbt-react-native';
 
-import Search from '../Search/Search';
+//import Search from '../Search/Search';
 import Header from '../Header/Header';
 import ResultListObj from './ResultListObj';
 
@@ -28,11 +28,10 @@ class ResultList extends Component {
 
         return (
 
-            <View style={{backgroundColor: 'efeff4', flex:1,}}>
+            <View style={{backgroundColor: 'efeff4', flex: 1,}}>
 
                 <Header title={title} nav={nav} />
 
-                <Search />
 
                 <ListViewBindUrl
                     getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}

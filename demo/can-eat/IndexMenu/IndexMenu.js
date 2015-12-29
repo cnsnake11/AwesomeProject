@@ -27,9 +27,8 @@ import {
 
 import ResultList from '../ResultList/ResultList';
 
-
 //静态数据
-var _data=[
+const _data=[
     {
         'title':'主食',
         'img':require('./img/zhushi.jpg'),
@@ -93,8 +92,6 @@ var _data=[
     },
 
 ];
-
-
 
 class IndexMenu extends Component {
 

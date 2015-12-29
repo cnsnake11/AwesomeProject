@@ -12,6 +12,8 @@ import {
     BaseLogicObj,
 } from '../../../bbt-react-native';
 
+import Detail from '../Detail/Detail';
+
 class ResultListObj extends BaseLogicObj {
 
     getUrl(curPage) {
@@ -34,9 +36,17 @@ class ResultListObj extends BaseLogicObj {
         return res.data;
     }
 
+    pressOne(data) {
+        const nav = this.getProps().nav;
+        nav.push({
+            page:<Detail nav={nav} title={data.title} id={data.id} />
+        });
+    }
+
     renderRow(rowData, sectionID, rowID) {
         return (
             <TouchableOpacity
+                onPress={this.pressOne.bind(this,rowData)}
                 style={{
                     marginTop: 10,
                 }}>

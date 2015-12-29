@@ -96,19 +96,16 @@ var _data=[
 
 
 
-class IndexMenu extends Component{
+class IndexMenu extends Component {
+
+    componentWillMount() {
+        this.indexMenuObj = new IndexMenuObj(this);
+    }
 
 
-    componentWillMount(){
+    render() {
 
-        this.indexMenuObj=new IndexMenuObj(this);
-     }
-
-
-
-    render(){
-
-        var d=_data;
+        const data = _data;
 
         return (
 
@@ -120,7 +117,7 @@ class IndexMenu extends Component{
                 }}>
 
                 {
-                    d.map((one,index)=> {
+                    data.map((one, index) => {
 
                         return (
                             <View
@@ -148,7 +145,7 @@ class IndexMenu extends Component{
 
                                         <Text
                                             style={{
-                                                textAlign:'center'
+                                                textAlign: 'center',
                                         }}>
                                             {one.title}
                                         </Text>

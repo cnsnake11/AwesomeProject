@@ -70,7 +70,7 @@ class CanEatIndex extends Component{
                 <View  style={{backgroundColor:'#efeff4',flex:1}}>
                     <Header title='能不能吃' nav={nav}/>
 
-                    <Search />
+                    <Search nav={nav} />
 
                     <IndexMenu nav={nav} />
                 </View>

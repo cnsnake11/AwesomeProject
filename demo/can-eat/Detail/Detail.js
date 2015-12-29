@@ -140,12 +140,12 @@ class DetailObj extends BaseLogicObj{
 
     query(id) {
 
-        let url = `http://www.babytree.com/api/mobile_toolcms/can_eat_detail?id=${id}}`;
+        let url = `http://www.babytree.com/api/mobile_toolcms/can_eat_detail?id=${id}`;
+
         fetch(url).
             then((res)=>res.text()).
             then((res)=>{
 
-                //alert(res);
 
                 let str = res.substring(res.indexOf('img src="')+'img src="'.length,res.length);
                 this.data.img = str.substring(0,str.indexOf('"/>'));
@@ -162,6 +162,8 @@ class DetailObj extends BaseLogicObj{
 
     processCanEatList(str){
         let index=str.indexOf('"caneat-title">');
+
+
 
         if(index!=-1){
             let title;

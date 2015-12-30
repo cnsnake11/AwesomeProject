@@ -33,7 +33,7 @@ class Detail extends Component {
 
     componentWillMount() {
         this.detailObj = new DetailObj(this);
-        this.detailObj.query(this.props.id);
+        this.detailObj.query();
         InteractionManager.runAfterInteractions(()=>{
             this.setState({initAnimateing:false,});
         });

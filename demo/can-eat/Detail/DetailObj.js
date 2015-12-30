@@ -46,30 +46,37 @@ class DetailObj extends BaseLogicObj {
         });
     }
 
-    query(id) {
+    query() {
 
-        let url = `http://www.babytree.com/api/mobile_toolcms/can_eat_detail?id=${id}`;
+        let htmlStr=this.getProps().htmlStr;
 
-        fetch(url).
-            then((res) => res.text()).
-            then((res) => {
+        if(htmlStr){
+            this._processHtmlStr(htmlStr);
+            this.setState({querying: false, });
+        }else {
+            let id=this.getProps().id;
+            let url = `http://www.babytree.com/api/mobile_toolcms/can_eat_detail?id=${id}`;
 
-
-                let str = res.substring(res.indexOf('img src="') + 'img src="'.length, res.length);
-                this.data.img = str.substring(0, str.indexOf('"/>'));
-
-                this._processCanEatList(str);
-
-                this._processAd(str);
-
-                this._processTips(str);
-
-
-                this.setState({querying: false, });
-            });
+            fetch(url).
+                then((res) => res.text()).
+                then((res) => {
+                    this._processHtmlStr(res);
+                    this.setState({querying: false, });
+                });
+        }
 
 
+    }
 
+    _processHtmlStr(str){
+        str = str.substring(str.indexOf('img src="') + 'img src="'.length, str.length);
+        this.data.img = str.substring(0, str.indexOf('"/>'));
+
+        this._processCanEatList(str);
+
+        this._processAd(str);
+
+        this._processTips(str);
     }
 
     _processTips(str){

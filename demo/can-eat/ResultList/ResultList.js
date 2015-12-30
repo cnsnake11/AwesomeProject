@@ -4,17 +4,32 @@
 import React, {
     Component,
     View,
+    Text,
+    TouchableOpacity,
+    InteractionManager,
  } from 'react-native';
 
 import {
     ListViewBindUrl,
+    Loading,
 } from '../../../bbt-react-native';
 
 //import Search from '../Search/Search';
 import Header from '../Header/Header';
 import ResultListObj from './ResultListObj';
+import Detail from '../Detail/Detail';
 
 class ResultList extends Component {
+
+    constructor(){
+        super();
+        this.state={
+            noDataAtAll:false,//干脆没有结果
+            onlyOneData:false,//唯一结果
+            haveListData:true,//有list结果
+
+        };
+    }
 
     componentWillMount() {
         this.resultListObj = new ResultListObj(this);
@@ -25,26 +40,89 @@ class ResultList extends Component {
 
         const {nav, title, } = this.props;
 
-
         return (
-
+            this.state.onlyOneData==true?
+            <Detail
+                htmlStr={this.resultListObj.detailStr}
+                nav={this.props.nav}
+                title={this.props.keyWord} />
+            :
             <View style={{backgroundColor: 'efeff4', flex: 1,}}>
 
                 <Header title={title} nav={nav} />
 
+                {
+                    this.state.haveListData==true?
+                        <ListViewBindUrl
+                            getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}
+                            getData={this.resultListObj.getData.bind(this.resultListObj)}
+                            renderRow={this.resultListObj.renderRow.bind(this.resultListObj)}
+                            onLoadData={this.resultListObj.onLoadData.bind(this.resultListObj)}
+                            />
+                        :
+                        null
 
-                <ListViewBindUrl
-                    getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}
-                    getData={this.resultListObj.getData.bind(this.resultListObj)}
-                    renderRow={this.resultListObj.renderRow.bind(this.resultListObj)}
-                    />
+                }
+
+                {
+                    this.state.noDataAtAll==true?
+                        <NoData keyWord={this.props.keyWord} />
+                        :
+                        null
+                }
 
             </View>
+
         );
 
     }
 
+}
 
+class NoData extends Component{
+    render(){
+        return (
+            <View
+                style={{
+                            flex:1,
+                            padding:10,
+                            alignItems:'center',
+                        }}
+                >
+                <Text
+                    style={{
+                                color:'#535353',
+                            }}
+                    >
+                    没有找到"{this.props.keyWord}"的相关结果,要不要去孕育问答询问下其它宝妈?
+                </Text>
+                <TouchableOpacity
+                    style={{
+                                marginTop:40,
+                            }}
+                    >
+                    <View
+                        style={{
+                                    backgroundColor:'#ff537b',
+                                    width:80,
+                                    padding:10,
+                                 }}
+                        >
+                        <Text
+                            style={{
+                                        color:'fff',
+                                        fontWeight:'700',
+                                        textAlign:'center',
+                                    }}
+                            >
+                            去提问
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+
+            </View>
+        );
+    }
 }
 
 module.exports = ResultList;

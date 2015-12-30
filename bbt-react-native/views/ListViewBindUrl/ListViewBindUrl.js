@@ -65,6 +65,15 @@ var ListViewBindUrl =React.createClass({
          * 此属性与listview的renderRow是。
          */
         renderRow:PropTypes.func.isRequired,
+
+
+        /**
+         * (res,ListViewBindUrl)=>boolean
+         * res为当前请求的返回结果，没有经过任何处理
+         * ListViewBindUrl为当前对象
+         * 返回false，就终止本次请求后续的渲染和更改state操作
+         */
+        onLoadData:PropTypes.func,
     },
 
 
@@ -112,6 +121,7 @@ var ListViewBindUrl =React.createClass({
 
     _threadId:'init',//线程id，控制多个请求发出的时候[切换数据源的时候是可以发出多个请求的]，只有正确的请求可以去更新view
 
+    _stop:false,//当前是否终止所有操作
 
     getInitialState(){
         var ds=new ListView.DataSource({
@@ -119,6 +129,7 @@ var ListViewBindUrl =React.createClass({
         });
         return {
             dataSource:ds.cloneWithRows([]),
+            //noDataText:'没有数据了..',
 
             _loading:false,
             _noData:false,
@@ -132,7 +143,13 @@ var ListViewBindUrl =React.createClass({
 
     componentWillMount(){
 
-        InteractionManager.runAfterInteractions(()=>this.setState({_initAnimateing:false}));
+        InteractionManager.runAfterInteractions(()=>{
+            if(this._stop===true){
+                console.log('InteractionManager:组件stop=true，停止后续操作.');
+                return;
+            }
+            this.setState({_initAnimateing:false})
+        });
 
         //propsCheck.check(this,this.props);
 
@@ -187,6 +204,13 @@ var ListViewBindUrl =React.createClass({
     },
 
     _queryData(){
+
+        if(this._stop===true){
+            console.log('_queryData:组件stop=true，停止后续操作.');
+            return;
+        }
+
+
         var _threadId=this._threadId;
 
         if(this.state._loading==true){
@@ -214,8 +238,25 @@ var ListViewBindUrl =React.createClass({
         console.log('开始发起新的请求....url='+url);
 
         fetch(url)
-            .then((res)=>res.json())
             .then((res)=>{
+
+                if(this.props.onLoadData){
+                    let flag=this.props.onLoadData(res,this);
+                    if(flag===false){
+                        console.log('then:onLoadData返回值为false，设置stop为true。');
+                        this._stop=true;
+                        return false;
+                    }
+                }
+
+                return res.json();
+            })
+            .then((res)=>{
+
+                if(this._stop===true){
+                    console.log('then:组件stop=true，停止后续操作.');
+                    return false;
+                }
 
                 if(this._threadId!=_threadId){
                     console.log('threadId不一致，终止这次view更新.');
@@ -242,7 +283,12 @@ var ListViewBindUrl =React.createClass({
 
             })
             .catch((error)=>console.error(error))
-            .done(()=>{
+            .done((res)=>{
+
+                if(this._stop===true){
+                    console.log('then:组件stop=true，停止后续操作.');
+                    return false;
+                }
 
                 if(this._threadId!=_threadId){
                     //console.log('threadId不一致，终止这次view更新.');

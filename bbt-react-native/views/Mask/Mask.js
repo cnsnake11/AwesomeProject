@@ -36,7 +36,7 @@ var css=StyleSheet.create({
         width:Dimensions.get('window').width,
         height:Dimensions.get('window').height,
         backgroundColor:'#000',
-        opacity:0.4,
+        opacity:0.6,
         position:'absolute',
         top:0,
         left:0,

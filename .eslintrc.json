@@ -96,7 +96,7 @@
         "yoda": 2,
 
         //Strict Mode
-        "strict": [2, "global"],
+        "strict": [0, "global"], //closed:在module中声明为全局也会报错，说在module中是不必要的声明.
 
 
         //Variables
@@ -109,7 +109,7 @@
         "no-undef-init": 0,
         "no-undef": 2,
         "no-undefined": 2,
-        "no-unused-vars": 2,
+        "no-unused-vars": 0,//closed:React必须要声明否则会报错，但是代码中并用不到
         "no-use-before-define": 2,
 
 
@@ -150,7 +150,7 @@
         "linebreak-style": [2, "unix"],
         "lines-around-comment": [2, { "beforeBlockComment": true, "beforeLineComment": true }],
         "max-depth": [2, 4],
-        "max-len": [2, 80, 4],
+        "max-len": [0, 80, 4],//closed:80还是太短了，有些字符串比较长
         "max-nested-callbacks": [2, 3],
         "max-params": [2, 3],
         "max-statements": [2, 10],
@@ -214,7 +214,7 @@
         "no-var": 2,
         "object-shorthand": 2,
         "prefer-arrow-callback": 2,
-        "prefer-const": 2,
+        "prefer-const": 0,//closed:const的意思应该是常量，没有修改的变量不一定是常量
         "prefer-reflect": 2,
         "prefer-spread": 2,
         "prefer-template": 2,

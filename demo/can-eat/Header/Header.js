@@ -43,10 +43,18 @@ class Header extends Component{
                  <Text numberOfLines={1} style={[css.titleText]}>{this.props.title}</Text>
 
 
+                {
+                    this.props.rightBtn?
+                        <TouchableOpacity style={[css.titleBtnTouch]} onPress={this.props.rightBtnPress} >
+                            <Text style={[css.titleBtnText]}>{this.props.rightBtn}</Text>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity style={[css.titleBtnTouch]}  >
+                            <Text style={[css.titleBtnText]}> </Text>
+                        </TouchableOpacity>
+                }
 
-                     <TouchableOpacity style={[css.titleBtnTouch]} onPress={this.props.rightBtnPress} >
-                        <Text style={[css.titleBtnText]}>分享</Text>
-                    </TouchableOpacity>
+
 
 
             </View>

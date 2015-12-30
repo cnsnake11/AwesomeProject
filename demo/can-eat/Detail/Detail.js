@@ -17,6 +17,8 @@ import {
 } from '../../../bbt-react-native';
 
 import Header from '../Header/Header';
+import DetailObj from './DetailObj';
+import Share from '../Share/Share';
 
 class Detail extends Component {
 
@@ -25,6 +27,7 @@ class Detail extends Component {
         this.state={
             querying:true,
             initAnimateing:true,
+            showShare:false,
         };
     }
 
@@ -41,12 +44,16 @@ class Detail extends Component {
 
         const {nav, title} = this.props;
         const data=this.detailObj.data;
+        const width=Dimensions.get('window').width;
 
         return (
 
             <View style={{backgroundColor: 'efeff4', flex: 1,}}>
 
-                <Header title={title} nav={nav} />
+                <Header title={title}
+                        nav={nav}
+                        rightBtn='分享'
+                        rightBtnPress={this.detailObj.showShare.bind(this.detailObj)} />
 
                 {
                     this.state.querying==true||this.state.initAnimateing==true?
@@ -55,7 +62,7 @@ class Detail extends Component {
                         <ScrollView>
                             <Image
                                 style={{
-                                    width:Dimensions.get('window').width,
+                                    width:width,
                                     height:260,
                                 }}
                                 source={{uri:data.img}}/>
@@ -110,102 +117,79 @@ class Detail extends Component {
                                     );
                                 })
                             }
+
+
+                            {
+                                data.adImg?
+                                    <Image
+                                        style={{
+                                            width: width,
+                                            height: 100,
+                                            resizeMode: 'stretch',
+                                            marginBottom: 10,
+                                        }}
+                                        source={{
+                                            uri: data.adImg,
+                                        }}/>
+                                    :
+                                    null
+                            }
+
+
+                            {
+                                data.tips?
+                                    <View
+                                        style={{
+                                            backgroundColor: 'fff',
+                                            marginBottom: 10,
+                                         }}>
+                                        <Image
+                                            source={require('./img/tips.png')}
+                                            style={{
+                                                height:40,
+                                                width:120,
+                                                resizeMode: 'stretch',
+                                                justifyContent:'center',
+                                                paddingLeft:20,
+                                            }}>
+                                            <Text
+                                                style={{
+                                                    color:'fff',
+                                                    fontWeight:'700',
+                                                    backgroundColor:'transparent',
+                                                }}>
+                                                小贴士
+                                            </Text>
+                                        </Image>
+                                        <View
+                                            style={{
+                                                margin:10,
+                                            }}>
+                                            <Text>
+                                                {data.tips}
+                                            </Text>
+                                        </View>
+
+                                    </View>
+                                    :
+                                    null
+                            }
+
+
                         </ScrollView>
                 }
 
+
+                <Share
+                    show={this.state.showShare}
+                    onPressMask={this.detailObj.hideShare.bind(this.detailObj)}
+                    />
 
             </View>
         );
 
     }
 
-
-}
-
-
-class DetailObj extends BaseLogicObj{
-
-
-    constructor(root){
-        super(root);
-        this.data={
-            img:'',
-            canEatList:[],
-        };
-        this.icon1=require('../ResultList/img/1.png');
-        this.icon2=require('../ResultList/img/2.png');
-        this.icon3=require('../ResultList/img/3.png');
-    }
-
-
-    query(id) {
-
-        let url = `http://www.babytree.com/api/mobile_toolcms/can_eat_detail?id=${id}`;
-
-        fetch(url).
-            then((res)=>res.text()).
-            then((res)=>{
-
-
-                let str = res.substring(res.indexOf('img src="')+'img src="'.length,res.length);
-                this.data.img = str.substring(0,str.indexOf('"/>'));
-
-                this.processCanEatList(str);
-
-                this.setState({querying:false,});
-            });
-
-
-
-    }
-
-
-    processCanEatList(str){
-        let index=str.indexOf('"caneat-title">');
-
-
-
-        if(index!=-1){
-            let title;
-            let status;
-            let des;
-            let icon;
-
-            str=str.substring(index+'"caneat-title">'.length,str.length);
-            title=str.substring(0,str.indexOf('</h1>'));
-
-            index=str.indexOf("<em>");
-            str=str.substring(index+'<em>'.length,str.length);
-            status=str.substring(0,str.indexOf('</em>'));
-
-            index=str.indexOf('class="text">');
-            str=str.substring(index+'class="text">'.length,str.length);
-            des=str.substring(0,str.indexOf('</div>'));
-
-
-            if(status==='能吃'){
-                icon=this.icon1;
-            }else if(status=='少吃'){
-                icon=this.icon2;
-            }else if(status=='不能吃'){
-                icon=this.icon3;
-            }
-
-
-            this.data.canEatList.push(
-                {
-                    title:title,
-                    status:status,
-                    des:des,
-                    icon:icon,
-                }
-            );
-
-            this.processCanEatList(str);
-        }
-
-
-    }
 
 }
 

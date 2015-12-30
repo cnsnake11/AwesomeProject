@@ -226,7 +226,7 @@ class DemoApp extends Component{
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
-/*let tmp=React.createClass({
+let tmp=React.createClass({
     render(){
         return(
             <Navigator
@@ -235,9 +235,9 @@ class DemoApp extends Component{
         );
     },
 });
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
+AppRegistry.registerComponent('AwesomeProject',()=>tmp);
 
-let Detail=require('./can-eat/Detail/Detail');
+/*let Detail=require('./can-eat/Detail/Detail');
 let tmp=React.createClass({
     render(){
         return(
@@ -247,7 +247,7 @@ let tmp=React.createClass({
         );
     },
 });
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);
+AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
 
 

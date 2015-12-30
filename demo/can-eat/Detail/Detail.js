@@ -27,7 +27,7 @@ class Detail extends Component {
         this.state={
             querying:true,
             initAnimateing:true,
-            showShare:true,
+            showShare:false,
         };
     }
 

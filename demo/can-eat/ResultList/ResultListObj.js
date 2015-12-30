@@ -135,16 +135,19 @@ class ResultListObj extends BaseLogicObj {
                             width: 10,
                             alignItems: 'center',
                             justifyContent: 'center',
+                            height:80,
                         }}
                         >
-                        <Text
-                            style={{
-                                fontSize: 18,
-                                fontWeight: 'bold',
-                                color: '#999',
-                            }}>
-                            {'>'}
-                        </Text>
+                        <View>
+                            <Text
+                                style={{
+                                    fontSize: 18,
+                                    fontWeight: 'bold',
+                                    color: '#999',
+                                }}>
+                                {'>'}
+                            </Text>
+                        </View>
 
                     </View>
                 </View>

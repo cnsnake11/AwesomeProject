@@ -27,7 +27,7 @@ class Detail extends Component {
         this.state={
             querying:true,
             initAnimateing:true,
-            showShare:false,
+            showShare:true,
         };
     }
 
@@ -182,7 +182,7 @@ class Detail extends Component {
 
                 <Share
                     show={this.state.showShare}
-                    onPressMask={this.detailObj.hideShare.bind(this.detailObj)}
+                    onPressCancel={this.detailObj.hideShare.bind(this.detailObj)}
                     />
 
             </View>

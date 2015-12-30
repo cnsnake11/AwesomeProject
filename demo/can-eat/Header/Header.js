@@ -72,7 +72,6 @@ var css=StyleSheet.create(
 
         titleView:{
             backgroundColor:'#ff537b',
-            padding:10,
             flexDirection:'row',
             alignItems:'center',
             justifyContent:'center',
@@ -90,9 +89,8 @@ var css=StyleSheet.create(
 
 
         titleBtnTouch:{
-            paddingLeft:5,
-            paddingRight:5,
-            width:40,
+            padding:11,
+            width:53,
         },
         titleBtnText:{
             color:'#fff',

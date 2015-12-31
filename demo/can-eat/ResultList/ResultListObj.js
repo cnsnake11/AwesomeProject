@@ -16,7 +16,7 @@ import Detail from '../Detail/Detail';
 
 class ResultListObj extends BaseLogicObj {
 
-    onLoadData(res,list){
+/*    onLoadData(res,list){
 
         let str=res._bodyText;
 
@@ -41,6 +41,57 @@ class ResultListObj extends BaseLogicObj {
 
         }
 
+
+    }*/
+
+
+    init(){
+
+        let url=null;
+
+        let keyWord = this.getProps().keyWord;
+        if(keyWord) {
+            keyWord=encodeURI(keyWord);
+            url = `http://www.babytree.com/api/mobile_toolcms/can_eat_search?` +
+                `atype=ajax&pg=1&q=${keyWord}`;
+        } else {
+            url = `http://www.babytree.com/api/mobile_toolcms/can_eat_list?` +
+                `atype=ajax&pg=1&cat_id=${this.getProps().id}`;
+        }
+
+
+        fetch(url).
+            then((res)=>{
+                let str=res._bodyText;
+
+                if(str&&(str.indexOf('<!DOCTYPE html>')!=-1||str.indexOf('{"_":""}')!=-1)){
+                    //不是列表数据
+
+                    if(str.indexOf('{"_":""}')!=-1){//没有任何数据
+                        this.setState({
+                            noDataAtAll:true,
+                            haveListData:false,
+                        });
+                    }else{//查到唯一的一个结果
+
+                        this.detailStr=str;
+
+                        this.setState({
+                            onlyOneData:true,
+                            haveListData:false,
+                        });
+                    }
+                    return false;
+                }else {
+                    //是列表数据
+                    return res.json();
+                }
+            }).then((res)=>{
+
+                if(res==false)return;
+                this.data=res.data;
+
+            }).done(()=>this.setState({initFetching:false}));
 
     }
 

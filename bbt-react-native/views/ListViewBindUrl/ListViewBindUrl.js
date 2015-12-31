@@ -68,12 +68,12 @@ var ListViewBindUrl =React.createClass({
 
 
         /**
-         * (res,ListViewBindUrl)=>boolean
-         * res为当前请求的返回结果，没有经过任何处理
-         * ListViewBindUrl为当前对象
-         * 返回false，就终止本次请求后续的渲染和更改state操作
+         * 初始化数据，如果提供此数组，组件初始化不会发请求，直接使用此数据作为第一次的初始化操作
          */
-        onLoadData:PropTypes.func,
+        initData:PropTypes.array,
+
+
+
     },
 
 
@@ -117,11 +117,7 @@ var ListViewBindUrl =React.createClass({
         this.load();
     },
 
-
-
     _threadId:'init',//线程id，控制多个请求发出的时候[切换数据源的时候是可以发出多个请求的]，只有正确的请求可以去更新view
-
-    _stop:false,//当前是否终止所有操作
 
     getInitialState(){
         var ds=new ListView.DataSource({
@@ -144,16 +140,19 @@ var ListViewBindUrl =React.createClass({
     componentWillMount(){
 
         InteractionManager.runAfterInteractions(()=>{
-            if(this._stop===true){
-                console.log('InteractionManager:组件stop=true，停止后续操作.');
-                return;
-            }
             this.setState({_initAnimateing:false})
         });
 
-        //propsCheck.check(this,this.props);
+        if(this.props.initData){
 
-        this._queryData();
+            console.log('初始化使用initData装载数据.');
+            //this.data=this.data.concat(this.props.initData);
+            this._queryData(this.props.initData);
+
+        }else{
+            console.log('初始化请求服务器来装载数据');
+            this._queryData();
+        }
 
     },
 
@@ -203,13 +202,11 @@ var ListViewBindUrl =React.createClass({
         this._queryData();
     },
 
-    _queryData(){
 
-        if(this._stop===true){
-            console.log('_queryData:组件stop=true，停止后续操作.');
-            return;
-        }
-
+    /**
+     * 查询并装载数据or直接装载数据
+     */
+    _queryData(data){
 
         var _threadId=this._threadId;
 
@@ -225,78 +222,113 @@ var ListViewBindUrl =React.createClass({
 
         this.setState({_loading:true});
 
-        var props=this.props;
-        var getUrl=props.getUrl;
 
-        var url=getUrl(this.curPage);
-        if(!url){
-            console.error('返回的url为空。');
-            return;
+        if(data){
+
+            this._loadData(data,_threadId);
+
+            if(this._threadId!=_threadId){
+                //console.log('threadId不一致，终止这次view更新.');
+                return;
+            }
+            this.setState({_loading:false,_initLoading:false});
+
+
+        }else{
+
+            var props=this.props;
+            var getUrl=props.getUrl;
+
+            var url=getUrl(this.curPage);
+            if(!url){
+                console.error('返回的url为空。');
+                return;
+            }
+
+            console.log('开始发起新的请求....url='+url);
+
+            fetch(url)
+                .then((res)=>{
+                    return res.json();
+                })
+                .then((res)=>{
+
+                    /* if(this._threadId!=_threadId){
+                     console.log('threadId不一致，终止这次view更新.');
+                     return;
+                     }
+
+                     console.log('请求成功.');
+
+                     var getData=props.getData;
+                     var data=getData(res);
+
+
+                     if(!data||data.length==undefined|| data.length==0){
+                     this.setState({_noData:true});
+                     console.log('服务器已经没有数据了.');
+                     }else{
+                     this.data=this.data.concat(data);
+                     var ds=this.state.dataSource.cloneWithRows(this.data);
+                     this.curPage=this.curPage+1;
+                     this.setState({dataSource:ds});
+                     }
+
+                     console.log('更新view成功.');*/
+
+                    console.log('请求成功.');
+                    var getData=this.props.getData;
+                    var data=getData(res);
+                    this._loadData(data,_threadId);
+
+                })
+                .catch((error)=>console.error(error))
+                .done((res)=>{
+
+                    if(this._threadId!=_threadId){
+                        //console.log('threadId不一致，终止这次view更新.');
+                        return;
+                    }
+                    this.setState({_loading:false,_initLoading:false});
+                });
+
         }
 
 
-        console.log('开始发起新的请求....url='+url);
-
-        fetch(url)
-            .then((res)=>{
-
-                if(this.props.onLoadData){
-                    let flag=this.props.onLoadData(res,this);
-                    if(flag===false){
-                        console.log('then:onLoadData返回值为false，设置stop为true。');
-                        this._stop=true;
-                        return false;
-                    }
-                }
-
-                return res.json();
-            })
-            .then((res)=>{
-
-                if(this._stop===true){
-                    console.log('then:组件stop=true，停止后续操作.');
-                    return false;
-                }
-
-                if(this._threadId!=_threadId){
-                    console.log('threadId不一致，终止这次view更新.');
-                    return;
-                }
-
-                console.log('请求成功.');
-
-                var getData=props.getData;
-                var data=getData(res);
 
 
-                if(!data||data.length==undefined|| data.length==0){
-                    this.setState({_noData:true});
-                    console.log('服务器已经没有数据了.');
-                }else{
-                    this.data=this.data.concat(data);
-                    var ds=this.state.dataSource.cloneWithRows(this.data);
-                    this.curPage=this.curPage+1;
-                    this.setState({dataSource:ds});
-                }
+    },
 
-                console.log('更新view成功.');
 
-            })
-            .catch((error)=>console.error(error))
-            .done((res)=>{
+    /**
+     * 装载数据
+     */
+    _loadData(data,_threadId){
 
-                if(this._stop===true){
-                    console.log('then:组件stop=true，停止后续操作.');
-                    return false;
-                }
+        //var props=this.props;
+        //var _threadId=this._threadId;
 
-                if(this._threadId!=_threadId){
-                    //console.log('threadId不一致，终止这次view更新.');
-                    return;
-                }
-                this.setState({_loading:false,_initLoading:false});
-            });
+        if(this._threadId!=_threadId){
+            console.log('threadId不一致，终止这次view更新.');
+            return;
+        }
 
+        //console.log('请求成功.');
+        //var getData=props.getData;
+        //var data=getData(res);
+
+
+        if(!data||data.length==undefined|| data.length==0){
+            this.setState({_noData:true});
+            console.log('服务器已经没有数据了.');
+        }else{
+            this.data=this.data.concat(data);
+            var ds=this.state.dataSource.cloneWithRows(this.data);
+            this.curPage=this.curPage+1;
+            this.setState({dataSource:ds});
+        }
+
+        console.log('更新view成功.');
 
     },
 

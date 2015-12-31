@@ -28,53 +28,80 @@ class ResultList extends Component {
             onlyOneData:false,//唯一结果
             haveListData:true,//有list结果
 
+
+            initAnimating:true,//转场动画进行中
+            initFetching:true,//初始化请求进行中
+
         };
     }
 
     componentWillMount() {
         this.resultListObj = new ResultListObj(this);
+        this.resultListObj.init();
+        InteractionManager.runAfterInteractions(()=>this.setState({initAnimating:false}));
     }
 
 
     render() {
 
+
+
+
+
+        return (
+            this.state.initFetching==true||this.state.initAnimating==true?
+                <Loading show={true} />
+                :
+                this._tpl()
+        );
+
+
+
+    }
+
+
+
+    _tpl(){
+
         const {nav, title, } = this.props;
+
 
         return (
             this.state.onlyOneData==true?
-            <Detail
-                htmlStr={this.resultListObj.detailStr}
-                nav={this.props.nav}
-                title={this.props.keyWord} />
-            :
-            <View style={{backgroundColor: 'efeff4', flex: 1,}}>
+                <Detail
+                    htmlStr={this.resultListObj.detailStr}
+                    nav={this.props.nav}
+                    title={this.props.keyWord} />
+                :
+                <View style={{backgroundColor: 'efeff4', flex: 1,}}>
 
-                <Header title={title} nav={nav} />
+                    <Header title={title} nav={nav} />
 
-                {
-                    this.state.haveListData==true?
-                        <ListViewBindUrl
-                            getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}
-                            getData={this.resultListObj.getData.bind(this.resultListObj)}
-                            renderRow={this.resultListObj.renderRow.bind(this.resultListObj)}
-                            onLoadData={this.resultListObj.onLoadData.bind(this.resultListObj)}
-                            />
-                        :
-                        null
+                    {
+                        this.state.haveListData==true?
+                            <ListViewBindUrl
+                                getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}
+                                getData={this.resultListObj.getData.bind(this.resultListObj)}
+                                renderRow={this.resultListObj.renderRow.bind(this.resultListObj)}
 
-                }
+                                initData={this.resultListObj.data}
 
-                {
-                    this.state.noDataAtAll==true?
-                        <NoData keyWord={this.props.keyWord} />
-                        :
-                        null
-                }
+                                />
+                            :
+                            null
 
-            </View>
+                    }
+
+                    {
+                        this.state.noDataAtAll==true?
+                            <NoData keyWord={this.props.keyWord} />
+                            :
+                            null
+                    }
+
+                </View>
 
         );
-
     }
 
 }

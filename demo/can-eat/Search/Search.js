@@ -6,6 +6,7 @@ import React, {
     View,
     TextInput,
     Image,
+    TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -59,6 +60,28 @@ class Search extends Component {
                             backgroundColor:'transparent',}}
                     source={require('./img/search.png')}
                     />
+
+                <TouchableOpacity
+                    onPress={()=>this.setState({searchText:''})}
+                    style={{
+                        position:'absolute',
+                        top:14,
+                        right:10,
+                        height:20,
+                        paddingLeft:10,
+                        paddingRight:10,
+                        backgroundColor:'transparent',
+                    }}
+                    >
+                    <Image
+                        style={{
+                                width:20,
+                                height:20,
+                                resizeMode:'stretch',
+                                backgroundColor:'transparent',}}
+                        source={require('./img/del.png')}
+                        />
+                </TouchableOpacity>
 
             </View>
         );

@@ -44,13 +44,14 @@ class ResultList extends Component {
 
     render() {
 
-
-
-
+        const {nav, title, } = this.props;
 
         return (
             this.state.initFetching==true||this.state.initAnimating==true?
-                <Loading show={true} />
+                <View style={{flex:1,backgroundColor:'efeff4'}}>
+                    <Header title={title} nav={nav} />
+                    <Loading show={true} />
+                </View>
                 :
                 this._tpl()
         );

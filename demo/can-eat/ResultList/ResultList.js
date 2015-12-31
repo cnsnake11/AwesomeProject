@@ -84,36 +84,36 @@ class NoData extends Component{
         return (
             <View
                 style={{
-                            flex:1,
-                            padding:10,
-                            alignItems:'center',
-                        }}
+                    flex:1,
+                    padding:10,
+                    alignItems:'center',
+                }}
                 >
                 <Text
                     style={{
-                                color:'#535353',
-                            }}
+                        color:'#535353',
+                    }}
                     >
                     没有找到"{this.props.keyWord}"的相关结果,要不要去孕育问答询问下其它宝妈?
                 </Text>
                 <TouchableOpacity
                     style={{
-                                marginTop:40,
-                            }}
+                        marginTop:40,
+                    }}
                     >
                     <View
                         style={{
-                                    backgroundColor:'#ff537b',
-                                    width:80,
-                                    padding:10,
-                                 }}
+                            backgroundColor:'#ff537b',
+                            width:80,
+                            padding:10,
+                         }}
                         >
                         <Text
                             style={{
-                                        color:'fff',
-                                        fontWeight:'700',
-                                        textAlign:'center',
-                                    }}
+                                color:'fff',
+                                fontWeight:'700',
+                                textAlign:'center',
+                            }}
                             >
                             去提问
                         </Text>

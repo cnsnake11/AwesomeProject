@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 import React, {
     Component,
@@ -14,7 +14,7 @@ import {
     Loading,
 } from '../../../bbt-react-native';
 
-//import Search from '../Search/Search';
+// import Search from '../Search/Search';
 import Header from '../Header/Header';
 import ResultListObj from './ResultListObj';
 import Detail from '../Detail/Detail';
@@ -38,7 +38,7 @@ class ResultList extends Component {
     componentWillMount() {
         this.resultListObj = new ResultListObj(this);
         this.resultListObj.init();
-        InteractionManager.runAfterInteractions(()=>this.setState({initAnimating:false}));
+        InteractionManager.runAfterInteractions(() => this.setState({initAnimating: false, }));
     }
 
 
@@ -47,8 +47,8 @@ class ResultList extends Component {
         const {nav, title, } = this.props;
 
         return (
-            this.state.initFetching==true||this.state.initAnimating==true?
-                <View style={{flex:1,backgroundColor:'efeff4'}}>
+            this.state.initFetching === true || this.state.initAnimating === true ?
+                <View style={{flex: 1, backgroundColor: 'efeff4', }}>
                     <Header title={title} nav={nav} />
                     <Loading show={true} />
                 </View>
@@ -56,30 +56,26 @@ class ResultList extends Component {
                 this._tpl()
         );
 
-
-
     }
 
 
-
-    _tpl(){
+    _tpl() {
 
         const {nav, title, } = this.props;
 
-
         return (
-            this.state.onlyOneData==true?
+            this.state.onlyOneData === true ?
                 <Detail
                     htmlStr={this.resultListObj.detailStr}
                     nav={this.props.nav}
                     title={this.props.keyWord} />
                 :
-                <View style={{backgroundColor: 'efeff4', flex: 1,}}>
+                <View style={{backgroundColor: 'efeff4', flex: 1, }}>
 
                     <Header title={title} nav={nav} />
 
                     {
-                        this.state.haveListData==true?
+                        this.state.haveListData === true ?
                             <ListViewBindUrl
                                 getUrl={this.resultListObj.getUrl.bind(this.resultListObj)}
                                 getData={this.resultListObj.getData.bind(this.resultListObj)}
@@ -94,7 +90,7 @@ class ResultList extends Component {
                     }
 
                     {
-                        this.state.noDataAtAll==true?
+                        this.state.noDataAtAll === true ?
                             <NoData keyWord={this.props.keyWord} />
                             :
                             null
@@ -107,40 +103,40 @@ class ResultList extends Component {
 
 }
 
-class NoData extends Component{
-    render(){
+class NoData extends Component {
+    render() {
         return (
             <View
                 style={{
-                    flex:1,
-                    padding:10,
-                    alignItems:'center',
+                    flex: 1,
+                    padding: 10,
+                    alignItems: 'center',
                 }}
                 >
                 <Text
                     style={{
-                        color:'#535353',
+                        color: '#535353',
                     }}
                     >
                     没有找到"{this.props.keyWord}"的相关结果,要不要去孕育问答询问下其它宝妈?
                 </Text>
                 <TouchableOpacity
                     style={{
-                        marginTop:40,
+                        marginTop: 40,
                     }}
                     >
                     <View
                         style={{
-                            backgroundColor:'#ff537b',
-                            width:80,
-                            padding:10,
-                         }}
+                            backgroundColor: '#ff537b',
+                            width: 80,
+                            padding: 10,
+                        }}
                         >
                         <Text
                             style={{
-                                color:'fff',
-                                fontWeight:'700',
-                                textAlign:'center',
+                                color: 'fff',
+                                fontWeight: '700',
+                                textAlign: 'center',
                             }}
                             >
                             去提问
@@ -154,5 +150,3 @@ class NoData extends Component{
 }
 
 module.exports = ResultList;
-
-

@@ -185,5 +185,3 @@ class IndexMenu extends Component {
 }
 
 module.exports = IndexMenu;
-
-

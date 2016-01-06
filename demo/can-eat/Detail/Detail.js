@@ -195,5 +195,3 @@ class Detail extends Component {
 
 
 module.exports = Detail;
-
-

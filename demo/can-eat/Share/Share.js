@@ -199,6 +199,3 @@ class Share extends Component {
 }
 
 module.exports = Share;
-
-
-

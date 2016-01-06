@@ -96,5 +96,3 @@ class CanEatIndex extends Component {
 
 
 module.exports = CanEatIndex;
-
-

@@ -29,5 +29,3 @@ class SearchObj extends BaseLogicObj {
 }
 
 module.exports = SearchObj;
-
-

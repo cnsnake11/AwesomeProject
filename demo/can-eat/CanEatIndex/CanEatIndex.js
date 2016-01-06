@@ -20,7 +20,9 @@ import Header from '../Header/Header';
 import Search from '../Search/Search';
 import IndexMenu from '../IndexMenu/IndexMenu';
 
-// 因为循环引用bug不得不抽取出来，很不爽。Search引用ResultList,ResultList引用Search
+// 因为循环引用bug不得不抽取出来，很不爽。
+// Search引用ResultList,ResultList引用Search
+// 抽取成Search不直接引用ResultList，而是把ResultList作为props传入Search
 import ResultList from '../ResultList/ResultList';
 
 

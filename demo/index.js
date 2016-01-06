@@ -4,8 +4,6 @@
 //依赖引入
 //import React from 'react-native';
 let React=require('react-native');
-//let UIExplorer=require('../Examples/UIExplorer/UIExplorerApp');
-let MoviesApp=require('../Examples/Movies/MoviesApp');
 
 let Demo1Index=require('./demo1/index');
 let MeitunIndex=require('./meitun/index/index');
@@ -98,21 +96,7 @@ class DemoApp extends Component{
                 </View>
             );
 
-       }else if(route.name=='UIExplorer'){
-
-            //这种很简单的结构，没有必要为了封装而封装
-            return (//官方给的例子没法加返回按钮，会报错 todo ios会有warning，影响调试
-                /*<UIExplorer/>*/
-                null
-            );
-
-        }else if(route.name=='movies'){
-
-            return (
-                <MoviesApp />
-            );
-
-        }else if(route.name=='demo1'){
+       }else if(route.name=='demo1'){
             return this._tplDemo1Index(...arguments);
         }else if(route.name=='meitun'){
             return (
@@ -152,18 +136,7 @@ class DemoApp extends Component{
                 <Text style={[css.text,css.titleText]}>react native demo </Text>
 
                 <View style={css.navWrapper}>
-                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'UIExplorer')}>
-                        <View style={css.navView}>
-                            <Text style={css.navText}>UIExplorer-官方提供</Text>
-                        </View>
-                    </TouchableHighlight>
 
-
-                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'movies')}>
-                        <View style={css.navView}>
-                            <Text style={css.navText}>Movies-官方提供</Text>
-                        </View>
-                    </TouchableHighlight>
 
                     <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'demo1')}>
                         <View style={css.navView}>
@@ -226,7 +199,7 @@ class DemoApp extends Component{
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
-let tmp=React.createClass({
+/*let tmp=React.createClass({
     render(){
         return(
             <Navigator
@@ -235,7 +208,7 @@ let tmp=React.createClass({
         );
     },
 });
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);
+AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
 /*let Detail=require('./can-eat/Detail/Detail');
 let tmp=React.createClass({
@@ -251,4 +224,4 @@ AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
 
 
-//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

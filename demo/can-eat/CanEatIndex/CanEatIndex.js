@@ -55,7 +55,7 @@ class CanEatIndex extends Component{
 
             <Navigator ref='nav'
                 initialRoute={{name: 'home'}}
-                renderScene={ this._render_page }  />
+                renderScene={ this._render_page.bind(this) }  />
         );
 
     }
@@ -68,7 +68,7 @@ class CanEatIndex extends Component{
 
             return (
                 <View  style={{backgroundColor:'#efeff4',flex:1}}>
-                    <Header title='能不能吃' nav={nav}/>
+                    <Header title='能不能吃' nav={this.props.nav}/>
 
                     <Search nav={nav} />
 

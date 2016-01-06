@@ -19,12 +19,12 @@ class Search extends Component {
 
     constructor() {
         super();
-        this.state = {
-            searchText: '',
-        };
     }
 
     componentWillMount() {
+        this.state = {
+            searchText: this.props.keyWord || '',
+        };
         this.searchObj = new SearchObj(this);
     }
 

@@ -18,6 +18,7 @@ import {
 import Header from '../Header/Header';
 import ResultListObj from './ResultListObj';
 import Detail from '../Detail/Detail';
+import Search from '../Search/Search';
 
 class ResultList extends Component {
 
@@ -61,7 +62,7 @@ class ResultList extends Component {
 
     _tpl() {
 
-        const {nav, title, } = this.props;
+        let {nav, title, } = this.props;
 
         return (
             this.state.onlyOneData === true ?
@@ -73,6 +74,11 @@ class ResultList extends Component {
                 <View style={{backgroundColor: 'efeff4', flex: 1, }}>
 
                     <Header title={title} nav={nav} />
+
+                    <Search
+                        nav={nav}
+                        resultComponent={ResultList}
+                        keyWord={this.props.keyWord}/>
 
                     {
                         this.state.haveListData === true ?

@@ -7,11 +7,11 @@ import {
     BaseLogicObj,
 } from '../../../bbt-react-native';
 
-import ResultList from '../ResultList/ResultList';
+// import ResultList from '../ResultList/ResultList';
 
 class SearchObj extends BaseLogicObj {
     changeText(e) {
-        const text = e.nativeEvent.text;
+        let text = e.nativeEvent.text;
 
         this.setState({
             searchText: text,
@@ -19,9 +19,11 @@ class SearchObj extends BaseLogicObj {
     }
 
     search() {
-        const nav = this.getProps().nav;
+        let nav = this.getProps().nav;
+        let Result = this.getProps().resultComponent;
+
         nav.push({
-            page: <ResultList title={`搜索:${this.getState().searchText}`}
+            page: <Result title={`搜索:${this.getState().searchText}`}
                               nav={nav}
                               keyWord={this.getState().searchText} />,
         });

@@ -3,7 +3,6 @@
 
 
 var React=require('react-native');
-var Swiper = require('react-native-swiper');
 
 
 var {

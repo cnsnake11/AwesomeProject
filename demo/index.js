@@ -28,8 +28,8 @@ let css=StyleSheet.create({
     wrapper:{
         paddingTop:150,
 
-        backgroundColor:'white',//三星中画布背景色为黑色
-        height:100000,//三星中画布背景色为黑色
+        backgroundColor:'white',
+        height:100000,
 
     },
     navWrapper:{
@@ -41,10 +41,10 @@ let css=StyleSheet.create({
         textAlign:'center',
         fontSize:30,
         fontWeight:'bold',
-        color:'black',//三星中默认颜色为灰色
+        color:'black',
     },
     navText:{
-        color:'black',//三星中默认颜色为灰色
+        color:'black',
     },
 
     navView:{

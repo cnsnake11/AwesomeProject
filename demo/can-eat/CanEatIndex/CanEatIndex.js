@@ -31,8 +31,13 @@ class CanEatIndex extends Component{
 
 
         BackAndroid.addEventListener('hardwareBackPress', ()=> {
+
             if(this.refs.nav){
-                this.refs.nav.pop();
+                if(this.refs.nav.getCurrentRoutes().length==1){
+                    this.props.nav.pop();
+                }else{
+                    this.refs.nav.pop();
+                }
             }
             return true;
         });

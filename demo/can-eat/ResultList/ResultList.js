@@ -21,16 +21,16 @@ import Detail from '../Detail/Detail';
 
 class ResultList extends Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            noDataAtAll:false,//干脆没有结果
-            onlyOneData:false,//唯一结果
-            haveListData:true,//有list结果
+        this.state = {
+            noDataAtAll: false, // 干脆没有结果
+            onlyOneData: false, // 唯一结果
+            haveListData: true, // 有list结果
 
 
-            initAnimating:true,//转场动画进行中
-            initFetching:true,//初始化请求进行中
+            initAnimating: true, // 转场动画进行中
+            initFetching: true, // 初始化请求进行中
 
         };
     }

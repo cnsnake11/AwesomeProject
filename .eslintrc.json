@@ -3,7 +3,7 @@
 
 
         //Possible Errors
-        "comma-dangle": [2, "always"],//对象后面逗号,有bug:jsx里的{}会识别成对象
+        "comma-dangle": [0, "always"],//closed:对象后面逗号,有bug:jsx里的{[]}会识别成对象
         "no-cond-assign": [2, "always"],
         "no-console": 0,
         "no-constant-condition": 1,
@@ -16,7 +16,7 @@
         "no-empty": 1,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 2,
-        "no-extra-parens": 2,
+        "no-extra-parens": 0,//closed:对jsx的外面包裹的圆括号判断的不准
         "no-extra-semi": 2,
         "no-func-assign": 2,
         "no-inner-declarations": [2, "both"],
@@ -65,7 +65,7 @@
         "no-labels": 2,
         "no-lone-blocks": 2,
         "no-loop-func": 2,
-        "no-magic-numbers": 2,
+        "no-magic-numbers": 0,//closed:str.indexof的判断会直接使用-1
         "no-multi-spaces": 2,
         "no-multi-str": 2,
         "no-native-reassign": 2,
@@ -74,7 +74,7 @@
         "no-new": 2,
         "no-octal-escape": 2,
         "no-octal": 2,
-        "no-param-reassign": [2, {"props": false}],
+        "no-param-reassign": [0, {"props": false}],//closed:有时候需要改
         "no-process-env": 2,
         "no-proto": 2,
         "no-redeclare": 2,
@@ -100,7 +100,7 @@
 
 
         //Variables
-        "init-declarations": [2, "always"],
+        "init-declarations": [0, "always"],//closed:有时候确实不需要声明
         "no-catch-shadow": 2,
         "no-delete-var": 2,
         "no-label-var": 2,
@@ -145,7 +145,7 @@
         "id-length": [2, {"min": 2, "max": 20, "properties": "always", "exceptions": ["x","y","e","i","j","k"]}],
         "id-match": [0, "^[a-z]+([A-Z][a-z]+)*$", {"properties": false}],
         "indent": [2, 4, {"SwitchCase": 1}],
-        "jsx-quotes":[2,"prefer-double"],
+        "jsx-quotes":[2,"prefer-single"],//single单引号比双引号好打
         "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "linebreak-style": [2, "unix"],
         "lines-around-comment": [2, { "beforeBlockComment": true, "beforeLineComment": true }],
@@ -153,34 +153,34 @@
         "max-len": [0, 80, 4],//closed:80还是太短了，有些字符串比较长
         "max-nested-callbacks": [2, 3],
         "max-params": [2, 3],
-        "max-statements": [2, 10],
+        "max-statements": [0, 10],//closed:对变量声明数量的限制，觉得不用限制
         "new-cap": 2,
         "new-parens": 2,
-        "newline-after-var": [2, "always"],
+        "newline-after-var": [0, "always"],//closed:有时候并不需要空一行
         "no-array-constructor": 2,
         "no-bitwise": 2,
         "no-continue": 2,
-        "no-inline-comments": 2,
+        "no-inline-comments": 0,//closed:有时候写在inline比较易读
         "no-lonely-if": 2,
         "no-mixed-spaces-and-tabs": 2,
         "no-multiple-empty-lines": [2, {"max": 2, "maxEOF": 1}],
-        "no-negated-condition": 2,
+        "no-negated-condition": 0,//closed:有时候需要取非
         "no-nested-ternary": 2,
         "no-new-object": 2,
         "no-plusplus": 2,
         "no-restricted-syntax": [0, "FunctionExpression", "WithStatement"],//closed:es6的方法定义会报错
         "no-spaced-func": 2,
-        "no-ternary": 2,
-        "no-trailing-spaces": 2,
+        "no-ternary": 0,//closed:jsx中需要使用
+        "no-trailing-spaces": [2, { "skipBlankLines": true }],//空行允许有空格
         "no-underscore-dangle": 0,
         "no-unneeded-ternary": 2,
-        "object-curly-spacing": [2, "never"],
+        "object-curly-spacing": [0, "never"],//closed:对象的最后一个逗号，与comma-spacing冲突
         "one-var": [2, "never"],
         "operator-assignment": [2, "never"],
-        "operator-linebreak": [2, "after"],
+        "operator-linebreak": [0, "after"],//closed:jsx中使用条件表达式时候冒号最好独立一行
         "padded-blocks": [0, "always"],
         "quote-props": [2, "as-needed"],
-        "quotes": [2, "single"],
+        "quotes": [0, "single"],//closed:有时候字符串里有引号的时候，不能确定外层是什么引号
         "require-jsdoc": 2,
         "semi-spacing": [2, {"before": false, "after": true}],
         "semi": [2, "always"],
@@ -201,7 +201,7 @@
 
 
         //es6
-        "arrow-body-style": [2, "as-needed"],
+        "arrow-body-style": [0, "as-needed"], //closed:箭头函数要根据简单还是复杂返回值来区分是否简写
         "arrow-parens": [2, "always"],
         "arrow-spacing": 2,
         "constructor-super": 2,
@@ -223,6 +223,10 @@
     },
     "env": {
         "es6": true //bug:es6的export default目前在rn中有bug，so现在暂时使用moudle.exports
+        ,"node": true
+    },
+    "globals": {
+        "fetch": false//false表示只读
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {

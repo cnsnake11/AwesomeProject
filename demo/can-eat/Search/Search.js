@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 import React, {
     Component,
@@ -28,7 +28,7 @@ class Search extends Component {
         this.searchObj = new SearchObj(this);
     }
 
-    render(){
+    render() {
 
         return (
 
@@ -52,33 +52,33 @@ class Search extends Component {
                    />
 
                 <Image
-                    style={{position:'absolute',
-                            top:2,
-                            left:20,
-                            width:20,
-                            resizeMode:'contain',
-                            backgroundColor:'transparent',}}
+                    style={{position: 'absolute',
+                            top: 2,
+                            left: 20,
+                            width: 20,
+                            resizeMode: 'contain',
+                            backgroundColor: 'transparent', }}
                     source={require('./img/search.png')}
                     />
 
                 <TouchableOpacity
-                    onPress={()=>this.setState({searchText:''})}
+                    onPress={() => this.setState({searchText: '', })}
                     style={{
-                        position:'absolute',
-                        top:14,
-                        right:10,
-                        height:20,
-                        paddingLeft:10,
-                        paddingRight:10,
-                        backgroundColor:'transparent',
+                        position: 'absolute',
+                        top: 14,
+                        right: 10,
+                        height: 20,
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                        backgroundColor: 'transparent',
                     }}
                     >
                     <Image
                         style={{
-                                width:20,
-                                height:20,
-                                resizeMode:'stretch',
-                                backgroundColor:'transparent',}}
+                            width: 20,
+                            height: 20,
+                            resizeMode: 'stretch',
+                            backgroundColor: 'transparent', }}
                         source={require('./img/del.png')}
                         />
                 </TouchableOpacity>
@@ -87,7 +87,6 @@ class Search extends Component {
         );
 
     }
-
 
 }
 

@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 import React, {
     Component,
@@ -22,33 +22,33 @@ import Share from '../Share/Share';
 
 class Detail extends Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            querying:true,
-            initAnimateing:true,
-            showShare:false,
+        this.state = {
+            querying: true,
+            initAnimateing: true,
+            showShare: false,
         };
     }
 
     componentWillMount() {
         this.detailObj = new DetailObj(this);
         this.detailObj.query();
-        InteractionManager.runAfterInteractions(()=>{
-            this.setState({initAnimateing:false,});
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({initAnimateing: false, });
         });
     }
 
 
     render() {
 
-        const {nav, title} = this.props;
-        const data=this.detailObj.data;
-        const width=Dimensions.get('window').width;
+        const {nav, title, } = this.props;
+        const data = this.detailObj.data;
+        const width = Dimensions.get('window').width;
 
         return (
 
-            <View style={{backgroundColor: 'efeff4', flex: 1,}}>
+            <View style={{backgroundColor: 'efeff4', flex: 1, }}>
 
                 <Header title={title}
                         nav={nav}
@@ -56,60 +56,60 @@ class Detail extends Component {
                         rightBtnPress={this.detailObj.showShare.bind(this.detailObj)} />
 
                 {
-                    this.state.querying==true||this.state.initAnimateing==true?
+                    this.state.querying === true || this.state.initAnimateing === true ?
                         <Loading show={true} />
                         :
                         <ScrollView>
                             <Image
                                 style={{
-                                    width:width,
-                                    height:260,
+                                    width,
+                                    height: 260,
                                 }}
-                                source={{uri:data.img}}/>
+                                source={{uri: data.img, }}/>
                             {
-                                data.canEatList.map((one,i)=>{
+                                data.canEatList.map((one, i) => {
                                     return (
                                         <View
                                             key={i}
                                             style={{
-                                                backgroundColor:'fff',
-                                                padding:10,
-                                                marginBottom:10,
+                                                backgroundColor: 'fff',
+                                                padding: 10,
+                                                marginBottom: 10,
                                             }}
                                             >
 
                                             <Text
                                                 style={{
-                                                    color:'#ff537b',
-                                                    fontWeight:'700',
+                                                    color: '#ff537b',
+                                                    fontWeight: '700',
                                                 }}>
                                                 {one.title}
                                             </Text>
                                             <View
                                                 style={{
-                                                    marginTop:5,
-                                                    marginBottom:5,
-                                                    flexDirection:'row',
-                                                    alignItems:'center',
+                                                    marginTop: 5,
+                                                    marginBottom: 5,
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center',
                                                 }}>
                                                  <Image
                                                      style={{
-                                                    width: 15,
-                                                    height:15,
-                                                    resizeMode: 'contain',
-                                                }}
+                                                         width: 15,
+                                                         height: 15,
+                                                         resizeMode: 'contain',
+                                                     }}
                                                      source={one.icon} />
                                                  <Text
                                                      style={{
-                                                    color:'#666',
-                                                }}>
+                                                         color: '#666',
+                                                     }}>
                                                      {one.status}
                                                  </Text>
                                             </View>
 
                                              <Text
                                                 style={{
-                                                    color:'#666',
+                                                    color: '#666',
                                                 }}>
                                                 {one.des}
                                             </Text>
@@ -120,10 +120,10 @@ class Detail extends Component {
 
 
                             {
-                                data.adImg?
+                                data.adImg ?
                                     <Image
                                         style={{
-                                            width: width,
+                                            width,
                                             height: 100,
                                             resizeMode: 'stretch',
                                             marginBottom: 10,
@@ -137,33 +137,33 @@ class Detail extends Component {
 
 
                             {
-                                data.tips?
+                                data.tips ?
                                     <View
                                         style={{
                                             backgroundColor: 'fff',
                                             marginBottom: 10,
-                                         }}>
+                                        }}>
                                         <Image
                                             source={require('./img/tips.png')}
                                             style={{
-                                                height:40,
-                                                width:120,
+                                                height: 40,
+                                                width: 120,
                                                 resizeMode: 'stretch',
-                                                justifyContent:'center',
-                                                paddingLeft:20,
+                                                justifyContent: 'center',
+                                                paddingLeft: 20,
                                             }}>
                                             <Text
                                                 style={{
-                                                    color:'fff',
-                                                    fontWeight:'700',
-                                                    backgroundColor:'transparent',
+                                                    color: 'fff',
+                                                    fontWeight: '700',
+                                                    backgroundColor: 'transparent',
                                                 }}>
                                                 小贴士
                                             </Text>
                                         </Image>
                                         <View
                                             style={{
-                                                margin:10,
+                                                margin: 10,
                                             }}>
                                             <Text>
                                                 {data.tips}

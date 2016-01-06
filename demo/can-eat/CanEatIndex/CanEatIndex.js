@@ -1,8 +1,7 @@
 
-'use strict'
+'use strict';
 
-
-import React,{
+import React, {
     AppRegistry,
     Component,
     StyleSheet,
@@ -22,20 +21,20 @@ import Search from '../Search/Search';
 import IndexMenu from '../IndexMenu/IndexMenu';
 
 
-class CanEatIndex extends Component{
+class CanEatIndex extends Component {
 
-    componentWillMount(){
-        if(Platform.OS=='ios'){
+    componentWillMount() {
+        if (Platform.OS === 'ios') {
             StatusBarIOS.setStyle('light-content');
         }
 
 
-        BackAndroid.addEventListener('hardwareBackPress', ()=> {
+        BackAndroid.addEventListener('hardwareBackPress', () => {
 
-            if(this.refs.nav){
-                if(this.refs.nav.getCurrentRoutes().length==1){
+            if (this.refs.nav) {
+                if (this.refs.nav.getCurrentRoutes().length === 1) {
                     this.props.nav.pop();
-                }else{
+                } else {
                     this.refs.nav.pop();
                 }
             }
@@ -45,34 +44,32 @@ class CanEatIndex extends Component{
     }
 
 
-
-    componentWillUnmount(){
-        if(Platform.OS=='ios'){
+    componentWillUnmount() {
+        if (Platform.OS === 'ios') {
             StatusBarIOS.setStyle('default');
         }
     }
 
 
-
-    render(){
+    render() {
 
         return (
-
             <Navigator ref='nav'
-                initialRoute={{name: 'home'}}
-                renderScene={ this._render_page.bind(this) }  />
+                initialRoute={{name: 'home', }}
+                renderScene={this._renderPage.bind(this)} />
         );
 
     }
 
 
-    _render_page(route, nav){
-        console.log('in render page '+route.name);
+    _renderPage(route, nav) {
 
-        if(route.name=='home'){
+        console.log(`in render page ${route.name}`);
+
+        if (route.name === 'home') {
 
             return (
-                <View  style={{backgroundColor:'#efeff4',flex:1}}>
+                <View style={{backgroundColor: '#efeff4', flex: 1, }}>
                     <Header title='能不能吃' nav={this.props.nav}/>
 
                     <Search nav={nav} />
@@ -83,9 +80,9 @@ class CanEatIndex extends Component{
         }
 
 
-        if(!route.page){
+        if (!route.page) {
             console.error('页面导航请求没有传入page参数.');
-            return;
+            return null;
         }
 
         return (
@@ -98,6 +95,6 @@ class CanEatIndex extends Component{
 }
 
 
-module.exports=CanEatIndex;
+module.exports = CanEatIndex;
 
 

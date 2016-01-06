@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 import React, {
     Text,
@@ -16,57 +16,59 @@ import Detail from '../Detail/Detail';
 
 class ResultListObj extends BaseLogicObj {
 
-    init(){
+    init() {
 
-        let url=this.getUrl(0);
+        let url = this.getUrl(0);
 
         fetch(url).
-            then((res)=>{
-                let str=res._bodyText;
+            then((res) => {
+                let str = res._bodyText;
 
-                if(str&&(str.indexOf('<!DOCTYPE html>')!=-1||str.indexOf('{"_":""}')!=-1)){
-                    //不是列表数据
+                if (str && (str.indexOf('<!DOCTYPE html>') !== -1 || str.indexOf('{"_":""}') !== -1)) { // 不是列表数据
 
-                    if(str.indexOf('{"_":""}')!=-1){//没有任何数据
+                    if (str.indexOf('{"_":""}') !== -1) {// 没有任何数据
                         this.setState({
-                            noDataAtAll:true,
-                            haveListData:false,
+                            noDataAtAll: true,
+                            haveListData: false,
                         });
-                    }else{//查到唯一的一个结果
+                    } else { // 查到唯一的一个结果
 
-                        this.detailStr=str;
+                        this.detailStr = str;
 
                         this.setState({
-                            onlyOneData:true,
-                            haveListData:false,
+                            onlyOneData: true,
+                            haveListData: false,
                         });
                     }
                     return false;
-                }else {
-                    //是列表数据
-                    return res.json();
                 }
-            }).then((res)=>{
 
-                if(res==false)return;
-                this.data=res.data;
+                // 是列表数据
+                return res.json();
 
-            }).done(()=>this.setState({initFetching:false}));
+            }).then((res) => {
+
+                if (res === false) {
+                    return;
+                }
+                this.data = res.data;
+
+            }).done(() => this.setState({initFetching: false}));
 
     }
 
 
     getUrl(curPage) {
-        let url=null;
+        let url = null;
 
         let keyWord = this.getProps().keyWord;
-        if(keyWord) {
-            keyWord=encodeURI(keyWord);
+        if (keyWord) {
+            keyWord = encodeURI(keyWord);
             url = `http://www.babytree.com/api/mobile_toolcms/can_eat_search?` +
-                `atype=ajax&pg=${curPage+1}&q=${keyWord}`;
+                `atype=ajax&pg=${curPage + 1}&q=${keyWord}`;
         } else {
             url = `http://www.babytree.com/api/mobile_toolcms/can_eat_list?` +
-                `atype=ajax&pg=${curPage+1}&cat_id=${this.getProps().id}`;
+                `atype=ajax&pg=${curPage + 1}&cat_id=${this.getProps().id}`;
         }
 
         return url;
@@ -79,14 +81,14 @@ class ResultListObj extends BaseLogicObj {
     pressOne(data) {
         const nav = this.getProps().nav;
         nav.push({
-            page:<Detail nav={nav} title={data.title} id={data.id} />
+            page: <Detail nav={nav} title={data.title} id={data.id} />
         });
     }
 
     renderRow(rowData, sectionID, rowID) {
         return (
             <TouchableOpacity
-                onPress={this.pressOne.bind(this,rowData)}
+                onPress={this.pressOne.bind(this, rowData)}
                 style={{
                     marginTop: 10,
                 }}>
@@ -160,7 +162,7 @@ class ResultListObj extends BaseLogicObj {
                                                 resizeMode: 'contain',
                                             }}
                                             source={img} />
-                                        <Text style={{fontSize:12,}}>{one.name}</Text>
+                                        <Text style={{fontSize: 12, }}>{one.name}</Text>
                                     </View>
                                 );
                             })}
@@ -168,14 +170,12 @@ class ResultListObj extends BaseLogicObj {
 
                     </View>
 
-
-
                     <View
                         style={{
                             width: 10,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            height:80,
+                            height: 80,
                         }}
                         >
                         <View>
@@ -198,4 +198,4 @@ class ResultListObj extends BaseLogicObj {
 
 }
 
-module.exports=ResultListObj;
+module.exports = ResultListObj;

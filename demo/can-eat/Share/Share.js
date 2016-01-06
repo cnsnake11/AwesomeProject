@@ -1,8 +1,7 @@
 
-'use strict'
+'use strict';
 
-
-import React,{
+import React, {
     AppRegistry,
     Component,
     StyleSheet,
@@ -24,35 +23,35 @@ import {
 } from '../../../bbt-react-native';
 
 
-class Share extends Component{
+class Share extends Component {
 
-    render(){
+    render() {
 
-        const width=Dimensions.get('window').width;
+        const width = Dimensions.get('window').width;
 
         return (
             <Modal show={this.props.show} >
 
                 <View
                     style={{
-                        backgroundColor:'fff',
-                        width:width,
-                        flexDirection:'row',
-                        flexWrap:'wrap',
-                        padding:10,
-                        justifyContent:'space-between',
+                        backgroundColor: 'fff',
+                        width,
+                        flexDirection: 'row',
+                        flexWrap: 'wrap',
+                        padding: 10,
+                        justifyContent: 'space-between',
                     }}>
 
                     <View
                         style={{
-                            width:width-20,
+                            width: width - 20,
                         }}
                         >
                         <Text
                             style={{
-                                textAlign:'center',
-                                fontSize:16,
-                                marginBottom:20,
+                                textAlign: 'center',
+                                fontSize: 16,
+                                marginBottom: 20,
                             }}
                             >
                             分享
@@ -64,14 +63,14 @@ class Share extends Component{
 
                         <View
                             style={{
-                                backgroundColor:'#3AB54A',
-                                padding:10,
-                                marginBottom:10,
+                                backgroundColor: '#3AB54A',
+                                padding: 10,
+                                marginBottom: 10,
                             }}
                             >
                             <Text
                                 style={{
-                                    color:'fff',
+                                    color: 'fff',
                                 }}
                                 >
                                 微信
@@ -84,14 +83,14 @@ class Share extends Component{
 
                         <View
                             style={{
-                                backgroundColor:'#F7941D',
-                                padding:10,
-                                marginBottom:10,
+                                backgroundColor: '#F7941D',
+                                padding: 10,
+                                marginBottom: 10,
                             }}
                             >
                             <Text
                                 style={{
-                                    color:'fff',
+                                    color: 'fff',
                                 }}
                                 >
                                 朋友圈
@@ -104,14 +103,14 @@ class Share extends Component{
 
                         <View
                             style={{
-                                backgroundColor:'#0E76BD',
-                                padding:10,
-                                marginBottom:10,
+                                backgroundColor: '#0E76BD',
+                                padding: 10,
+                                marginBottom: 10,
                             }}
                             >
                             <Text
                                 style={{
-                                    color:'fff',
+                                    color: 'fff',
                                 }}
                                 >
                                 QQ
@@ -125,14 +124,14 @@ class Share extends Component{
 
                         <View
                             style={{
-                                backgroundColor:'#92278F',
-                                padding:10,
-                                marginBottom:10,
+                                backgroundColor: '#92278F',
+                                padding: 10,
+                                marginBottom: 10,
                             }}
                             >
                             <Text
                                 style={{
-                                    color:'fff',
+                                    color: 'fff',
                                 }}
                                 >
                                 QQ空间
@@ -145,14 +144,14 @@ class Share extends Component{
 
                         <View
                             style={{
-                                backgroundColor:'#25AAE2',
-                                padding:10,
-                                marginBottom:10,
+                                backgroundColor: '#25AAE2',
+                                padding: 10,
+                                marginBottom: 10,
                             }}
                             >
                             <Text
                                 style={{
-                                    color:'fff',
+                                    color: 'fff',
                                 }}
                                 >
                                 新浪微博
@@ -162,25 +161,24 @@ class Share extends Component{
                     </TouchableOpacity>
 
 
-
                     <TouchableOpacity
                             onPress={this.props.onPressCancel}
                             style={{
-                                marginTop:10,
+                                marginTop: 10,
                             }}
                         >
                         <View
                             style={{
-                                width:width-20,
-                                padding:10,
-                                backgroundColor:'#B3B5B4',
+                                width: width - 20,
+                                padding: 10,
+                                backgroundColor: '#B3B5B4',
                             }}
                             >
                             <Text
                                 style={{
-                                    textAlign:'center',
-                                    fontSize:16,
-                                    color:'fff',
+                                    textAlign: 'center',
+                                    fontSize: 16,
+                                    color: 'fff',
                                 }}
                                 >
                                 取消
@@ -200,8 +198,7 @@ class Share extends Component{
 
 }
 
-
-module.exports=Share;
+module.exports = Share;
 
 
 

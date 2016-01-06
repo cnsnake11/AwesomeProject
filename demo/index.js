@@ -20,6 +20,7 @@ let {
     View,
     Navigator,
     TouchableHighlight,
+    TouchableOpacity,
     Platform,
     }=React;
 
@@ -86,11 +87,11 @@ class DemoApp extends Component{
             return (
                 <View style={{flex:1,}}>
 
-                    <TouchableHighlight style={{backgroundColor:'white'}} onPress={()=>navigator.pop()}>
+                    <TouchableOpacity style={{backgroundColor:'white'}} onPress={()=>navigator.pop()}>
                         <View style={css.navView}>
                             <Text style={css.navText}>返回</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
                     {route.page}
                 </View>
@@ -138,26 +139,26 @@ class DemoApp extends Component{
                 <View style={css.navWrapper}>
 
 
-                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'demo1')}>
+                    <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'demo1')}>
                         <View style={css.navView}>
                             <Text style={css.navText}>测试demo1</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
 
-                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'meitun')}>
+                    <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'meitun')}>
                         <View style={css.navView}>
                             <Text style={css.navText}>美囤妈妈</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
 
 
-                    <TouchableHighlight onPress={this._forward.bind(this,route,navigator,'canEat')}>
+                    <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'canEat')}>
                         <View style={css.navView}>
                             <Text style={css.navText}>能不能吃</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
                 </View>
             </View>
@@ -169,11 +170,11 @@ class DemoApp extends Component{
         return (
             <View style={{flex:1,}}>
 
-                <TouchableHighlight style={{backgroundColor:'white'}} onPress={this._back.bind(this,route,navigator)}>
+                <TouchableOpacity style={{backgroundColor:'white'}} onPress={this._back.bind(this,route,navigator)}>
                     <View style={css.navView}>
                         <Text style={css.navText}>返回</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
                 <Demo1Index nav={navigator} style={{flex:1,}}/>
             </View>

@@ -74,12 +74,7 @@ class ResultList extends Component {
                 <View style={{backgroundColor: 'efeff4', flex: 1, }}>
 
                     <Header title={title} nav={nav} />
-
-                    <Search
-                        nav={nav}
-                        resultComponent={ResultList}
-                        keyWord={this.props.keyWord}/>
-
+                    
                     {
                         this.state.haveListData === true ?
                             <ListViewBindUrl
@@ -88,6 +83,15 @@ class ResultList extends Component {
                                 renderRow={this.resultListObj.renderRow.bind(this.resultListObj)}
 
                                 initData={this.resultListObj.data}
+
+                                renderHeader={() => {
+                                    return (
+                                    <Search
+                                        nav={nav}
+                                        resultComponent={ResultList}
+                                        keyWord={this.props.keyWord}/>
+                                    );
+                                }}
 
                                 />
                             :

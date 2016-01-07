@@ -53,6 +53,8 @@ class SelectImage extends Component {
           <View
               style={{
                   padding: 10,
+                  backgroundColor: 'fff',
+                  flex: 1,
               }}>
               <View
                   style={{

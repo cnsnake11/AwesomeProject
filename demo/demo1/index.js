@@ -14,6 +14,7 @@ var {
     TouchableOpacity,
     Platform,
     ListView,
+    BackAndroid,
     }=React;
 
 
@@ -23,6 +24,13 @@ var TodoList=require('./todolist/TodoListIndex');
 var SelectImage=require('./RNM/SelectImage/SelectImage');
 
 class Demo1Index extends Component{
+
+    componentWillMount() {
+        BackAndroid.addEventListener('hardwareBackPress', () => {
+            //this.props.nav.pop();
+            return true;
+        });
+    }
 
     render(){
 

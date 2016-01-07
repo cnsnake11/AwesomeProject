@@ -76,7 +76,7 @@ let  Root =React.createClass({
     render(){
 
         return (
-            <View style={{marginTop:40,flex:1}}>
+            <View style={{flex:1, backgroundColor: 'fff', }}>
 
                 <AddTodo todoName={this.state.todoName}
                         changeText={this.addTodoObj.change.bind(this.addTodoObj)}

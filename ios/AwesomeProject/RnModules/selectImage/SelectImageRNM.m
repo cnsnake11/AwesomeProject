@@ -14,7 +14,7 @@ RCT_REMAP_METHOD(select,
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-  RCTLogInfo(@"in native : SelectImageRNM.select called .  ");
+  RCTLog(@"in native : SelectImageRNM.select called .  ");
   
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -41,7 +41,7 @@ RCT_REMAP_METHOD(select,
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 
   
-  RCTLogInfo(@"in native : select image canceled ");
+  RCTLog(@"in native : select image canceled ");
   
   NSMutableDictionary* resObj=[[NSMutableDictionary alloc] init];
   [resObj setValue:@"" forKey:@"path"];
@@ -57,7 +57,7 @@ RCT_REMAP_METHOD(select,
 {
   
   
-  RCTLogInfo(@"in native : imagePickerController called ");
+  RCTLog(@"in native : imagePickerController called ");
   
   NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
   
@@ -116,7 +116,7 @@ RCT_REMAP_METHOD(select,
     [picker dismissModalViewControllerAnimated:YES];
     
     
-    RCTLogInfo(@"in native : select image path=%@",filePath);
+    RCTLog(@"in native : select image path=%@",filePath);
     
     NSMutableDictionary* resObj=[[NSMutableDictionary alloc] init];
     [resObj setValue:filePath forKey:@"path"];

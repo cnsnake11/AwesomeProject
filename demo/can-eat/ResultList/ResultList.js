@@ -74,7 +74,7 @@ class ResultList extends Component {
                 <View style={{backgroundColor: 'efeff4', flex: 1, }}>
 
                     <Header title={title} nav={nav} />
-                    
+
                     {
                         this.state.haveListData === true ?
                             <ListViewBindUrl

@@ -101,7 +101,7 @@ class ResultList extends Component {
 
                     {
                         this.state.noDataAtAll === true ?
-                            <NoData keyWord={this.props.keyWord} />
+                            <NoData keyWord={this.props.keyWord} nav={nav} />
                             :
                             null
                     }
@@ -113,48 +113,59 @@ class ResultList extends Component {
 
 }
 
+
 class NoData extends Component {
     render() {
         return (
-            <View
-                style={{
-                    flex: 1,
-                    padding: 10,
-                    alignItems: 'center',
-                }}
-                >
-                <Text
+            <View>
+                <Search
+                    nav={this.props.nav}
+                    resultComponent={ResultList}
+                    keyWord={this.props.keyWord}/>
+
+
+                <View
                     style={{
-                        color: '#535353',
+                        flex: 1,
+                        padding: 10,
+                        alignItems: 'center',
                     }}
                     >
-                    没有找到"{this.props.keyWord}"的相关结果,要不要去孕育问答询问下其它宝妈?
-                </Text>
-                <TouchableOpacity
-                    style={{
-                        marginTop: 40,
-                    }}
-                    >
-                    <View
+                    <Text
                         style={{
-                            backgroundColor: '#ff537b',
-                            width: 80,
-                            padding: 10,
+                            color: '#535353',
                         }}
                         >
-                        <Text
+                        没有找到"{this.props.keyWord}"的相关结果,要不要去孕育问答询问下其它宝妈?
+                    </Text>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: 40,
+                        }}
+                        >
+                        <View
                             style={{
-                                color: 'fff',
-                                fontWeight: '700',
-                                textAlign: 'center',
+                                backgroundColor: '#ff537b',
+                                width: 80,
+                                padding: 10,
                             }}
                             >
-                            去提问
-                        </Text>
-                    </View>
-                </TouchableOpacity>
+                            <Text
+                                style={{
+                                    color: 'fff',
+                                    fontWeight: '700',
+                                    textAlign: 'center',
+                                }}
+                                >
+                                去提问
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+
+                </View>
 
             </View>
+
         );
     }
 }

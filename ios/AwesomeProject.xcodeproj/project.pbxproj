@@ -22,7 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		AD4FD2161C3E135E00A810E1 /* SelectImageRNM.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FD2151C3E135E00A810E1 /* SelectImageRNM.m */; };
+		AD4FD21B1C3E66E000A810E1 /* SelectImageRNM.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4FD21A1C3E66E000A810E1 /* SelectImageRNM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,8 +127,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		AD4FD2141C3E134F00A810E1 /* SelectImageRNM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectImageRNM.h; sourceTree = "<group>"; };
-		AD4FD2151C3E135E00A810E1 /* SelectImageRNM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageRNM.m; sourceTree = "<group>"; };
+		AD4FD2191C3E66E000A810E1 /* SelectImageRNM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageRNM.h; sourceTree = "<group>"; };
+		AD4FD21A1C3E66E000A810E1 /* SelectImageRNM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageRNM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +235,7 @@
 		13B07FAE1A68108700A75B9A /* AwesomeProject */ = {
 			isa = PBXGroup;
 			children = (
-				AD4FD2061C3E11F900A810E1 /* RnModules */,
+				AD4FD2171C3E66E000A810E1 /* rn-modules */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -309,20 +309,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD4FD2061C3E11F900A810E1 /* RnModules */ = {
+		AD4FD2171C3E66E000A810E1 /* rn-modules */ = {
 			isa = PBXGroup;
 			children = (
-				AD4FD2111C3E122F00A810E1 /* selectImage */,
+				AD4FD2181C3E66E000A810E1 /* selectImage */,
 			);
-			name = RnModules;
-			path = AwesomeProject/RnModules;
+			name = "rn-modules";
+			path = "AwesomeProject/rn-modules";
 			sourceTree = "<group>";
 		};
-		AD4FD2111C3E122F00A810E1 /* selectImage */ = {
+		AD4FD2181C3E66E000A810E1 /* selectImage */ = {
 			isa = PBXGroup;
 			children = (
-				AD4FD2141C3E134F00A810E1 /* SelectImageRNM.h */,
-				AD4FD2151C3E135E00A810E1 /* SelectImageRNM.m */,
+				AD4FD2191C3E66E000A810E1 /* SelectImageRNM.h */,
+				AD4FD21A1C3E66E000A810E1 /* SelectImageRNM.m */,
 			);
 			path = selectImage;
 			sourceTree = "<group>";
@@ -564,7 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD4FD2161C3E135E00A810E1 /* SelectImageRNM.m in Sources */,
+				AD4FD21B1C3E66E000A810E1 /* SelectImageRNM.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);

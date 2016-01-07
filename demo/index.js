@@ -24,6 +24,10 @@ let {
     Platform,
     }=React;
 
+let{
+    selectImageRNM,
+    }=require('../bbt-react-native');
+
 //样式定义
 let css=StyleSheet.create({
     wrapper:{
@@ -60,6 +64,9 @@ class DemoApp extends Component{
 
     //组件渲染接口
     render(){
+
+        selectImageRNM.addEvent('Birthday Party', '4 Privet Drive, Surrey');
+
         return(
             <Navigator
                 initialRoute={{name: 'home', index: 0}}
@@ -197,7 +204,7 @@ class DemoApp extends Component{
     },
 });*/
 
-//AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/todolist/TodoListIndex'));
+AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/RNM/SelectImage/SelectImage'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
 /*let tmp=React.createClass({
@@ -225,4 +232,4 @@ AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
 
 
-AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+//AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);

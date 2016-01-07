@@ -6,7 +6,7 @@
  * 统一的对外发布出口
  * 业务使用只require这一个类即可
  */
-var BbtReactNative={
+let BbtReactNative={
 
     //base
     baseCss:require('./base/BaseCss/Base.css'),
@@ -22,6 +22,8 @@ var BbtReactNative={
     //apis
     TabApi:require('./api/TabApi/TabApi'),
 
+    //RNM:react native modules
+    selectImageRNM:require('react-native').NativeModules.SelectImageRNM,
 
 };
 

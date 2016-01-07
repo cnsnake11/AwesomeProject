@@ -20,6 +20,7 @@ var {
 var Drag=require('./animate/drag');
 var Spring1=require('./animate/spring1');
 var TodoList=require('./todolist/TodoListIndex');
+var SelectImage=require('./RNM/SelectImage/SelectImage');
 
 class Demo1Index extends Component{
 
@@ -38,6 +39,11 @@ class Demo1Index extends Component{
                 title:'todolist',
                 page:(<TodoList />)
             },
+            {
+                title:'选择图片RNM-暂时只支持IOS',
+                page:(<SelectImage />)
+            },
+
         ];
 
         var ds=new ListView.DataSource({rowHasChanged:()=>true}).cloneWithRows(data);

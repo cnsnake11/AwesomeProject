@@ -57,6 +57,7 @@ public class MainActivity extends ReactActivity {
      * always try to load the JS bundle from the packager server.
      * e.g. "index.android.bundle"
      */
+    @Override
     protected  String getBundleAssetName() {
         return "index.android.jsbundle";
     };

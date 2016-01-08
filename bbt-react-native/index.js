@@ -23,7 +23,7 @@ let BbtReactNative = {
     TabApi: require('./api/TabApi/TabApi'),
 
     // RNM:react native modules
-    selectImageRNM: require('react-native').NativeModules.SelectImageRNM,
+    SelectImageRNM: require('react-native').NativeModules.SelectImageRNM,
 
 };
 

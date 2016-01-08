@@ -18,7 +18,7 @@ import React, {
 } from 'react-native';
 
 import {
-    selectImageRNM,
+    SelectImageRNM,
     BaseLogicObj,
 } from '../../../../bbt-react-native';
 
@@ -26,7 +26,7 @@ import {
 class SelectImageObj extends BaseLogicObj {
 
     select() {
-        selectImageRNM.select().then((res) => {
+        SelectImageRNM.select().then((res) => {
             let path = res.path;
             if (path) {
                 this.setState({

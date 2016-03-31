@@ -24,7 +24,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected boolean getUseDeveloperSupport() {
-        return BuildConfig.DEBUG;
+        return true;
     }
 
     /**
@@ -59,6 +59,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected  String getBundleAssetName() {
-        return "index.android.jsbundle";
+        return "index.jsbundle";
     };
 }

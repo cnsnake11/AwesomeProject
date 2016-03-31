@@ -39,12 +39,22 @@ class Demo2Home extends Component {
         let nav = this.props.nav;
 
         return (
-            <View style={{flex: 1, }}>
+            <View style={{flex: 1, paddingTop: 100, }}>
+
+                <Demo2Card nav={nav} offset={this.state.offset} index={0} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={1} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={2} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={3} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={4} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={5} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={6} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={7} flag={false}/>
+                <Demo2Card nav={nav} offset={this.state.offset} index={8} flag={false}/>
 
                 <ScrollView horizontal={true}
-                            scrollEventThrottle={50}
+                            scrollEventThrottle={16}
                             onScroll={(e) => this.obj.onScroll(e)}
-                            style={{flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+                            style={{flex: 1, }}>
                     <Demo2Card nav={nav} offset={this.state.offset} index={0}/>
                     <Demo2Card nav={nav} offset={this.state.offset} index={1}/>
                     <Demo2Card nav={nav} offset={this.state.offset} index={2}/>

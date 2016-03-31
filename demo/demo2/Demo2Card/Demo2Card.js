@@ -45,27 +45,43 @@ class Demo2Card extends Component {
         let fixed = null;
         let {index, offset} = this.props;
 
-        let allWidth = (width + 10 + 10) * index;
+        let allWidth = (width + 10 + 10) * index - this.props.index * 5;
 
-        if (offset >= allWidth) {
-            fixed = {
-                position: 'relative',
-                left: offset - allWidth ,
+
+        let ssss = null;
+        if (this.props.flag === false) {
+            ssss = {
+                position: 'absolute',
+                left: this.props.index * 5,
             };
         }
+        if (this.props.flag !== false && offset >= allWidth ||
+            this.props.flag === false && offset < allWidth) {
+            return <View style={[{width, height, backgroundColor: 'transparent', shadowColor: '#000',
+            shadowOffset: {width: 5, height: 5}, shadowOpacity: 0.2, shadowRadius: 4,
+            marginLeft: 10, marginRight: 10, }, this.props.style, ssss]} />;
+        }
+
+
+        //if (offset >= allWidth) {
+        //    fixed = {
+        //        position: 'relative',
+        //        left: offset - allWidth,
+        //    };
+        //}
 
         return (
 
             <View style={[{width, height, backgroundColor: '#fff', shadowColor: '#000',
             shadowOffset: {width: 5, height: 5}, shadowOpacity: 0.2, shadowRadius: 4,
-            marginLeft: 10, marginRight: 10, }, this.props.style, fixed]}>
+            marginLeft: 10, marginRight: 10, borderColor: '#666', borderWidth: 1 }, this.props.style, fixed, ssss]}>
                 <TouchableOpacity onPress={() => this.obj.toDetail()}>
                 <Image source={require('./img/card1.png')}
                     style={{backgroundColor: '#666', height: 180, width, }} />
 
                 <View style={{padding: 20, paddingBottom: 5, }}>
                     <Text style={{fontSize: 20, color: '#133D50', }}>
-                        I’m a title. A good one.
+                        I’m a title. A good one.{this.props.index}
                     </Text>
                 </View>
 

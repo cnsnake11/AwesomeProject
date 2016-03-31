@@ -42,14 +42,14 @@ class Playground extends React.Component {
         );
     }
     componentDidMount() {
-        this.state.bounceValue.setValue(1.5);     // Start large
-        Animated.spring(                          // Base: spring, decay, timing
-            this.state.bounceValue,                 // Animate `bounceValue`
+        this.state.bounceValue.setValue(1.5);
+        Animated.spring(
+            this.state.bounceValue,
             {
-                toValue: 0.8,                         // Animate to smaller size
-                friction: 0.8,                          // Bouncier spring
+                toValue: 0.8,
+                friction: 0.8,
             }
-        ).start();                                // Start the animation
+        ).start();
     }
 }
 

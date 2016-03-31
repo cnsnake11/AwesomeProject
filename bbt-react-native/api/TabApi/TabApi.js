@@ -1,7 +1,7 @@
 
-'use strict'
+'use strict';
 
-var propsCheck=require('../../base/PropsCheck/PropsCheck');
+let propsCheck = require('../../base/PropsCheck/PropsCheck');
 
 
 /**
@@ -12,55 +12,51 @@ class Tab {
 
     constructor(props) {
 
-        this._compName='TabApi';
+        this._compName = 'TabApi';
 
-        this.options={
+        this.options = {
 
             /**
              * 当前处于活动状态的tab页签名
              */
-            curName:{
-                must:true,
-                type:'string',
+            curName: {
+                must: true,
+                type: 'string',
             },
         };
 
-        propsCheck.check(this,props);
-        this.props=props;
+        propsCheck.check(this, props);
+        this.props = props;
 
 
-        this._curName=this.props.curName;
+        this._curName = this.props.curName;
 
     }
-
 
     /**
      * 点击一个tab
-     * @param name 被点击tab的名字
+     * @param {string} name 被点击tab的名字
+     * @returns {void}
      */
-    clicked(name){
-        this._curName=name;
+    clicked(name) {
+        this._curName = name;
     }
 
     /**
-     * 当前处于活动状态的tab页签名
-     * @returns {String}
+     * @returns {String} 返回当前处于活动状态的tab页签名
      */
-    getCurName(){
+    getCurName() {
         return this._curName;
     }
 
     /**
-     * 判断传入的name是否是当前活动的tab
-     * @param name
-     * @returns {boolean}
+     * @param {string} name 被点击tab的名字
+     * @returns {boolean} 返回传入的name是否是当前活动的tab
      */
-    isCur(name){
-        return this._curName==name;
+    isCur(name) {
+        return this._curName === name;
     }
 
-};
+}
 
-
-
-module.exports=Tab;
+module.exports = Tab;

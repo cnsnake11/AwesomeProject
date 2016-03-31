@@ -8,8 +8,8 @@ let React=require('react-native');
 let Demo1Index=require('./demo1/index');
 let MeitunIndex=require('./meitun/index/index');
 
-let CanEatIndex=require('./can-eat/CanEatIndex/CanEatIndex.js');
-
+let CanEatIndex=require('../pregnancy/can-eat/CanEatIndex/CanEatIndex.js');
+let AskIndex=require('../pregnancy/ask/AskIndex/AskIndex.js');
 
 //变量定义
 let {
@@ -71,7 +71,7 @@ class DemoApp extends Component{
                 >
             </Navigator>
         );
-}
+    }
 
 
 
@@ -85,7 +85,7 @@ class DemoApp extends Component{
 
     _render_page(route, navigator){
 
-       if(route.page){
+        if(route.page){
 
 
             return (
@@ -101,19 +101,27 @@ class DemoApp extends Component{
                 </View>
             );
 
-       }else if(route.name=='demo1'){
+        }else if(route.name=='demo1'){
             return this._tplDemo1Index(...arguments);
+        }else if(route.name=='demo2'){
+            return this._tplDemo2Index(...arguments);
         }else if(route.name=='meitun'){
             return (
                 <MeitunIndex nav={navigator}/>
             );
         }else if(route.name=='canEat'){
-           return (
-               <CanEatIndex nav={navigator}/>
-           );
-       }else{//home
+            return (
+                <CanEatIndex nav={navigator}/>
+            );
+        }else if(route.name=='ask'){
+            return (
+                <AskIndex nav={navigator}/>
+            );
+        }else{//home
             return this._tplHome(...arguments);
         }
+
+        return route.page;
     }
 
 
@@ -149,6 +157,11 @@ class DemoApp extends Component{
                         </View>
                     </TouchableOpacity>
 
+                    <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'demo2')}>
+                        <View style={css.navView}>
+                            <Text style={css.navText}>测试demo2</Text>
+                        </View>
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'meitun')}>
                         <View style={css.navView}>
@@ -156,11 +169,15 @@ class DemoApp extends Component{
                         </View>
                     </TouchableOpacity>
 
-
-
                     <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'canEat')}>
                         <View style={css.navView}>
                             <Text style={css.navText}>能不能吃</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={this._forward.bind(this,route,navigator,'ask')}>
+                        <View style={css.navView}>
+                            <Text style={css.navText}>孕育问答</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -186,47 +203,57 @@ class DemoApp extends Component{
 
     }
 
+
+    _tplDemo2Index(route,navigator){
+
+        let Demo2Index = require('./demo2/Demo2Index/Demo2Index');
+
+        return (
+            <Demo2Index nav={navigator} />
+        );
+
+    }
+
 }
 
 
 
 
 /*let d=React.createClass({
-    render(){
-        return(
-            <Navigator
-                renderScene={ (r,nav)=><Detail nav={nav} title='测试用' productId='07030400270101' specialId='7306' /> }
-                />
-        );
-    },
-});*/
+ render(){
+ return(
+ <Navigator
+ renderScene={ (r,nav)=><Detail nav={nav} title='测试用' productId='07030400270101' specialId='7306' /> }
+ />
+ );
+ },
+ });*/
 
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./demo1/RNM/SelectImage/SelectImage'));
 //AppRegistry.registerComponent('AwesomeProject',()=>require('./meitun/Classnav/Classnav'));
 
 /*let tmp=React.createClass({
-    render(){
-        return(
-            <Navigator
-                renderScene={ (r,nav)=><CanEatIndex nav={nav}   /> }
-                />
-        );
-    },
-});
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
+ render(){
+ return(
+ <Navigator
+ renderScene={ (r,nav)=><CanEatIndex nav={nav}   /> }
+ />
+ );
+ },
+ });
+ AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 
-/*let Detail=require('./can-eat/Detail/Detail');
-let tmp=React.createClass({
-    render(){
-        return(
-            <Navigator
-                renderScene={ (r,nav)=><Detail nav={nav} title='test' id='720'  /> }
-                />
-        );
-    },
-});
-AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
-
-
-
+/*let Detail=require('../pregnancy/ask/AskDetail/AskDetail');
+ let tmp=React.createClass({
+ render(){
+ return(
+ <Navigator
+ renderScene={ (r,nav)=><Detail nav={nav} title='test' data={{id:'255152',title:'刚刚测的 是怀孕了吗？明天该来例假 第二道好浅呀',}}  /> }
+ />
+ );
+ },
+ });
+ AppRegistry.registerComponent('AwesomeProject',()=>tmp);*/
 AppRegistry.registerComponent('AwesomeProject',()=>DemoApp);
+//AppRegistry.registerComponent('AwesomeProject', () => require('./demo2/Demo2Card/Demo2Card'));
+

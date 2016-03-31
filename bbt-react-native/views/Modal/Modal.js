@@ -1,14 +1,11 @@
 
-'use strict'
+'use strict';
 
+let React = require('react-native');
+let baseCss = require('../../base/BaseCss/Base.css');
+let Mask = require('../Mask/Mask');
 
-var React=require('react-native');
-var baseCss=require('../../base/BaseCss/Base.css');
-var TimerMixin = require('react-timer-mixin');
-
-var Mask=require('../Mask/Mask');
-
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -29,69 +26,68 @@ var {
     LayoutAnimation,
     InteractionManager,
     PropTypes,
-    }=React;
+    } = React;
 
 
-var css=StyleSheet.create({
+let css = StyleSheet.create({
 
-    wrapper:{
-        position:'absolute',
-        width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height-20,//todo -20是兼容安卓高不准的问题,此问题还需要解决
-        top:0,
-        left:0,
-        backgroundColor:'transparent',
+    wrapper: {
+        position: 'absolute',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height - 20, // todo -20是兼容安卓高不准的问题,此问题还需要解决
+        top: 0,
+        left: 0,
+        backgroundColor: 'transparent',
 
-        padding:0,
-        margin:0,
-        flex:1,
-        overflow:'visible',
-        flexDirection:'row',
+        padding: 0,
+        margin: 0,
+        flex: 1,
+        overflow: 'visible',
+        flexDirection: 'row',
     },
 
-    modal:{
-        position:'absolute',
-        left:0,
-        bottom:0,
+    modal: {
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
     },
 
 });
 
-var Modal=React.createClass({
+let Modal = React.createClass({
 
-    propTypes:{
+    propTypes: {
 
         /**
          *是否显示，默认为false
          */
-        show:PropTypes.bool,
+        show: PropTypes.bool,
 
         /**
          * 点击蒙板触发的事件
          */
-        onPressMask:PropTypes.func
+        onPressMask: PropTypes.func
     },
 
 
-    getInitialState(){
+    getInitialState() {
         return {
-            offset:new Animated.Value(-9999),
-            reallyHidden:true,
-        }
+            offset: new Animated.Value(Dimensions.get('window').height + 300),
+            reallyHidden: true,
+        };
     },
 
-    render(){
+    render() {
         return (
 
-            <TouchableWithoutFeedback  onPress={this.props.onPressMask}
-                                       style={[css.wrapper,this.state.reallyHidden==true?baseCss.hidden:'']}>
+            <TouchableWithoutFeedback style={[css.wrapper, this.state.reallyHidden === true ? baseCss.hidden : '']}>
 
-                <View style={[css.wrapper,this.state.reallyHidden==true?baseCss.hidden:'']}>
+                <View style={[css.wrapper, this.state.reallyHidden === true ? baseCss.hidden : '']}>
 
-                    <Mask show={true} />
+                    <Mask show={true} onPress={this.props.onPressMask} />
 
-                    <TouchableWithoutFeedback   onPress={()=>false}>
-                        <Animated.View  style={[css.modal,{transform:[{translateX:this.state.offset}]}]} >
+                    <TouchableWithoutFeedback onPress={() => false}>
+                        <Animated.View style={[css.modal, {transform: [{translateY: this.state.offset}]}]} >
                             {this.props.children}
                         </Animated.View>
                     </TouchableWithoutFeedback>
@@ -105,52 +101,51 @@ var Modal=React.createClass({
     },
 
 
-
-
-    componentWillMount(){
-        if(this.props.show==true)
-        this._show();
-    },
-
-
-
-    componentWillReceiveProps(props2){
-
-        if(this.props.show==props2.show){
-            console.log('props not changed. return .');
-            return;
-        }
-
-        console.log('props  changed show='+props2.show);
-        if(props2.show==false){
-            this._hide();
-        }else{
+    componentWillMount() {
+        if (this.props.show === true) {
             this._show();
         }
 
     },
 
-    _show(){
-        this.state.offset.setValue(-(Dimensions.get('window').width));
-        this.setState({reallyHidden:false});
+
+    componentWillReceiveProps(props2) {
+
+        if (this.props.show === props2.show) {
+
+            // console.log('props not changed. return .');
+            return;
+        }
+
+        // console.log('props  changed show=' + props2.show);
+        if (props2.show === false) {
+            this._hide();
+        } else {
+            this._show();
+        }
+
+    },
+
+    _show() {
+        this.setState({reallyHidden: false});
         Animated.spring(
             this.state.offset,
-            {toValue: 0,friction: 5, }
+            {toValue: (0), friction: 10, }
         ).start();
     },
 
-    _hide(){
+    _hide() {
         Animated.timing(
             this.state.offset,
-            {toValue: -(Dimensions.get('window').width),duration: 200, }
-        ).start(()=>this.setState({reallyHidden:true}));
+            {toValue: (Dimensions.get('window').height), duration: 200, }
+        ).start(() => this.setState({reallyHidden: true}));
     },
 
 
 });
 
 
-module.exports=Modal;
+module.exports = Modal;
 
 
 

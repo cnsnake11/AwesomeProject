@@ -1,24 +1,23 @@
 
-'use strict'
+'use strict';
 
-
-var React=require('react-native');
-var {
+let React = require('react-native');
+let {
     StyleSheet,
     Dimensions,
-    }=React;
+    } = React;
 
-var css=StyleSheet.create(
+let css = StyleSheet.create(
     {
-        footerLoadingView:{
-            height:45,
-            alignItems:'center',
-            justifyContent:'center',
+        footerLoadingView: {
+            height: 55,
+            alignItems: 'center',
+            justifyContent: 'center',
 
-            width:Dimensions.get('window').width,
-            flex:0,//一行多列要加这个，否则宽度不生效，因为loading组件的flex默认为1
+            width: Dimensions.get('window').width,
+            flex: 0, // 一行多列要加这个，否则宽度不生效，因为loading组件的flex默认为1
         },
     }
 );
 
-module.exports=css;
+module.exports = css;

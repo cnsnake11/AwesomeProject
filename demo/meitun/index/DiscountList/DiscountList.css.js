@@ -15,6 +15,7 @@ var css=StyleSheet.create({
         flexDirection:'row',
         padding:8,
         marginTop:10,
+        backgroundColor:'#fff',
     },
         sectionTouch:{
             flex:1,

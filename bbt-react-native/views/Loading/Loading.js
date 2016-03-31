@@ -1,12 +1,10 @@
 
-'use strict'
+'use strict';
 
+let React = require('react-native');
+let LoadingIndicator = require('./LoadingIndicator');
 
-var React=require('react-native');
-var css=require('./Loading.css');
-//var propsCheck=require('../../base/PropsCheck/PropsCheck');
-
-var {
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -16,48 +14,99 @@ var {
     ProgressViewIOS,
     ProgressBarAndroid,
     PropTypes,
-    }=React;
+    } = React;
 
 
 /**
  * 无蒙板效果，只是统一加载loading的一个封装，方便整个项目统一更换loading样式
  */
 
-var Loading=React.createClass({
+
+let css = StyleSheet.create({
+
+    wrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    loadingText: {
+
+        // fontSize:16,
+        color: 'black',
+    },
+
+});
 
 
+let Loading = React.createClass({
 
-    propTypes:{
+    propTypes: {
+
         /**
          *是否显示，默认为false
          */
-        show:PropTypes.bool,
+        show: PropTypes.bool,
 
+        /**
+         * 指示器的颜色，默认#666
+         */
+        color: PropTypes.string,
 
         /**
          *可以为其设置style，此style会设置在loading的根view上
          */
-        style:PropTypes.any,//这没找到好的类型
+        style: PropTypes.any, // 这没找到好的类型
+
+        /**
+         * 紧挨着指示器的view的style
+         */
+        wrapperStyle: PropTypes.any, // 这没找到好的类型
+
+        /**
+         * 设置主题，默认为null
+         */
+        theme: React.PropTypes.oneOf(['gray']),
     },
 
 
-    render(){
+    getDefaultProps() {
+        return {
+            show: false,
+            color: '#666',
+        };
+    },
 
-        if(this.props.show==true){
+
+    render() {
+
+        if (this.props.show === true) {
+
+            let themeCss;
+            let color = this.props.color;
+            if (this.props.theme === 'gray') {
+
+                let padding = Platform.OS === 'android' ? 0 : 10;
+                themeCss = {backgroundColor: '#666', borderRadius: 5, padding, opacity: 0.9, };
+                color = '#fff';
+            }
+
             return (
-                <View style={[css.wrapper,this.props.style]}>
-                    <Text style={[css.loadingText]}>努力加载中....</Text>
+                <View style={[css.wrapper, this.props.style]} >
+                    <View style={[themeCss, this.props.wrapperStyle]} >
+                        <LoadingIndicator color={color}/>
+                    </View>
                 </View>
             );
-        }else{
-            return null;
-
         }
 
+        return null;
 
     },
 
 });
 
-module.exports=Loading;
+
+
+module.exports = Loading;
 

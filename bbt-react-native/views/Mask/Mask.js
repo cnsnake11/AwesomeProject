@@ -1,15 +1,11 @@
 
-
-'use strict'
-
-
-var React=require('react-native');
-var baseCss=require('../../base/BaseCss/Base.css');
-
-var TimerMixin = require('react-timer-mixin');
+'use strict';
 
 
-var {
+let React = require('react-native');
+let baseCss = require('../../base/BaseCss/Base.css');
+
+let {
     AppRegistry,
     Component,
     StyleSheet,
@@ -19,6 +15,7 @@ var {
     Navigator,
     TouchableHighlight,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     Platform,
     StatusBarIOS,
     ScrollView,
@@ -28,35 +25,48 @@ var {
     PanResponder,
     LayoutAnimation,
     InteractionManager,
-    }=React;
+    } = React;
 
 
-var css=StyleSheet.create({
-    mask:{
-        width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
-        backgroundColor:'#000',
-        opacity:0.6,
-        position:'absolute',
-        top:0,
-        left:0,
+let css = StyleSheet.create({
+    mask: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        backgroundColor: '#000',
+        opacity: 0.6,
+        position: 'absolute',
+        top: 0,
+        left: 0,
     },
 });
 
-var Mask=React.createClass({
+let Mask = React.createClass({
 
-    propTypes:{
+    propTypes: {
+
         /**
          *是否显示，默认为false
          */
-        show:React.PropTypes.bool,
+        show: React.PropTypes.bool,
+
+        /**
+         * 设置view的style
+         */
+        style: React.PropTypes.any,
+
+        /**
+         * 点击事件
+         */
+        onPress: React.PropTypes.func,
     },
 
 
-    render(){
+    render() {
         return (
-            this.props.show==true?
-                <View style={css.mask}  />
+            this.props.show === true ?
+                <TouchableWithoutFeedback onPress={this.props.onPress}>
+                    <View style={[css.mask, this.props.style]}/>
+                </TouchableWithoutFeedback>
                 :
                 null
         );
@@ -65,7 +75,7 @@ var Mask=React.createClass({
 });
 
 
-module.exports=Mask;
+module.exports = Mask;
 
 
 
